@@ -42,7 +42,7 @@ public class POINTclass implements Attributes {
 				closestIndex = i;
 			}
 		}
-		return closestIndex;
+		return closestIndex; 
 		//return closestIndex;
 	}
 	

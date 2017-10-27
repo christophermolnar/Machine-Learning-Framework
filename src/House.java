@@ -2,7 +2,7 @@
 public class House {
 
 	private NUMclass price;
-	private ENUMclass age;
+	private Age age;
 	private POINTclass coordinates;
 	private NUMclass sqfoot; 
 	
