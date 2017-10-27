@@ -8,6 +8,15 @@ public class NUMclass implements Attributes {
 		this.num = num;
 	}
 	
+	/*
+	 * findClosest()
+	 * -Finds the closest number given an ArrayList of numbers
+	 * Parameters:
+	 * -compareList: An ArrayList that stores all of the NUM values 
+	 * -compare: The value I want to compare with the ArrayList
+	 * Return:
+	 * -best_position: The position of the closest number
+	 */
 	public int findClosest(ArrayList<NUMclass> compareList, float compare ){
 		float closest_distance;
 		int best_position;
@@ -25,11 +34,24 @@ public class NUMclass implements Attributes {
 		
 		return best_position;
 	}
-	
+	/*
+	 * getNUM()
+	 * -gets the float value of NUM
+	 * No Parameters
+	 * Returns:
+	 * -num: the float value of NUM 
+	 */
 	public float getNUM(){
 		return num;
 	}
 	
+	/*
+	 * toString()
+	 * -returns the num as a String value
+	 * No Parameters
+	 * Returns:
+	 * -num as a String
+	 */
 	public String toString(){
 		return ("" + num + "");
 	}
