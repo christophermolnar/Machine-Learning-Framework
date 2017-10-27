@@ -2,13 +2,13 @@ import java.util.ArrayList;
 
 public class NUMclass implements Attributes {
 
-	float num;
+	private float num;
 	
 	public NUMclass(float num){
 		this.num = num;
 	}
 	
-	public void CompareTo(ArrayList<NUMclass> compareList, float compare ){
+	public int CompareTo(ArrayList<NUMclass> compareList, float compare ){
 		float closest_distance;
 		int best_position;
 		float temp_distance;
@@ -22,11 +22,16 @@ public class NUMclass implements Attributes {
 				best_position = x;
 			}			
 		}
+		
+		return best_position;
 	}
 	
 	public float getNUM(){
 		return num;
 	}
 	
+	public String toString(){
+		return ("" + num + "");
+	}
 	
 }
