@@ -1,19 +1,19 @@
 
 public class House {
 
-	private INTclass price;
+	private NUMclass price;
 	private ENUMclass age;
 	private POINTclass coordinates;
-	private INTclass sqfoot; 
+	private NUMclass sqfoot; 
 	
-	public House(POINTclass coordinates, INTclass sqfoot, ENUMclass age, INTclass price){
+	public House(POINTclass coordinates, NUMclass sqfoot, ENUMclass age, NUMclass price){
 		this.price = price;
 		this.age = age;
 		this.sqfoot = sqfoot;
 		this.coordinates = coordinates;
 	}
 
-	public INTclass getPrice() {
+	public NUMclass getPrice() {
 		return price;
 	}
 
@@ -28,7 +28,7 @@ public class House {
 	}
 
 
-	public INTclass getSqfoot() {
+	public NUMclass getSqfoot() {
 		return sqfoot;
 	}
 
