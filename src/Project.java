@@ -26,8 +26,8 @@ public class Project {
 			house_price.add(h.getPrice());
 		}
 		
-		int best_coordinates = h4.getCoordinates().findClosest(house_coordinates, h4.getCoordinates());
-		int best_sqrft = h4.getSqrft().findClosest(house_sqrft, h4.getSqrft().getNUM());
+		int best_coordinates = h4.getCoordinates().findClosest(house_coordinates);
+		int best_sqrft = h4.getSqrft().findClosest(house_sqrft);
 		//int best_age = h4.getAge().findClosest(house_age, h4.getAge()); 
 		
 		float price = (house_price.get(best_coordinates).getNUM() + house_price.get(best_sqrft).getNUM())/2;

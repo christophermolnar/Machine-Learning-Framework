@@ -26,7 +26,7 @@ public class POINTclass implements Attributes {
 	}
 
 	//Returns POINT closest to Compare
-	public int findClosest(ArrayList<POINTclass> Objects, POINTclass Compare){
+	public int findClosest(ArrayList<POINTclass> Objects){
 		POINTclass closest = null;
 		int i = 0;
 		int closestIndex = 0;
@@ -37,7 +37,7 @@ public class POINTclass implements Attributes {
 				closest = o;
 				closestIndex = i;
 			}
-			if(distance(Objects.get(i), Compare) < distance(closest, Compare)){
+			if(distance(Objects.get(i), this) < distance(closest, this)){
 				closest = o;
 				closestIndex = i;
 			}

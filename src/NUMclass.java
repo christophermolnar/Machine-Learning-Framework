@@ -19,15 +19,15 @@ public class NUMclass implements Attributes {
 	 * Return:
 	 * -best_position: The position of the closest number
 	 */
-	public int findClosest(ArrayList<NUMclass> compareList, float compare ){
+	public int findClosest(ArrayList<NUMclass> compareList){
 		float closest_distance;
 		int best_position;
 		float temp_distance;
 		
-		closest_distance = Math.abs(compare - compareList.get(0).getNUM());
+		closest_distance = Math.abs(num - compareList.get(0).getNUM());
 		best_position = 0;
 		for (int x = 1; x < compareList.size(); x++){
-			temp_distance = Math.abs(compare - compareList.get(x).getNUM());
+			temp_distance = Math.abs(num - compareList.get(x).getNUM());
 			if (temp_distance < closest_distance){
 				closest_distance = temp_distance;
 				best_position = x;
