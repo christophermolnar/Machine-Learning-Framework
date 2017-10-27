@@ -42,8 +42,7 @@ public class POINTclass implements Attributes {
 				closestIndex = i;
 			}
 		}
-		return closestIndex; 
-		//return closestIndex;
+		return closestIndex;
 	}
 	
 	//Returns linear position of a point; sums x and y
