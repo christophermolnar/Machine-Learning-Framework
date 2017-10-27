@@ -12,5 +12,9 @@ public enum Age {
 	public String getAge() {
         return age;
     }
+	
+	public String toString(){
+		return this.age;
+	}
 }
 
