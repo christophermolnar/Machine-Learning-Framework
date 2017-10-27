@@ -1,6 +1,6 @@
 import java.awt.Point;
 
-public class POINTclass {
+public class POINTclass implements Attributes {
 	
 	public POINTclass(){
 		new Point();

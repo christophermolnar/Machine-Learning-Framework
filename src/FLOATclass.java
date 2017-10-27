@@ -1,4 +1,4 @@
 
-public class FLOATclass {
+public class FLOATclass implements Attributes {
 
 }

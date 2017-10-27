@@ -1,4 +1,4 @@
 
-public class INTclass {
+public class INTclass implements Attributes {
 
 }
