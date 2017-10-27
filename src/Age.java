@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public enum Age {
 	NEW("new"),
@@ -7,6 +8,11 @@ public enum Age {
 
 	Age(String age){
 		this.age = age;
+	}
+	
+	public int findClosest(ArrayList<Age> Objects){
+		
+		return 0;
 	}
 	
 	public String getAge() {

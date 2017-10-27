@@ -1,6 +1,7 @@
+import java.util.ArrayList;
 
 public interface Attributes {
 	
-	//public int findClosest();
+	//public int findClosest(ArrayList<Object> object);
 
 }
