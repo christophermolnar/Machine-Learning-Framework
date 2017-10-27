@@ -55,5 +55,4 @@ public class POINTclass implements Attributes {
 	public double distance(POINTclass o, POINTclass p){
 		return Math.abs(o.position() - p.position());
 	}
-	
 }
