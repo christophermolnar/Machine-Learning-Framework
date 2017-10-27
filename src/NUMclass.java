@@ -8,6 +8,7 @@ public class NUMclass implements Attributes {
 		this.num = num;
 	}
 	
+	
 	/*
 	 * findClosest()
 	 * -Finds the closest number given an ArrayList of numbers
@@ -31,9 +32,10 @@ public class NUMclass implements Attributes {
 				best_position = x;
 			}			
 		}
-		
 		return best_position;
 	}
+	
+	
 	/*
 	 * getNUM()
 	 * -gets the float value of NUM
@@ -44,6 +46,7 @@ public class NUMclass implements Attributes {
 	public float getNUM(){
 		return num;
 	}
+	
 	
 	/*
 	 * toString()
