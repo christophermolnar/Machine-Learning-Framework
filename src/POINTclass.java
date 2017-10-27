@@ -59,6 +59,6 @@ public class POINTclass implements Attributes {
 	public Boolean equals(POINTclass p){
 		if(this.getX() == p.getX() && this.getY() == p.getY())
 			return true;
-		return false;
+		return false; 
 	}
 }
