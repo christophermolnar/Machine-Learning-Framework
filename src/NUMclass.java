@@ -8,7 +8,7 @@ public class NUMclass implements Attributes {
 		this.num = num;
 	}
 	
-	public int CompareTo(ArrayList<NUMclass> compareList, float compare ){
+	public int findClosest(ArrayList<NUMclass> compareList, float compare ){
 		float closest_distance;
 		int best_position;
 		float temp_distance;
