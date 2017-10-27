@@ -32,7 +32,7 @@ public class POINTclass implements Attributes {
 		int closestIndex = 0;
 		
 		for(POINTclass o : Objects){
-			i++;
+			
 			if(closest == null){
 				closest = o;
 				closestIndex = i;
@@ -41,6 +41,7 @@ public class POINTclass implements Attributes {
 				closest = o;
 				closestIndex = i;
 			}
+			i++;
 		}
 		return closestIndex;
 	}

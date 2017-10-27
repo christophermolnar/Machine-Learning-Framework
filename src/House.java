@@ -28,7 +28,7 @@ public class House {
 	}
 
 
-	public NUMclass getSqfoot() {
+	public NUMclass getSqrft() {
 		return sqfoot;
 	}
 
