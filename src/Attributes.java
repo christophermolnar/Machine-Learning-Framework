@@ -1,6 +1,6 @@
 
 public interface Attributes {
 	
-	//public void findClosest();
+	//public int findClosest();
 
 }
