@@ -6,7 +6,7 @@ public class House {
 	private POINTclass coordinates;
 	private NUMclass sqfoot; 
 	
-	public House(POINTclass coordinates, NUMclass sqfoot, ENUMclass age, NUMclass price){
+	public House(POINTclass coordinates, NUMclass sqfoot, Age age, NUMclass price){
 		this.price = price;
 		this.age = age;
 		this.sqfoot = sqfoot;
@@ -18,7 +18,7 @@ public class House {
 	}
 
 
-	public ENUMclass getAge() {
+	public Age getAge() {
 		return age;
 	}
 
