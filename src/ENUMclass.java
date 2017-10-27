@@ -1,4 +1,4 @@
 
-public class ENUMclass {
+public class ENUMclass implements Attributes {
 
 }
