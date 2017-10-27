@@ -4,7 +4,7 @@ public class NUMclass implements Attributes {
 
 	float num;
 	
-	public NUMclass(int INT){
+	public NUMclass(float num){
 		this.num = num;
 	}
 	
