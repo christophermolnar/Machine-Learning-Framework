@@ -51,8 +51,14 @@ public class POINTclass implements Attributes {
 		return (this.getX()+this.getY())/2;
 	}
 	
-	//Returns absolte distance between two points
+	//Returns absolute distance between two points
 	public double distance(POINTclass o, POINTclass p){
 		return Math.abs(o.position() - p.position());
+	}
+	
+	public Boolean equals(POINTclass p){
+		if(this.getX() == p.getX() && this.getY() == p.getY())
+			return true;
+		return false;
 	}
 }
