@@ -1,8 +1,9 @@
 import java.util.ArrayList;
 
 public class Project {
-	
+	public static ArrayList<VideoGames> videogames = new ArrayList<>();
 	public static ArrayList<House> house_list = new ArrayList<>();
+	
 	public static ArrayList<POINTclass> house_coordinates = new ArrayList<>();
 	public static ArrayList<NUMclass> house_sqrft = new ArrayList<>();
 	public static ArrayList<Age> house_age = new ArrayList<>();
@@ -15,6 +16,9 @@ public class Project {
 		House h3 = new House(new POINTclass(30,100), new NUMclass(800), Age.NEW, new NUMclass(400000));
 		House h4 = new House(new POINTclass(15,20), new NUMclass(1000), Age.NEW, null);
 		
+		videogames.add(new VideoGames(new NUMclass(80), Age.NEW, new NUMclass(120), new NUMclass(2017)));
+		videogames.add(new VideoGames(new NUMclass(20), Age.NEW, new NUMclass(30), new NUMclass(2015)));
+		videogames.add(new VideoGames(new NUMclass(40), Age.OLD, new NUMclass(50), new NUMclass(2012)));
 		house_list.add(h1);
 		house_list.add(h2);
 		house_list.add(h3);
