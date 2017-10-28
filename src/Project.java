@@ -9,6 +9,11 @@ public class Project {
 	public static ArrayList<Age> house_age = new ArrayList<>();
 	public static ArrayList<NUMclass> house_price = new ArrayList<>();
 	
+	public static ArrayList<NUMclass> videogames_yearReleased = new ArrayList<>();
+	public static ArrayList<NUMclass> videogames_hours = new ArrayList<>();
+	public static ArrayList<Age> videogames_age = new ArrayList<>();
+	public static ArrayList<NUMclass> videogames_price = new ArrayList<>();
+	
 	public static void main (String args[])
 	{
 		House h1 = new House(new POINTclass(12,25), new NUMclass(1200), Age.NEW, new NUMclass(500000));
@@ -28,6 +33,12 @@ public class Project {
 			house_sqrft.add(h.getSqrft());
 			house_age.add(h.getAge());
 			house_price.add(h.getPrice());
+		}
+		for (VideoGames v : videogames){
+			videogames_yearReleased.add(v.getYearReleased());
+			videogames_hours.add(v.getHoursOfGameplay());
+			videogames_age.add(v.getAge());
+			videogames_price.add(v.getPrice());
 		}
 		
 		int best_coordinates = h4.getCoordinates().findClosest(house_coordinates);
