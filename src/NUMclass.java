@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class NUMclass implements Attributes {
+public class NUMclass{
 
 	private float num;
 	

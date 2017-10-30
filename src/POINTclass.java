@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class POINTclass implements Attributes {
+public class POINTclass{
 	private final double x;
 	private final double y;
 	
