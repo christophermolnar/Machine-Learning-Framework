@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/** Project			Main class, resposiable for testing
+/** Project			Main class, responsible for testing
  *  
  * @author MZGA
  * @version 1.0	
