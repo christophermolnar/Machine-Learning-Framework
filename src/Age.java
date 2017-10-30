@@ -10,9 +10,15 @@ public enum Age {
 		this.age = age;
 	}
 	
+	//Findest first occurrence of matching 'Age' attrubute
 	public int findClosest(ArrayList<Age> Objects){
-		
-		return 0;
+		for(Age a : Objects){
+			int i = 0;
+			if(this.getAge().equals(a.getAge())){
+				return i; 
+			}
+		}
+		return -1; //No matching attributes
 	}
 	
 	public String getAge() {
