@@ -47,13 +47,11 @@ public class Project {
 		
 		int best_coordinates = h4.getCoordinates().findClosest(house_coordinates);
 		int best_sqrft = h4.getSqrft().findClosest(house_sqrft);
-		//int best_age = h4.getAge().findClosest(house_age, h4.getAge()); 
+		int best_age = h4.getAge().findClosest(house_age); 
 		
 		float videogamePrice = (videogames_price.get(bestHours).getNUM() + videogames_price.get(bestYear).getNUM() + videogames_price.get(bestAge).getNUM())/3;
-		float price = (house_price.get(best_coordinates).getNUM() + house_price.get(best_sqrft).getNUM())/2;
-		
-		System.out.println("bc " + best_coordinates);
-		System.out.println("bs " + best_sqrft);
+		float price = (house_price.get(best_coordinates).getNUM() + house_price.get(best_sqrft).getNUM() + house_price.get(best_age).getNUM())/3;
+
 		System.out.println("Final Price of h4 should be $" + price);
 		System.out.println("The price of the test videogame is $" + videogamePrice);
 	}
