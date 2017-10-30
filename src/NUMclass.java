@@ -17,7 +17,7 @@ public class NUMclass{
 	 * -compareList: An ArrayList that stores all of the NUM values 
 	 * -compare: The value I want to compare with the ArrayList
 	 * Return:
-	 * -best_position: The position of the closest number
+	 * -best_position: The position of the closest numbers
 	 */
 	public int findClosest(ArrayList<NUMclass> compareList){
 		float closest_distance;
