@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/** POINTclass 		Responsible for managing instances of coordinate values
+ * 
+ * @author MZGA
+ * @version 1.0
+ *
+ */
 public class POINTclass{
 	private final double x;
 	private final double y;

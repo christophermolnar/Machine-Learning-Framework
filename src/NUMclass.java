@@ -1,5 +1,11 @@
 import java.util.ArrayList;
 
+/** NUMclass 				Responsible for managing instances of integer and floating point values
+ * 
+ * @author MZGA
+ * @version 1.0
+ *
+ */
 public class NUMclass{
 
 	private float num;
@@ -10,14 +16,11 @@ public class NUMclass{
 	}
 	
 	
-	/*
-	 * findClosest()
-	 * -Finds the closest number given an ArrayList of numbers
-	 * Parameters:
-	 * -compareList: An ArrayList that stores all of the NUM values 
-	 * -compare: The value I want to compare with the ArrayList
-	 * Return:
-	 * -best_position: The position of the closest numbers
+	/** findClosest()		Finds the closest number given an ArrayList of numbers
+	 * 
+	 * @param compareList 	An ArrayList that stores all of the NUM values 
+	 * @param compare		The value to compare with the ArrayList
+	 * @return best_positionThe position of the closest numbers
 	 */
 	public int findClosest(ArrayList<NUMclass> compareList){
 		float closest_distance;
@@ -36,25 +39,18 @@ public class NUMclass{
 		return best_position;
 	}
 	
-	
-	/*
-	 * getNUM()
-	 * -gets the float value of NUM
-	 * No Parameters
-	 * Returns:
-	 * -num: the float value of NUM 
+	/** getNUM()			Return the float value of NUM
+	 * 
+	 * @return num			Float value of NUM
 	 */
 	public float getNUM(){
 		return num;
 	}
 	
 	
-	/*
-	 * toString()
-	 * -returns the num as a String value
-	 * No Parameters
-	 * Returns:
-	 * -num as a String
+	/** toString()			Returns the num as a String value
+	 * 
+	 * @return String		Coordinate pairs X and Y as String
 	 */
 	public String toString(){
 		return ("" + num + "");
