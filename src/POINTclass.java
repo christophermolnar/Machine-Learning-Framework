@@ -10,17 +10,17 @@ public class POINTclass{
 		this.y = y;
 	}
 	
-	/** getX() Return X position of POINT
+	/** getX() 			Return X position of POINT
 	 * 
-	 * @return x : The decimal value of position X
+	 * @return x 		The decimal value of position X
 	 */
 	public double getX() {
 		return x;
 	}
 
-	/** getY() Return Y position of POINT
+	/** getY() 			Return Y position of POINT
 	 * 
-	 * @return x : The decimal value of position Y
+	 * @return y		The decimal value of position Y
 	 */
 	public double getY() {
 		return y;
