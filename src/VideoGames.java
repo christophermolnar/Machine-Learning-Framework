@@ -1,9 +1,9 @@
 
 public class VideoGames {
-	NUMclass price;
-	Age age;
-	NUMclass hoursOfGameplay;
-	NUMclass yearReleased;
+	private NUMclass price;
+	private Age age;
+	private NUMclass hoursOfGameplay;
+	private NUMclass yearReleased;
 	public VideoGames(NUMclass price, Age age, NUMclass hoursOfGameplay, NUMclass yearReleased)
 	{
 		this.price = price;
