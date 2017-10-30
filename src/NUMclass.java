@@ -10,7 +10,7 @@ public class NUMclass{
 
 	private float num;
 	
-
+	//Create new NUM
 	public NUMclass(float num){
 		this.num = num;
 	}

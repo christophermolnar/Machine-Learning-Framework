@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  */
 public enum Age {
-	NEW("new"),
+	NEW("new"), 
 	OLD("old");
 
 	private String age;

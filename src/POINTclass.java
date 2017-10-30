@@ -32,7 +32,6 @@ public class POINTclass{
 		return y;
 	}
 	
-
 	/** toString() 		Returns the num as a String value
 	 * 
 	 * @return String	Coordinate pairs X and Y as String
@@ -40,8 +39,6 @@ public class POINTclass{
 	public String toString(){
 		return ("(" + x + "," + y + ")");
 	}
-
-	//
 	
 	/** findClosest() 	Returns POINT closest to the object being compared
 	 * 
