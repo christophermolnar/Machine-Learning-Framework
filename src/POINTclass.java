@@ -32,7 +32,7 @@ public class POINTclass{
 		return y;
 	}
 	
-	/** toString() 		Returns the num as a String value
+	/** toString() 		Returns the X and Y pairs as a String value
 	 * 
 	 * @return String	Coordinate pairs X and Y as String
 	 */
@@ -66,7 +66,7 @@ public class POINTclass{
 		return closestIndex;
 	}
 	
-	/** position() 		Returns euclidean distance of point X and Y
+	/** position() 		Returns Euclidean Distance of point X and Y
 	 * 
 	 * @return double 	Euclidean Distance of points X and Y
 	 */

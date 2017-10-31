@@ -26,7 +26,7 @@ public class VideoGames {
 		return price;
 	}
 	
-	/** setPrice(Numclass price)	Set price of specified video game
+	/** setPrice(NUMclass price)	Set price of specified video game
 	 * 
 	 * @param price					Price of video game
 	 */
@@ -52,31 +52,31 @@ public class VideoGames {
 	
 	/** getHoursOfGameplay()	Return hoursOfGameplay of specified video game	
 	 * 
-	 * @return hoursOfGameplay	Hours of estimated gameplay time of specified video game	
+	 * @return hoursOfGameplay	Hours of estimated gameplay time for a specified video game	
 	 */
 	public NUMclass getHoursOfGameplay() {
 		return hoursOfGameplay;
 	}
 	
-	/** setHoursOfGameplay(NUMclass hoursOfGameplay)	Set hoursOfGameplay of specified video game
+	/** setHoursOfGameplay(NUMclass hoursOfGameplay)	Set hoursOfGameplay for a specified video game
 	 * 
-	 * @param hoursOfGameplay							Hours of estimated gameplay time of specified video game
+	 * @param hoursOfGameplay							Hours of estimated gameplay time for a specified video game
 	 */
 	public void setHoursOfGameplay(NUMclass hoursOfGameplay) {
 		this.hoursOfGameplay = hoursOfGameplay;
 	}
 	
-	/** getYearReleased()		Return yearReleased of specified video game
+	/** getYearReleased()		Return yearReleased for a specified video game
 	 * 
-	 * @return yearReleased		Year of release of video game
+	 * @return yearReleased		Year of release for a video game
 	 */
 	public NUMclass getYearReleased() {
 		return yearReleased;
 	}
 	
-	/** setYearReleased(NUMclass yearReleased) 		Set yearReleaed of specified video game
+	/** setYearReleased(NUMclass yearReleased) 		Set yearReleaed for a specified video game
 	 * 
-	 * @param yearReleased 							Year of release of video game
+	 * @param yearReleased 							Year of release for a video game
 	 */
 	public void setYearReleased(NUMclass yearReleased) {
 		this.yearReleased = yearReleased;
