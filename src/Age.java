@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/** Age(ENUM) 		Responsible for managing instances of Age String Attributes
+/** Age(ENUM) 		Responsible for managing instances of Age ENUM Attributes
  * 
  * @author MZGA
  * @version 1.0
@@ -20,7 +20,7 @@ public enum Age {
 		this.age = age;
 	}
 	
-	/** findClosest() 	Returns first occurrence of matching 'Age' attrubute
+	/** findClosest() 	Returns first occurrence of matching 'Age' attribute
 	 * 
 	 * @param Objects 	ArrayList of all current AGES to compare
 	 * @return int		The index in ArrayList of the first matching attribute, -1 if none match

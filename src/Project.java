@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-/** Project			Main class, resposiable for testing
+/** Project			Main class, responsible for testing
  *  
  * @author MZGA
  * @version 1.0	
@@ -22,11 +22,11 @@ public class Project {
 	
 	/** Main()		Test program
 	 * 
-	 * @case1		Create a list houses with various attributes, predict the missing attribute of 'h4'
+	 * @case1		Create a list of houses with various attributes, predict the missing attribute of 'h4'
 	 * 				(price) by comparing it's known attributes with the attributes of the other houses
 	 * 
-	 * @case2		Create a cataloge of video games with various attributes, predict the missing value
-	 * 				of 'testVideoGame' by comparing known attributes with other Video Games
+	 * @case2		Create a catalogue of video games with various attributes, predict the missing value
+	 * 				of 'testVideoGame' by comparing known attributes with other Video Game attributes
 	 */
 	public static void main (String args[])
 	{
@@ -42,7 +42,7 @@ public class Project {
 		house_list.add(h2);
 		house_list.add(h3);
 		
-		//Break KNOWN data types into like groups (ie. COORDINATES)
+		//Split up KNOWN data types into like groups (ie. COORDINATES)
 		for (House h : house_list){
 			house_coordinates.add(h.getCoordinates());
 			house_sqrft.add(h.getSqrft());
@@ -50,13 +50,13 @@ public class Project {
 			house_price.add(h.getPrice());
 		}
 		
-		//Comapare the KNOWN attributes of 'h4' to determine the HOUSE with attributes which are closest
+		//Compare the KNOWN attributes of 'h4' to determine the HOUSE with attributes which are closest
 		//int values are the index of the house that closest matches
 		int best_coordinates = h4.getCoordinates().findClosest(house_coordinates);
 		int best_sqrft = h4.getSqrft().findClosest(house_sqrft);
 		int best_age = h4.getAge().findClosest(house_age); 
 		
-		//Determine the UNKNOWN value by averaging the values of CLOSEST HOUSES
+		//Determine the UNKNOWN value by averaging the values of the CLOSEST HOUSES
 		float price = (house_price.get(best_coordinates).getNUM() + house_price.get(best_sqrft).getNUM() + house_price.get(best_age).getNUM())/3;
 		
 		System.out.println("Final Price of h4 should be $" + price);
@@ -68,7 +68,7 @@ public class Project {
 		videogames.add(new VideoGames(new NUMclass(40), Age.OLD, new NUMclass(50), new NUMclass(2012)));
 		VideoGames testVideoGame = new VideoGames(null, Age.NEW, new NUMclass(70), new NUMclass(2013)); 
 		
-		//Break KNOWN data types into like groups (ie. YEARRELEASED)
+		//Split up KNOWN data types into like groups (ie. YEARRELEASED)
 		for (VideoGames v : videogames){
 			videogames_yearReleased.add(v.getYearReleased());
 			videogames_hours.add(v.getHoursOfGameplay());
@@ -76,13 +76,13 @@ public class Project {
 			videogames_price.add(v.getPrice());
 		}
 		
-		//Comapare the KNOWN attributes of 'testvideogame' to determine the VG with attributes which are closest
+		//Compare the KNOWN attributes of 'testvideogame' to determine the VideoGame with attributes which are closest
 		//int values are the index of the house that closest matches
 		int bestHours = testVideoGame.getHoursOfGameplay().findClosest(videogames_hours);
 		int bestAge = testVideoGame.getAge().findClosest(videogames_age);
 		int bestYear = testVideoGame.getYearReleased().findClosest(videogames_yearReleased);
 		
-		//Determine the UNKNOWN value by averaging the values of CLOSEST VGs
+		//Determine the UNKNOWN value by averaging the values of the CLOSEST VideoGames
 		float videogamePrice = (videogames_price.get(bestHours).getNUM() + videogames_price.get(bestYear).getNUM() + videogames_price.get(bestAge).getNUM())/3;
 		
 		System.out.println("The price of the test videogame is $" + videogamePrice);

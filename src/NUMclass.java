@@ -16,11 +16,11 @@ public class NUMclass{
 	}
 	
 	
-	/** findClosest()		Finds the closest number given an ArrayList of numbers
+	/** findClosest()			Finds the closest number given an ArrayList of numbers
 	 * 
-	 * @param compareList 	An ArrayList that stores all of the NUM values 
-	 * @param compare		The value to compare with the ArrayList
-	 * @return best_positionThe position of the closest numbers
+	 * @param compareList 		An ArrayList that stores all of the NUM values 
+	 * @param compare			The value to compare with the ArrayList
+	 * @return best_position	The position of the closest numbers
 	 */
 	public int findClosest(ArrayList<NUMclass> compareList){
 		float closest_distance;
