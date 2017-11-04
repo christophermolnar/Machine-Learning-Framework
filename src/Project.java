@@ -39,7 +39,7 @@ public class Project {
 		House h3 = new House(new POINTclass(30,100), new NUMclass(800), Age.NEW, new NUMclass(400000));
 		House h4 = new House(new POINTclass(15,20), new NUMclass(1000), Age.NEW, null); //UNKOWN PRICCE
 		
-		Object o1 = new OBJECTclass(new ArrayList<NUMclass>(), new ArrayList<POINTclass>(), new ArrayList<Enum>());
+		Object o1 = new OBJECTclass(new ArrayList<NUMclass>(), new ArrayList<POINTclass>(), new ArrayList<Age>());
 		
 		house_list.add(h1);
 		house_list.add(h2);
