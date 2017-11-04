@@ -1,0 +1,29 @@
+
+Scoring:
+-Take all distances and divide by MAX
+-This will make everything between 0 and 1
+-ENUM: 
+	0 if ENUM is the same
+	1 if ENUM is not the same
+
+Update Main:
+-Instantiate objects
+
+ENUM:
+-Create a general ENUM Class
+-Remove Age class
+-It will have the closest to function
+	0 if ENUM is the same
+	1 if ENUM is not the same
+
+GUI:
+-Create new type
+	-Select how much of each they want (Points, ENUMS)
+	-This will also let them create there desired ENUMS
+-Create Training examples
+	-Display the training examples at bottom as they are created
+-Create one Testing example
+-Calculate the test example
+-Display all inputted examples
+-Exit/Quit
+
