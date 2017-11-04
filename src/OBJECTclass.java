@@ -25,7 +25,7 @@ public class OBJECTclass {
 	{
 		points.add(p);
 	}
-	public void addEnum(Age e)
+	public void addEnum(Enum e)
 	{
 		enums.add(e);
 	}
