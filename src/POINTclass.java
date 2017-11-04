@@ -19,9 +19,10 @@ public class POINTclass{
 		}
 	}
 	
+	//Return value of specified index, -1.0 if not in range
 	public Double getValue(int i){
-		if(i < Nums.size())
-			return Nums.get(i);
+		if(i < this.Nums.size())
+			return this.Nums.get(i);
 		else
 			return -1.0;
 	}
