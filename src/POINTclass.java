@@ -27,13 +27,30 @@ public class POINTclass{
 			return -1.0;
 	}
 	
+	public ArrayList<Double> getNums(){
+		return this.Nums;
+	}
+	
 	//Calculate the distance between two Coordinates, assuming Lists are equal length
-	public Double Distance(ArrayList<Double> a){
+	public Double Distance(POINTclass compare){
+		ArrayList<Double> a = compare.getNums();
 		Double dist = 0.0;
-		for(int i = 0; i > a.size(); i++){
+		for(int i = 0; i < a.size(); i++){
 			dist = dist + (Math.sqrt(Math.pow(a.get(i),2) + Math.pow(this.Nums.get(i),2)));
 		}
-		return dist;
+		return round(dist,4);
+	}
+	
+	//Rounds value to specified decimal precision (d)
+	public static double round(double value, int d) {
+		if (d < 0) throw new IllegalArgumentException();
+	    return Math.round(value*Math.pow(10, d))/Math.pow(10, d);
+	}
+	
+	public static void main (String args[])	{
+		POINTclass test = new POINTclass("1,2,3,4,5");
+		POINTclass  comp = new POINTclass("5,5,5,5,5");
+		System.out.println(test.Distance(comp));
 	}
 }
 
