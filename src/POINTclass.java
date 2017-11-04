@@ -15,7 +15,18 @@ public class POINTclass{
 		String[] entry = corrds.split(",");
 		
 		for(int i = 0; i < entry.length; i++){
+			if (!isDouble(entry[i])) throw new IllegalArgumentException();
 			Nums.add(Double.valueOf(entry[i]));
+		}
+	}
+	
+	//Check if (user) String entry, is numeric
+	public boolean isDouble(String str) {
+		try {
+			Double.parseDouble(str);
+			return true;
+		} catch (NumberFormatException e) {
+			return false;
 		}
 	}
 	
@@ -31,9 +42,13 @@ public class POINTclass{
 		return this.Nums;
 	}
 	
-	//Calculate the distance between two Coordinates, assuming Lists are equal length
+	//Calculate the distance between two Coordinates, test if Lists are equal length
 	public Double Distance(POINTclass compare){
 		ArrayList<Double> a = compare.getNums();
+		if(this.getNums().size() != a.size()){
+			System.out.print("Coordinate Dimensions Mismatch: ");
+			return -1.0;
+		}
 		Double dist = 0.0;
 		for(int i = 0; i < a.size(); i++){
 			dist = dist + (Math.sqrt(Math.pow(a.get(i),2) + Math.pow(this.Nums.get(i),2)));
@@ -48,9 +63,12 @@ public class POINTclass{
 	}
 	
 	public static void main (String args[])	{
-		POINTclass test = new POINTclass("1,2,3,4,5");
-		POINTclass  comp = new POINTclass("5,5,5,5,5");
-		System.out.println(test.Distance(comp));
+		POINTclass test = new POINTclass("1,2,3,4");
+		//POINTclass  comp = new POINTclass("5,5,5,5,5");
+		POINTclass  comp1 = new POINTclass("5,5,5,5,5");
+		POINTclass  comp2 = new POINTclass("5,5,5,5");
+		System.out.println(test.Distance(comp1));
+		System.out.println(test.Distance(comp2));
 	}
 }
 
