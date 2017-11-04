@@ -2,19 +2,19 @@ import java.util.*;
 public class OBJECTclass {
 	ArrayList<NUMclass> nums;
 	ArrayList<POINTclass> points;
-	ArrayList<Age> ages;
+	ArrayList<Enum> enums;
 	
 	public OBJECTclass ()
 	{
 		nums = new ArrayList<>();
 		points = new ArrayList<>();
-		ages = new ArrayList<>();
+		enums = new ArrayList<>();
 	}
 	
-	public OBJECTclass (ArrayList<NUMclass> nums, ArrayList<POINTclass> points, ArrayList<Age> ages){
+	public OBJECTclass (ArrayList<NUMclass> nums, ArrayList<POINTclass> points, ArrayList<Enum> enums){
 		this.nums = nums;
 		this.points = points;
-		this.ages = ages;
+		this.enums = enums;
 	}
 	
 	public void addNum(NUMclass n)
@@ -25,9 +25,9 @@ public class OBJECTclass {
 	{
 		points.add(p);
 	}
-	public void addAge(Age a)
+	public void addEnum(Age e)
 	{
-		ages.add(a);
+		enums.add(e);
 	}
 	public ArrayList<OBJECTclass> findClosestK(int k, ArrayList<OBJECTclass> objectList)
 	{
