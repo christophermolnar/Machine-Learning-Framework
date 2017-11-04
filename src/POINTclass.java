@@ -64,7 +64,6 @@ public class POINTclass{
 	
 	public static void main (String args[])	{
 		POINTclass test = new POINTclass("1,2,3,4");
-		//POINTclass  comp = new POINTclass("5,5,5,5,5");
 		POINTclass  comp1 = new POINTclass("5,5,5,5,5");
 		POINTclass  comp2 = new POINTclass("5,5,5,5");
 		System.out.println(test.Distance(comp1));
