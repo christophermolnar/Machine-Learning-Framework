@@ -3,12 +3,20 @@ public class OBJECTclass {
 	ArrayList<NUMclass> nums;
 	ArrayList<POINTclass> points;
 	ArrayList<Enum> enums;
+	
 	public OBJECTclass ()
 	{
 		nums = new ArrayList<>();
 		points = new ArrayList<>();
 		enums = new ArrayList<>();
 	}
+	
+	public OBJECTclass (ArrayList<NUMclass> nums, ArrayList<POINTclass> points, ArrayList<Enum> enums){
+		this.nums = nums;
+		this.points = points;
+		this.enums = enums;
+	}
+	
 	public void addNum(NUMclass n)
 	{
 		nums.add(n);

@@ -28,6 +28,7 @@ public class Project {
 	 * @case2		Create a catalogue of video games with various attributes, predict the missing value
 	 * 				of 'testVideoGame' by comparing known attributes with other Video Game attributes
 	 */
+	
 	public static void main (String args[])
 	{
 		//Case1
@@ -37,6 +38,8 @@ public class Project {
 		House h2 = new House(new POINTclass(10,50), new NUMclass(1000), Age.OLD, new NUMclass(300000));
 		House h3 = new House(new POINTclass(30,100), new NUMclass(800), Age.NEW, new NUMclass(400000));
 		House h4 = new House(new POINTclass(15,20), new NUMclass(1000), Age.NEW, null); //UNKOWN PRICCE
+		
+		Object o1 = new OBJECTclass(new ArrayList<NUMclass>(), new ArrayList<POINTclass>(), new ArrayList<Enum>());
 		
 		house_list.add(h1);
 		house_list.add(h2);
