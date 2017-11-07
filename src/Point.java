@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 
-/** POINTclass 		Responsible for managing instances of coordinate values
+/** Point 		Responsible for managing instances of coordinate values
  * 
  * @author MZGA
  * @version 1.0
  *
  */
-public class POINTclass{
+public class Point{
 	
 	private ArrayList<Double> Nums = new ArrayList<>();
 	
 	//Convert user entry to List of points
-	public POINTclass(String corrds){
+	public Point(String corrds){
 		String[] entry = corrds.split(",");
 		
 		for(int i = 0; i < entry.length; i++){
@@ -43,7 +43,7 @@ public class POINTclass{
 	}
 	
 	//Calculate the distance between two Coordinates, test if Lists are equal length
-	public Double Distance(POINTclass compare){
+	public Double Distance(Point compare){
 		ArrayList<Double> a = compare.getNums();
 		if(this.getNums().size() != a.size()){
 			System.out.print("Coordinate Dimensions Mismatch: ");
@@ -64,9 +64,9 @@ public class POINTclass{
 	}
 	
 	public static void main (String args[])	{
-		POINTclass test = new POINTclass("5,8,6");
-		POINTclass  comp1 = new POINTclass("10,6,3");
-		//POINTclass  comp2 = new POINTclass("5,5,5,5");
+		Point test = new Point("5,8,6");
+		Point  comp1 = new Point("10,6,3");
+		//Point  comp2 = new Point("5,5,5,5");
 		System.out.println(test.Distance(comp1));
 		//System.out.println(test.Distance(comp2));
 	}

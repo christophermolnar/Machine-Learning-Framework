@@ -6,12 +6,12 @@ import java.util.ArrayList;
  * @version 1.0
  *
  */
-public class NUMclass{
+public class Num{
 
 	private float num;
 	
 	//Create new NUM
-	public NUMclass(float num){
+	public Num(float num){
 		this.num = num;
 	}
 	
@@ -22,15 +22,15 @@ public class NUMclass{
 	 * @param compare			The value to compare with the ArrayList
 	 * @return best_position	The position of the closest numbers
 	 */
-	public int findClosest(ArrayList<NUMclass> compareList){
+	public int findClosest(ArrayList<Num> compareList){
 		float closest_distance;
 		int best_position;
 		float temp_distance;
 		
-		closest_distance = Math.abs(num - compareList.get(0).getNUM());
+		closest_distance = Math.abs(num - compareList.get(0).getNum());
 		best_position = 0;
 		for (int x = 1; x < compareList.size(); x++){
-			temp_distance = Math.abs(num - compareList.get(x).getNUM());
+			temp_distance = Math.abs(num - compareList.get(x).getNum());
 			if (temp_distance < closest_distance){
 				closest_distance = temp_distance;
 				best_position = x;
@@ -43,7 +43,7 @@ public class NUMclass{
 	 * 
 	 * @return num			Float value of NUM
 	 */
-	public float getNUM(){
+	public float getNum(){
 		return num;
 	}
 	
