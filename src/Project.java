@@ -34,16 +34,16 @@ public class Project {
 		//Case1
 		
 		//Fill Database
-		House h1 = new House(new POINTclass(12,25), new NUMclass(1200), Age.NEW, new NUMclass(500000));
-		House h2 = new House(new POINTclass(10,50), new NUMclass(1000), Age.OLD, new NUMclass(300000));
-		House h3 = new House(new POINTclass(30,100), new NUMclass(800), Age.NEW, new NUMclass(400000));
-		House h4 = new House(new POINTclass(15,20), new NUMclass(1000), Age.NEW, null); //UNKOWN PRICCE
+//		House h1 = new House(new POINTclass(12,25), new NUMclass(1200), Age.NEW, new NUMclass(500000));
+//		House h2 = new House(new POINTclass(10,50), new NUMclass(1000), Age.OLD, new NUMclass(300000));
+//		House h3 = new House(new POINTclass(30,100), new NUMclass(800), Age.NEW, new NUMclass(400000));
+//		House h4 = new House(new POINTclass(15,20), new NUMclass(1000), Age.NEW, null); //UNKOWN PRICCE
 		
 		Object o1 = new OBJECTclass(new ArrayList<NUMclass>(), new ArrayList<POINTclass>(), new ArrayList<Enum>());
 		
-		house_list.add(h1);
-		house_list.add(h2);
-		house_list.add(h3);
+//		house_list.add(h1);
+//		house_list.add(h2);
+//		house_list.add(h3);
 		
 		//Split up KNOWN data types into like groups (ie. COORDINATES)
 		for (House h : house_list){
@@ -55,14 +55,14 @@ public class Project {
 		
 		//Compare the KNOWN attributes of 'h4' to determine the HOUSE with attributes which are closest
 		//int values are the index of the house that closest matches
-		int best_coordinates = h4.getCoordinates().findClosest(house_coordinates);
-		int best_sqrft = h4.getSqrft().findClosest(house_sqrft);
-		int best_age = h4.getAge().findClosest(house_age); 
+		//int best_coordinates = h4.getCoordinates().findClosest(house_coordinates);
+//		int best_sqrft = h4.getSqrft().findClosest(house_sqrft);
+//		int best_age = h4.getAge().findClosest(house_age); 
 		
 		//Determine the UNKNOWN value by averaging the values of the CLOSEST HOUSES
-		float price = (house_price.get(best_coordinates).getNUM() + house_price.get(best_sqrft).getNUM() + house_price.get(best_age).getNUM())/3;
+		//float price = (house_price.get(best_coordinates).getNUM() + house_price.get(best_sqrft).getNUM() + house_price.get(best_age).getNUM())/3;
 		
-		System.out.println("Final Price of h4 should be $" + price);
+		//System.out.println("Final Price of h4 should be $" + price);
 		
 		//Case2
 		//Fill Catalog
