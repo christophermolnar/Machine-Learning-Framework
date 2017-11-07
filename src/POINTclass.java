@@ -51,8 +51,9 @@ public class POINTclass{
 		}
 		Double dist = 0.0;
 		for(int i = 0; i < a.size(); i++){
-			dist = dist + (Math.sqrt(Math.pow(a.get(i),2) + Math.pow(this.Nums.get(i),2)));
+			dist = dist + (Math.pow(a.get(i) - this.Nums.get(i), 2));
 		}
+		dist = Math.sqrt(dist);
 		return round(dist,4);
 	}
 	
@@ -63,11 +64,11 @@ public class POINTclass{
 	}
 	
 	public static void main (String args[])	{
-		POINTclass test = new POINTclass("1,2,3,4");
-		POINTclass  comp1 = new POINTclass("5,5,5,5,5");
-		POINTclass  comp2 = new POINTclass("5,5,5,5");
+		POINTclass test = new POINTclass("5,8,6");
+		POINTclass  comp1 = new POINTclass("10,6,3");
+		//POINTclass  comp2 = new POINTclass("5,5,5,5");
 		System.out.println(test.Distance(comp1));
-		System.out.println(test.Distance(comp2));
+		//System.out.println(test.Distance(comp2));
 	}
 }
 
