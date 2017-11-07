@@ -1,4 +1,4 @@
 
-public interface DistanceCalculation {
+public interface Calculation {
 	public double calculate(Type a, Type b);
 }

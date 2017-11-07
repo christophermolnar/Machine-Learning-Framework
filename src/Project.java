@@ -7,6 +7,8 @@ import java.util.ArrayList;
  *
  */
 public class Project {
+	
+	/*
 	public static ArrayList<VideoGames> videogames = new ArrayList<>();
 	public static ArrayList<House> house_list = new ArrayList<>();
 	
@@ -19,6 +21,7 @@ public class Project {
 	public static ArrayList<NUMclass> videogames_hours = new ArrayList<>();
 	public static ArrayList<Age> videogames_age = new ArrayList<>();
 	public static ArrayList<NUMclass> videogames_price = new ArrayList<>();
+	*/
 	
 	/** Main()		Test program
 	 * 
@@ -31,6 +34,7 @@ public class Project {
 	
 	public static void main (String args[])
 	{
+		/*
 		//Case1
 		
 		//Fill Database
@@ -89,5 +93,6 @@ public class Project {
 		float videogamePrice = (videogames_price.get(bestHours).getNUM() + videogames_price.get(bestYear).getNUM() + videogames_price.get(bestAge).getNUM())/3;
 		
 		System.out.println("The price of the test videogame is $" + videogamePrice);
+		*/
 	}
 }

@@ -1,34 +1,23 @@
 import java.util.*;
 public class OBJECTclass {
-	ArrayList<NUMclass> nums;
-	ArrayList<POINTclass> points;
-	ArrayList<Enum> enums;
+	
+	private ArrayList<Type> data;
 	
 	public OBJECTclass ()
 	{
-		nums = new ArrayList<>();
-		points = new ArrayList<>();
-		enums = new ArrayList<>();
+		data = new ArrayList<>();
 	}
 	
-	public OBJECTclass (ArrayList<NUMclass> nums, ArrayList<POINTclass> points, ArrayList<Enum> enums){
-		this.nums = nums;
-		this.points = points;
-		this.enums = enums;
+	public OBJECTclass (ArrayList<Type> data){
+		this.data = data;
+		
 	}
 	
-	public void addNum(NUMclass n)
+	public void addType(Type t)
 	{
-		nums.add(n);
+		data.add(t);
 	}
-	public void addPoint(POINTclass p)
-	{
-		points.add(p);
-	}
-	public void addEnum(Enum e)
-	{
-		enums.add(e);
-	}
+
 	public ArrayList<OBJECTclass> findClosestK(int k, ArrayList<OBJECTclass> objectList)
 	{
 		ArrayList<OBJECTclass> closest = new ArrayList<>();

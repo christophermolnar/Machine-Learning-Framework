@@ -1,6 +1,6 @@
 
-public class KeyCalculation implements DistanceCalculation{
-	public KeyCalculation()
+public class CalculationKey implements Calculation{
+	public CalculationKey()
 	{
 	}
 	public double calculate(Type a, Type b)

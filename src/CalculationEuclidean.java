@@ -1,6 +1,6 @@
 
-public class EuclideanCalculation implements DistanceCalculation{
-	public EuclideanCalculation()
+public class CalculationEuclidean implements Calculation{
+	public CalculationEuclidean()
 	{
 		
 	}

@@ -1,6 +1,6 @@
 
-public class DifferenceCalculation implements DistanceCalculation{
-	public DifferenceCalculation()
+public class CalculationDifference implements Calculation{
+	public CalculationDifference()
 	{
 		
 	}

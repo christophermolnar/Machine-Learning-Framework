@@ -1,11 +1,11 @@
 
 public abstract class Type {
-	private DistanceCalculation distanceSelection;
-	public void setSelection(DistanceCalculation d)
+	private Calculation distanceSelection;
+	public void setSelection(Calculation d)
 	{
 		distanceSelection = d;
 	}
-	public DistanceCalculation getSelection()
+	public Calculation getSelection()
 	{
 		return distanceSelection;
 	}
