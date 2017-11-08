@@ -13,7 +13,7 @@ public class Point extends Type{
 	
 	//Convert user entry to List of points 
 	public Point(String corrds){
-		String[] entry = corrds.split(",");
+		String[] entry = corrds.split(","); 
 		
 		for(int i = 0; i < entry.length; i++){
 			if (!isDouble(entry[i])) throw new IllegalArgumentException();
