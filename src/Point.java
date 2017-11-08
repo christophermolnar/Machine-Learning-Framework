@@ -9,15 +9,17 @@ import java.util.ArrayList;
 public class Point extends Type{
 	
 	private ArrayList<Double> Nums = new ArrayList<>();
+	Calculation calcType;
 	
 	//Convert user entry to List of points
-	public Point(String corrds){
+	public Point(String corrds, Calculation calcType){
 		String[] entry = corrds.split(",");
 		
 		for(int i = 0; i < entry.length; i++){
 			if (!isDouble(entry[i])) throw new IllegalArgumentException();
 			Nums.add(Double.valueOf(entry[i]));
 		}
+		this.calcType = calcType;
 	}
 	
 	//Check if (user) String entry, is numeric
@@ -40,6 +42,14 @@ public class Point extends Type{
 	
 	public ArrayList<Double> getNums(){
 		return this.Nums;
+	}
+	
+	public void setCalc(Calculation calcType) {
+		this.calcType = calcType;
+	}
+	
+	public Double getDistance(Type compare){
+		return calcType.calculate(this, compare);
 	}
 }
 
