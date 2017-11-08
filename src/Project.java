@@ -19,6 +19,19 @@ public class Project {
 	
 	public static void main (String args[])
 	{
+		Point location1 = new Point("2,1");
+		Point location2 = new Point("2,3");
+		Object house1 = new Object();
+		house1.addType(location1);
+		house1.addType(location2);
+		
+		for (Type t: house1.getData()){
+			if (t instanceof Point){
+				Point t2 = (Point) t;
+				System.out.println(t2.getNums().get(0));
+			}
+		}
+		
 		
 	}
 }

@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @version 1.0
  *
  */
-public class Point{
+public class Point extends Type{
 	
 	private ArrayList<Double> Nums = new ArrayList<>();
 	

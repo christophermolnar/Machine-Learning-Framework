@@ -17,6 +17,10 @@ public class Object {
 	{
 		data.add(t);
 	}
+	
+	public ArrayList<Type> getData(){
+		return data;
+	}
 
 	public ArrayList<Object> findClosestK(int k, ArrayList<Object> objectList)
 	{
