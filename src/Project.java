@@ -36,6 +36,7 @@ public class Project {
 			}
 			
 			
-		}	
+		}
+		KNNView v = new KNNView();
 	}
 }
