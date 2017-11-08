@@ -41,34 +41,5 @@ public class Point extends Type{
 	public ArrayList<Double> getNums(){
 		return this.Nums;
 	}
-	
-	//Calculate the distance between two Coordinates, test if Lists are equal length
-	public Double Distance(Point compare){
-		ArrayList<Double> a = compare.getNums();
-		if(this.getNums().size() != a.size()){
-			System.out.print("Coordinate Dimensions Mismatch: ");
-			return -1.0;
-		}
-		Double dist = 0.0;
-		for(int i = 0; i < a.size(); i++){
-			dist = dist + (Math.pow(a.get(i) - this.Nums.get(i), 2));
-		}
-		dist = Math.sqrt(dist);
-		return round(dist,4);
-	}
-	
-	//Rounds value to specified decimal precision (d)
-	public static double round(double value, int d) {
-		if (d < 0) throw new IllegalArgumentException();
-	    return Math.round(value*Math.pow(10, d))/Math.pow(10, d);
-	}
-	
-	public static void main (String args[])	{
-		Point test = new Point("5,8,6");
-		Point  comp1 = new Point("10,6,3");
-		//Point  comp2 = new Point("5,5,5,5");
-		System.out.println(test.Distance(comp1));
-		//System.out.println(test.Distance(comp2));
-	}
 }
 
