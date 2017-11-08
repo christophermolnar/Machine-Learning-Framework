@@ -33,11 +33,13 @@ public class Object {
 		return closest;
 	}
 	
-	public double LoopThroughData(){
+	public double CalcualteScore(Object testObject){
 		
 		double totalScore = 0;
 		
-		for (Type t: this.getData()){
+		for (int Geoff = 0; Geoff < this.data.size(); Geoff++){
+			Type t = this.data.get(0);
+		//for (Type t: this.getData()){
 			if (t instanceof Point){
 				//Point t2 = (Point) t;
 				//for (int position = 0; position < t2.getNums().size(); position ++ ){
@@ -59,10 +61,6 @@ public class Object {
 		}
 		
 		return totalScore;
-	}
-	
-	public double getScore(){
-		return (this.LoopThroughData());
 	}
 	
 }
