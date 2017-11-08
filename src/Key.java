@@ -1,5 +1,5 @@
 
-public class Key {
+public class Key extends Type{
 	private String word;
 	public Key(String w)
 	{

@@ -21,9 +21,11 @@ public class Project {
 	{
 		Point location1 = new Point("2,1");
 		Point location2 = new Point("2,3");
+		Key key1 = new Key("Geoff");
 		Object house1 = new Object();
 		house1.addType(location1);
 		house1.addType(location2);
+		house1.addType(key1);
 		
 		for (Type t: house1.getData()){
 			if (t instanceof Point){
@@ -32,6 +34,8 @@ public class Project {
 					System.out.println("Point " + t2.getNums().get(position) + " at position " + position);
 				}
 			}
+			
+			
 		}	
 	}
 }
