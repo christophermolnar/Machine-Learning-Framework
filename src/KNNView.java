@@ -4,9 +4,11 @@ import java.util.*;
 public class KNNView extends JFrame implements Observer{
 	JMenuItem create, add;
 	JPanel input, output;
+	ArrayList<JComponent> comp;
 	public KNNView()
 	{
 		super("KNN");
+		comp = new ArrayList<>();
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
 		create = new JMenuItem("Create");
@@ -39,7 +41,7 @@ public class KNNView extends JFrame implements Observer{
 	{
 		
 	}
-	private void addNewExample()
+	public void addNewExample()
 	{
 		input = new JPanel();
 		input.setPreferredSize(new Dimension(800,200));
@@ -50,7 +52,7 @@ public class KNNView extends JFrame implements Observer{
 		add(output);
 		add.setEnabled(true);
 	}
-	private void addNewExampleCase()
+	public void addNewExampleCase()
 	{
 		String[] age = {"New", "Old"};
 		FlowLayout flow = new FlowLayout();
@@ -69,5 +71,16 @@ public class KNNView extends JFrame implements Observer{
 		p.add(combo);
 		p.add(f3);
 		input.add(p);
+	}
+	public void addTextField(String s)
+	{
+		JTextField f = new JTextField(s);
+		f.setPreferredSize(new Dimension(100, 20));
+		comp.add(f);
+	}
+	public void addDropdown(String[] s)
+	{
+		JComboBox c = new JComboBox(s);
+		comp.add(c);
 	}
 }
