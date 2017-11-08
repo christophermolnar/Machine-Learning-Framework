@@ -11,7 +11,7 @@ public class Point extends Type{
 	private ArrayList<Double> Nums = new ArrayList<>();
 	Calculation calcType;
 	
-	//Convert user entry to List of points
+	//Convert user entry to List of points 
 	public Point(String corrds){
 		String[] entry = corrds.split(",");
 		
