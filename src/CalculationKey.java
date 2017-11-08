@@ -1,8 +1,6 @@
 
 public class CalculationKey implements Calculation{
-	public CalculationKey()
-	{
-	}
+
 	public double calculate(Type a, Type b)
 	{
 		//Key wordA = (Key) a;
