@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @version 1.0
  *
  */
-public class Num{
+public class Num extends Type{
 
 	private float num;
 	

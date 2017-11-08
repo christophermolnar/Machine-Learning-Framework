@@ -19,24 +19,38 @@ public class Project {
 	
 	public static void main (String args[])
 	{
-		Point location1 = new Point("2,1");
-		Point location2 = new Point("2,3");
-		Key key1 = new Key("Geoff");
+		Point location1 = new Point("12,25");
+		Point location4 = new Point("15,25");
+		Num sqft1 = new Num(1200);
+		Num sqft4 = new Num(1000);
+		Key key1 = new Key("new");
+		Key key4 = new Key("new");
+		Num price1 = new Num(500000);
+		Num price4 = null;
+		
 		Object house1 = new Object();
 		house1.addType(location1);
-		house1.addType(location2);
+		house1.addType(sqft1);
 		house1.addType(key1);
+		house1.addType(price1);
 		
-		for (Type t: house1.getData()){
-			if (t instanceof Point){
-				Point t2 = (Point) t;
-				for (int position = 0; position < t2.getNums().size(); position ++ ){
-					System.out.println("Point " + t2.getNums().get(position) + " at position " + position);
-				}
-			}
-			
-			
-		}
+		Object house4 = new Object();
+		house4.addType(location4);
+		house4.addType(sqft4);
+		house4.addType(key4);
+		house4.addType(price4);
+		
+		house1.CalcualteScore(house4);
+		
+		
+//		for (Type t: house1.getData()){
+//			if (t instanceof Point){
+//				Point t2 = (Point) t;
+//				for (int position = 0; position < t2.getNums().size(); position ++ ){
+//					System.out.println("Point " + t2.getNums().get(position) + " at position " + position);
+//				}
+//			}	
+//		}
 		KNNView v = new KNNView();
 	}
 }

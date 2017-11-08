@@ -32,4 +32,35 @@ public class Object {
 		}
 		return closest;
 	}
+	
+	public double CalcualteScore(Object testObject){
+		
+		double totalScore = 0;
+		
+		for (int Geoff = 0; Geoff < this.data.size(); Geoff++){
+			Type t = this.data.get(0);
+		//for (Type t: this.getData()){
+			if (t instanceof Point){
+				//Point t2 = (Point) t;
+				//for (int position = 0; position < t2.getNums().size(); position ++ ){
+				//	System.out.println("Point " + t2.getNums().get(position) + " at position " + position);
+				//}
+			}
+			
+			else if (t instanceof Key){
+				System.out.println(((Key) t).getWord());
+			}
+			
+			else if (t instanceof Num){
+				System.out.println("Num");
+			}
+			
+			else{
+				System.out.println("OH NO :(");
+			}
+		}
+		
+		return totalScore;
+	}
+	
 }
