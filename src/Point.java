@@ -12,7 +12,7 @@ public class Point extends Type{
 	Calculation calcType;
 	
 	//Convert user entry to List of points
-	public Point(String corrds, Calculation calcType){
+	public Point(String corrds){
 		String[] entry = corrds.split(",");
 		
 		for(int i = 0; i < entry.length; i++){
