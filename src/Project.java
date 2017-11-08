@@ -25,13 +25,13 @@ public class Project {
 		house1.addType(location1);
 		house1.addType(location2);
 		
-		for (Type t: house1.getData()){
-			if (t instanceof Point){
+		for (Type t: house1.getData())
+		{
+			if (t instanceof Point)
+			{
 				Point t2 = (Point) t;
 				System.out.println(t2.getNums().get(0));
 			}
-		}
-		
-		
+		}	
 	}
 }
