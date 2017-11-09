@@ -19,8 +19,8 @@ public class Project {
 	
 	public static void main (String args[])
 	{
-		Point location1 = new Point("12,25");
-		Point location4 = new Point("15,25");
+		//Point location1 = new Point("12,25");
+		//Point location4 = new Point("15,25");
 		Num sqft1 = new Num(1200);
 		Num sqft4 = new Num(1000);
 		Key key1 = new Key("new");
@@ -29,18 +29,18 @@ public class Project {
 		Num price4 = null;
 		
 		Object house1 = new Object();
-		house1.addType(location1);
+		//house1.addType(location1);
 		house1.addType(sqft1);
 		house1.addType(key1);
 		house1.addType(price1);
 		
 		Object house4 = new Object();
-		house4.addType(location4);
+		//house4.addType(location4);
 		house4.addType(sqft4);
 		house4.addType(key4);
 		house4.addType(price4);
 		
-		house1.CalcualteScore(house4);
+		//house1.CalculateScore(house4);
 		
 		
 //		for (Type t: house1.getData()){

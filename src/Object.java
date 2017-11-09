@@ -33,7 +33,7 @@ public class Object {
 		return closest;
 	}
 	
-	public double CalcualteScore(Object testObject){
+	public double CalculateScore(Object testObject){
 		
 		double totalScore = 0;
 		
