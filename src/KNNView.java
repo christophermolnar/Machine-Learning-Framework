@@ -1,13 +1,16 @@
 import javax.swing.*;
+import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 public class KNNView extends JFrame implements Observer{
-	JMenuItem create, add;
+	JMenuItem create, add, calculate;
 	JPanel input, output;
 	ArrayList<JTextField> txt;
 	ArrayList<JComboBox> combo;
+	ArrayList<JComboBox> calcChoice;
 	ArrayList<String> txtTitle;
 	ArrayList<String[]> comboTitle;
+	static String[] diffChoice = {"Euclidean", "Difference"};
 	public KNNView()
 	{
 		super("KNN");
@@ -15,21 +18,25 @@ public class KNNView extends JFrame implements Observer{
 		combo = new ArrayList<>();
 		txtTitle = new ArrayList<>();
 		comboTitle = new ArrayList<>();
+		calcChoice = new ArrayList<>();
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
 		create = new JMenuItem("Create");
 		add = new JMenuItem("Add");
+		calculate = new JMenuItem("Calculate");
+		calculate.setEnabled(false);
 		add.setEnabled(false);
 		menuCreate.add(create);
 		menuCreate.add(add);
+		menuCreate.add(calculate);
 		menuBar.add(menuCreate);
 		setJMenuBar(menuBar);
 		setLayout (new BoxLayout(getContentPane(), BoxLayout.Y_AXIS)); 
 		this.addTextField("Coordinates");
+		this.addDropdown(new String[]{"Dank", "Not Dank"});
 		this.addTextField("sq. ft");
 		this.addDropdown(new String[]{"New", "Old"});
 		addNewExample();
-		addNewExampleCase();
 		addNewExampleCase();
 		addNewExampleCase();
 		addNewExampleCase();
@@ -57,10 +64,11 @@ public class KNNView extends JFrame implements Observer{
 //		input.setLayout(new BoxLayout(input, BoxLayout.Y_AXIS));
 		input.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
 		output = new JPanel();
-		output.setPreferredSize(new Dimension(800,0));
+		output.setPreferredSize(new Dimension(800,-200));
 		output.setBorder(BorderFactory.createTitledBorder("Output"));
 		add(input);
 		add(output);
+		output.add(new JLabel("test"));
 		add.setEnabled(true);
 	}
 	public void addNewExampleCase()
@@ -91,17 +99,23 @@ public class KNNView extends JFrame implements Observer{
 //			}
 			JLabel l = new JLabel(str);
 			JTextField f = new JTextField();
-			f.setPreferredSize(new Dimension(60, 20));
+			JComboBox j = new JComboBox(diffChoice);
+			txt.add(f);
+			calcChoice.add(j);
+			f.setPreferredSize(new Dimension(75, 20));
 			p.add(l);
 			p.add(f);
-			p.add(new JComboBox(new String[]{"Euclidean", "Difference"}));
+			p.add(j);
 		}
 		for (String[] str : comboTitle)
 		{
 			JComboBox b = new JComboBox(str);
+			combo.add(b);
 			p.add(b);
 		}
+		p.setBorder(BorderFactory.createLineBorder(Color.black));
 		input.add(p);
+		calculate.setEnabled(true);
 	}
 	public void addTextField(String s)
 	{
@@ -115,5 +129,17 @@ public class KNNView extends JFrame implements Observer{
 //		JComboBox c = new JComboBox(s);
 //		comp.add(c);
 		comboTitle.add(s);
+	}
+	public void setCreateActionListener(ActionListener a)
+	{
+		create.addActionListener(a);
+	}
+	public void setAddActionListener(ActionListener a)
+	{
+		add.addActionListener(a);
+	}
+	public void setCalculateActionListener(ActionListener a)
+	{
+		calculate.addActionListener(a);
 	}
 }
