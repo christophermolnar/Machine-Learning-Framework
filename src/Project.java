@@ -108,6 +108,18 @@ public class Project {
 		house4.addType(key4);
 		house4.addType(price4);
 		
+		//GEOFF BRANCH
+		Point sqCallum = new Point("1200,300", new CalculationDifference());
+		Point sqCallum2 = new Point("1000,200", new CalculationDifference());
+		Object H1 = new Object();
+		Object H2 = new Object();
+		H1.addType(sqCallum);
+		H2.addType(sqCallum2);
+		
+		System.out.println(H1.calculateScore(H2));
+		
+		//GEOFF BRANCH
+		
 		//house1.CalculateScore(house4);
 		
 		
