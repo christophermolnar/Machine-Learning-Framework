@@ -13,9 +13,8 @@ public class CalculationDifference implements Calculation{
 			} else {
 				Double dist = 0.0;
 				for(int i = 0; i < A.size(); i++){
-					dist = dist + (A.get(i) - B.get(i));
+					dist = dist + Math.abs((A.get(i) - B.get(i)));
 				}
-				dist = Math.sqrt(dist);
 				return round(dist, 4);
 			}
 		}

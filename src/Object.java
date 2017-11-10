@@ -42,13 +42,8 @@ public class Object {
 			
 			if (t instanceof Point){
 				Point pointT = (Point) t;
-				if (pointT.getCalcType() instanceof CalculationEuclidean) {
-					totalScore += pointT.getCalcType().calculate(pointT, testObject.getData().get(count));
-				}
-				
-			}
-			
-			else if (t instanceof Key){
+				totalScore += pointT.getCalcType().calculate(pointT, testObject.getData().get(count));
+			} else if (t instanceof Key){
 				System.out.println(((Key) t).getWord());
 			}
 			
