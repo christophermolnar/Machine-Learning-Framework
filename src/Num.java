@@ -53,7 +53,7 @@ public class Num extends Type{
 	 * @return String		Coordinate pairs X and Y as String
 	 */
 	public String toString(){
-		return ("" + num + "");
+		return ("" + num + "" + "->" + "Notdone| ");
 	}
 	
 }

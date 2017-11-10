@@ -8,18 +8,27 @@ import java.util.ArrayList;
  */
 public class Point extends Type{
 	
-	private ArrayList<Double> Nums = new ArrayList<>();
-	Calculation calcType;
+	private ArrayList<Double> nums;
 	
 	//Convert user entry to List of points 
 	public Point(String corrds, Calculation calcType){ 
+		nums = new ArrayList<>();
 		String[] entry = corrds.split(","); 
 		
 		for(int i = 0; i < entry.length; i++){
 			if (!isDouble(entry[i])) throw new IllegalArgumentException();
-			Nums.add(Double.valueOf(entry[i]));
+			nums.add(Double.valueOf(entry[i]));
 		}
-		this.calcType = calcType;
+		distanceSelection = calcType;
+	}
+	public Point(String corrds)
+	{
+		nums = new ArrayList<>();
+		String[] entry = corrds.split(","); 
+		for(int i = 0; i < entry.length; i++){
+			//if (!isDouble(entry[i])) throw new IllegalArgumentException();
+			nums.add(Double.valueOf(entry[i]));
+		}
 	}
 	
 	//Check if (user) String entry, is numeric
@@ -34,22 +43,38 @@ public class Point extends Type{
 	
 	//Return value of specified index, -1.0 if not in range
 	public Double getValue(int i){
-		if(i < this.Nums.size())
-			return this.Nums.get(i);
+		if(i < this.nums.size())
+			return this.nums.get(i);
 		else
 			return -1.0;
 	}
 	
 	public ArrayList<Double> getNums(){
-		return this.Nums;
+		return this.nums;
 	}
 	
 	public void setCalc(Calculation calcType) {
-		this.calcType = calcType;
+		distanceSelection = calcType;
 	}
 	
 	public Double getDistance(Type compare){
-		return calcType.calculate(this, compare);
+		return distanceSelection.calculate(this, compare);
+	}
+	public String toString()
+	{
+		String tmp = "(";
+		int index = 0;
+		for (Double d : nums)
+		{
+			tmp += d;
+			if ((index + 1) != nums.size())
+			{
+				tmp += ", ";
+			}
+			index++;
+		}
+		tmp += ")";
+		return tmp +  "->" + distanceSelection + "| ";
 	}
 }
 

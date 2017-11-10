@@ -62,5 +62,14 @@ public class Object {
 		
 		return totalScore;
 	}
+	public String toString()
+	{
+		String tmp = "";
+		for (Type t : data)
+		{
+			tmp += t + " ";
+		}
+		return tmp;
+	}
 	
 }

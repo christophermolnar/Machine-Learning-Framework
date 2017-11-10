@@ -9,4 +9,8 @@ public class Key extends Type{
 	{
 		return word;
 	}
+	public String toString()
+	{
+		return word;
+	}
 }

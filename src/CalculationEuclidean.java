@@ -27,4 +27,8 @@ public class CalculationEuclidean implements Calculation{
 		if (d < 0) throw new IllegalArgumentException();
 	    return Math.round(value*Math.pow(10, d))/Math.pow(10, d);
 	}
+	public String toString()
+	{
+		return "Euclidean";
+	}
 }

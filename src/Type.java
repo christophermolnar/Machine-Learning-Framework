@@ -1,6 +1,6 @@
 
 public abstract class Type {
-	private Calculation distanceSelection;
+	protected Calculation distanceSelection;
 	public void setSelection(Calculation d)
 	{
 		distanceSelection = d;

@@ -7,4 +7,8 @@ public class CalculationKey implements Calculation{
 		if (a.equals(b)) return 0;
 		else return 1;
 	}
+	public String toString()
+	{
+		return "Enum";
+	}
 }

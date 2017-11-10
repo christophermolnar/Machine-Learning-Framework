@@ -1,5 +1,8 @@
 import java.util.ArrayList;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+
 /** Project			Main class, responsible for testing
  *  
  * @author MZGA
@@ -7,7 +10,80 @@ import java.util.ArrayList;
  *
  */
 public class Project {
-
+	String[] options = {"Euclidean", "Difference"};
+	DefaultListModel<Object> list;
+	int numOfNumbers;
+	int numOfPoints;
+	int numOfEnums;
+	public Project()
+	{
+		list = new DefaultListModel<>();
+	}
+	public void create()
+	{
+		boolean isCorrect;
+		do
+		{
+			isCorrect = true;
+			try
+			{
+				numOfNumbers = Integer.parseInt(JOptionPane.showInputDialog("How many number values do you have"));
+				numOfPoints = Integer.parseInt(JOptionPane.showInputDialog("How many points values do you have"));
+				numOfEnums = Integer.parseInt(JOptionPane.showInputDialog("How many enum values do you have"));
+			}catch (NumberFormatException e){
+				isCorrect = false;
+				JOptionPane.showMessageDialog(null, "Please input only integer values", "Input Error", JOptionPane.ERROR_MESSAGE);
+			}
+		} while (!isCorrect);
+	}
+	public void add()
+	{
+		float f;
+		String s = "";
+		Object o = new Object();
+		Calculation c;
+		for (int i = 0; i < numOfNumbers; i++)
+		{
+			f = Float.parseFloat(JOptionPane.showInputDialog("Please input number value"));
+			Num n = new Num(f);
+			o.addType(n);
+		}
+		for (int i = 0; i < numOfPoints; i++)
+		{
+			s = JOptionPane.showInputDialog("Please input point value");
+			int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+			if (options[index].equals("Euclidean"))
+			{
+				c = new CalculationEuclidean();
+			}
+			else
+			{
+				c = new CalculationDifference();
+			}
+			Point n = new Point(s);
+			n.setCalc(c);
+			o.addType(n);
+		}
+		for (int i = 0; i < numOfEnums; i++)
+		{
+			f = Float.parseFloat(JOptionPane.showInputDialog("Please input enum value"));
+			Num n = new Num(f);
+			o.addType(n);
+		}
+		list.addElement(o);
+//		Object house1 = new Object();
+//		Num sqft1 = new Num(1200);
+//		Key key1 = new Key("new");
+//		Num price1 = new Num(500000);
+//		house1.addType(sqft1);
+//		house1.addType(key1);
+//		house1.addType(price1);
+//		list.addElement(house1);
+	}
+	public DefaultListModel<Object> getList()
+	{
+		return list;
+	}
 	/** Main()		Test program
 	 * 
 	 * @case1		Create a list of houses with various attributes, predict the missing attribute of 'h4'
@@ -51,7 +127,8 @@ public class Project {
 //				}
 //			}	
 //		}
-		KNNView v = new KNNView();
-		KNNController c = new KNNController(v);
+		Project p = new Project();
+		KNNView v = new KNNView(p.getList());
+		KNNController c = new KNNController(v, p);
 	}
 }
