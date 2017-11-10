@@ -22,11 +22,25 @@ public class KNNView extends JFrame implements Observer{
 		menuCreate.add(calculate);
 		menuBar.add(menuCreate);
 		setJMenuBar(menuBar);
-//		setLayout (new BoxLayout(getContentPane(), BoxLayout.Y_AXIS)); 
-		add(list);
+		setLayout (new BoxLayout(getContentPane(), BoxLayout.Y_AXIS)); 
 		setSize(800,800);
 		setVisible(true);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		addInputOutput();
+	}
+	public void addInputOutput()
+	{
+		input = new JPanel();
+		input.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
+  		output = new JPanel();
+		output.setPreferredSize(new Dimension(800,0));
+		output.setPreferredSize(new Dimension(800,-200));
+  		output.setBorder(BorderFactory.createTitledBorder("Output"));
+  		add(input);
+  		add(output);
+  		output.add(new JLabel("test"));
+  		add.setEnabled(true);
+  		input.add(list);
 	}
 	public void update(Observable obs, java.lang.Object obj)
 	{

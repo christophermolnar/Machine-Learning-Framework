@@ -71,14 +71,6 @@ public class Project {
 			o.addType(n);
 		}
 		list.addElement(o);
-//		Object house1 = new Object();
-//		Num sqft1 = new Num(1200);
-//		Key key1 = new Key("new");
-//		Num price1 = new Num(500000);
-//		house1.addType(sqft1);
-//		house1.addType(key1);
-//		house1.addType(price1);
-//		list.addElement(house1);
 	}
 	public DefaultListModel<Object> getList()
 	{
