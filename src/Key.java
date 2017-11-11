@@ -13,4 +13,8 @@ public class Key extends Type{
 	{
 		return word;
 	}
+	
+	public double getDistance(Type compare){
+		return (new CalculationKey()).calculate(this, compare);
+	}
 }

@@ -55,15 +55,11 @@ public class Point extends Type{
 	}
 	
 	public void setCalc(Calculation calcType) {
-		distanceSelection = calcType;
-	}
-	
-	public Calculation getCalcType() {
-		return this.calcType;
+		this.calcType = calcType;
 	}
 	
 	public Double getDistance(Type compare){
-		return distanceSelection.calculate(this, compare);
+		return calcType.calculate(this, compare);
 	}
 	public String toString()
 	{

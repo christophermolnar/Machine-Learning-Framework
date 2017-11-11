@@ -108,30 +108,50 @@ public class Project {
 		house4.addType(key4);
 		house4.addType(price4);
 		
-		//GEOFF BRANCH
-		//Callum Attribute1
+		//TERMINAL OUTPUT TESTING | START
+		
+		//CalculationDifference attributes
 		Point sqCallum = new Point("1200,300", new CalculationDifference());
 		Point sqCallum2 = new Point("1000,200", new CalculationDifference());
-		//Geoff Attribute2
+		
+		//CalculationEuclidean attributes
 		Point sqGeoff = new Point("1200,300", new CalculationEuclidean());
 		Point sqGeoff2 = new Point("1000,200", new CalculationEuclidean());
+		
+		//CalculationKey attributes
+		Key k1 = new Key("OLD");
+		Key k2 = new Key("NEW");
+		
+		//House objects
 		Object H1 = new Object();
 		Object H2 = new Object();
 		Object H3 = new Object();
 		Object H4 = new Object();
+		Object H5 = new Object();
+		Object H6 = new Object();
+		Object H7 = new Object();
+		Object H8 = new Object();
+		
 		H1.addType(sqCallum);
 		H2.addType(sqCallum2);
 		H3.addType(sqGeoff);
 		H4.addType(sqGeoff2);
+		H5.addType(k1);
+		H6.addType(k2);
+		H7.addType(sqCallum); //H7 and H8 have 3 attributes
+		H7.addType(sqGeoff);
+		H7.addType(k1);
+		H8.addType(sqCallum2);
+		H8.addType(sqGeoff2);
+		H8.addType(k2);
 		
 		//Diff of Callums + Eucl of Geoffs
 		System.out.println("Calc Difference = " + H1.calculateScore(H2));
 		System.out.println("Calc Euclidean = " +H3.calculateScore(H4));
+		System.out.println("Calc Key = " +H5.calculateScore(H6));
+		System.out.println("Total Score = " +H7.calculateScore(H8));
 		
-		//GEOFF BRANCH
-		
-		//house1.CalculateScore(house4);
-		
+		//TERMINAL OUTPUT TESTING | END
 		
 //		for (Type t: house1.getData()){
 //			if (t instanceof Point){

@@ -36,21 +36,20 @@ public class Object {
 	public double calculateScore(Object testObject){
 		
 		double totalScore = 0;
-		int count = 0;
+		int index = 0;
 		for (Type t: this.getData()){
-			
-			
 			if (t instanceof Point){
 				Point pointT = (Point) t;
-				totalScore += pointT.getCalcType().calculate(pointT, testObject.getData().get(count));
-			} else if (t instanceof Key){
-				System.out.println(((Key) t).getWord());
+				totalScore += pointT.getDistance(testObject.getData().get(index));
 			}
-			
+			else if (t instanceof Key){
+				Key keyT = (Key) t;
+				totalScore += keyT.getDistance(testObject.getData().get(index));
+			}
 			else{
 				System.out.println("OH NO :(");
 			}
-			count++;
+			index++;
 		}
 		
 		return totalScore;
