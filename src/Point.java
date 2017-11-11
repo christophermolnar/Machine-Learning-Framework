@@ -9,6 +9,7 @@ import java.util.ArrayList;
 public class Point extends Type{
 	
 	private ArrayList<Double> nums;
+	private Calculation calcType;
 	
 	//Convert user entry to List of points 
 	public Point(String corrds, Calculation calcType){ 
@@ -19,7 +20,7 @@ public class Point extends Type{
 			if (!isDouble(entry[i])) throw new IllegalArgumentException();
 			nums.add(Double.valueOf(entry[i]));
 		}
-		distanceSelection = calcType;
+		this.calcType = calcType;
 	}
 	public Point(String corrds)
 	{
@@ -55,6 +56,10 @@ public class Point extends Type{
 	
 	public void setCalc(Calculation calcType) {
 		distanceSelection = calcType;
+	}
+	
+	public Calculation getCalcType() {
+		return this.calcType;
 	}
 	
 	public Double getDistance(Type compare){

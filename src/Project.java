@@ -108,6 +108,28 @@ public class Project {
 		house4.addType(key4);
 		house4.addType(price4);
 		
+		//GEOFF BRANCH
+		//Callum Attribute1
+		Point sqCallum = new Point("1200,300", new CalculationDifference());
+		Point sqCallum2 = new Point("1000,200", new CalculationDifference());
+		//Geoff Attribute2
+		Point sqGeoff = new Point("1200,300", new CalculationEuclidean());
+		Point sqGeoff2 = new Point("1000,200", new CalculationEuclidean());
+		Object H1 = new Object();
+		Object H2 = new Object();
+		Object H3 = new Object();
+		Object H4 = new Object();
+		H1.addType(sqCallum);
+		H2.addType(sqCallum2);
+		H3.addType(sqGeoff);
+		H4.addType(sqGeoff2);
+		
+		//Diff of Callums + Eucl of Geoffs
+		System.out.println("Calc Difference = " + H1.calculateScore(H2));
+		System.out.println("Calc Euclidean = " +H3.calculateScore(H4));
+		
+		//GEOFF BRANCH
+		
 		//house1.CalculateScore(house4);
 		
 		
