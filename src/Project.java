@@ -15,8 +15,10 @@ public class Project {
 	int numOfNumbers;
 	int numOfPoints;
 	int numOfEnums;
+	ArrayList<Calculation> pointChoice;
 	public Project()
 	{
+		pointChoice = new ArrayList<>();
 		list = new DefaultListModel<>();
 	}
 	public void create()
@@ -30,6 +32,18 @@ public class Project {
 				numOfNumbers = Integer.parseInt(JOptionPane.showInputDialog("How many number values do you have"));
 				numOfPoints = Integer.parseInt(JOptionPane.showInputDialog("How many points values do you have"));
 				numOfEnums = Integer.parseInt(JOptionPane.showInputDialog("How many enum values do you have"));
+				for (int i = 0; i < numOfPoints; i++)
+				{
+					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for point " + (i + 1), "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+					if (options[index].equals("Euclidean"))
+					{
+						pointChoice.add(new CalculationEuclidean());
+					}
+					else
+					{
+						pointChoice.add(new CalculationDifference());
+					}
+				}
 			}catch (NumberFormatException e){
 				isCorrect = false;
 				JOptionPane.showMessageDialog(null, "Please input only integer values", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -41,7 +55,6 @@ public class Project {
 		float f;
 		String s = "";
 		Object o = new Object();
-		Calculation c;
 		for (int i = 0; i < numOfNumbers; i++)
 		{
 			f = Float.parseFloat(JOptionPane.showInputDialog("Please input number value"));
@@ -51,23 +64,14 @@ public class Project {
 		for (int i = 0; i < numOfPoints; i++)
 		{
 			s = JOptionPane.showInputDialog("Please input point value");
-			int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
-			if (options[index].equals("Euclidean"))
-			{
-				c = new CalculationEuclidean();
-			}
-			else
-			{
-				c = new CalculationDifference();
-			}
 			Point n = new Point(s);
-			n.setCalc(c);
+			n.setCalc(pointChoice.get(i));
 			o.addType(n);
 		}
 		for (int i = 0; i < numOfEnums; i++)
 		{
-			f = Float.parseFloat(JOptionPane.showInputDialog("Please input enum value"));
-			Num n = new Num(f);
+			s = JOptionPane.showInputDialog("Please input enum value");
+			Type n = new Key(s);
 			o.addType(n);
 		}
 		list.addElement(o);
@@ -160,10 +164,10 @@ public class Project {
 		Type o2Str = new Key("OLD");
 		Type o3Str = new Key("NEW");
 		Type o4Str = new Key("OLD");
-		Type o1Num = new Num(10);
+		Type o1Num = new Num(10);//10
 		Type o2Num = new Num(5);
 		Type o3Num = new Num(2);
-		Type o4Num = new Num(7);
+		Type o4Num = new Num(7);//7
 		Object o1 = new Object("o1");
 		o1.addType(o1Pt);
 		o1.addType(o1Str);
@@ -200,8 +204,8 @@ public class Project {
 //			}	
 //		}
 		
-//		Project p = new Project();
-//		KNNView v = new KNNView(p.getList());
-//		KNNController c = new KNNController(v, p);
+		Project p = new Project();
+		KNNView v = new KNNView(p.getList());
+		KNNController c = new KNNController(v, p);
 	}
 }

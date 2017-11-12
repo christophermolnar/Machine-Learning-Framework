@@ -105,7 +105,8 @@ public class Object{
 				totalScore += keyT.getDistance(testObject.getData().get(index));
 			}
 			else{
-				System.out.println("OH NO :(");
+				Num numT = (Num) t;
+				totalScore += numT.getDistance(testObject.getData().get(index));
 			}
 			index++;
 		}

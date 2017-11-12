@@ -74,7 +74,7 @@ public class Point extends Type{
 			index++;
 		}
 		tmp += ")";
-		return tmp +  "->" + distanceSelection + "| ";
+		return tmp +  "->" + distanceSelection + " | ";
 	}
 }
 

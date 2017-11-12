@@ -13,6 +13,7 @@ public class Num extends Type{
 	//Create new NUM
 	public Num(float num){
 		this.num = num;
+		distanceSelection = new CalculationDifference();
 	}
 	
 	
@@ -46,6 +47,9 @@ public class Num extends Type{
 	public float getNum(){
 		return num;
 	}
+	public Double getDistance(Type compare){
+		return distanceSelection.calculate(this, compare);
+	}
 	
 	
 	/** toString()			Returns the num as a String value
@@ -53,7 +57,7 @@ public class Num extends Type{
 	 * @return String		Coordinate pairs X and Y as String
 	 */
 	public String toString(){
-		return ("" + num + "" + "->" + "Notdone| ");
+		return ("" + num + " | ");
 	}
 	
 }
