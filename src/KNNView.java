@@ -6,9 +6,11 @@ public class KNNView extends JFrame implements Observer{
 	JMenuItem create, add, calculate;
 	JPanel input, output;
 	JList<Object> list;
+	JLabel outputText;
 	public KNNView(DefaultListModel<Object> m)
 	{
 		super("KNN");
+		outputText = new JLabel();
 		list = new JList<>(m);
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
@@ -38,13 +40,26 @@ public class KNNView extends JFrame implements Observer{
   		output.setBorder(BorderFactory.createTitledBorder("Output"));
   		add(input);
   		add(output);
-  		output.add(new JLabel("test"));
+  		output.add(outputText);
   		add.setEnabled(true);
   		input.add(list);
 	}
 	public void update(Observable obs, java.lang.Object obj)
 	{
-		
+		try
+		{
+			String s = "Closest Objects: ";
+			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
+			ArrayList<Object> l = (ArrayList<Object>) obj;
+			Object[] closestK = list.getSelectedValue().findClosestK(n, l);
+			for (int i = 0; i < closestK.length; i++)
+			{
+				s += closestK[i];
+				if (i < closestK.length - 1) s += ", ";
+			}
+			outputText.setText(s);
+		} catch(NumberFormatException e){	
+		}
 	}
 	public void setCreateActionListener(ActionListener a)
 	{

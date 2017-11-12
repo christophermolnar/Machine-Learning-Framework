@@ -92,11 +92,11 @@ public class Project extends Observable{
 		} while (!isCorrect);
 		list.addElement(o);
 		objects.add(o);
+		setChanged();
 	}
 	public void calculate()
 	{
-		int n = Integer.parseInt(JOptionPane.showInputDialog("Please input enum value"));
-		notifyObservers("calculate");
+		notifyObservers(objects);
 	}
 	public DefaultListModel<Object> getList()
 	{
@@ -229,5 +229,6 @@ public class Project extends Observable{
 		Project p = new Project();
 		KNNView v = new KNNView(p.getList());
 		KNNController c = new KNNController(v, p);
+		p.addObserver(v);
 	}
 }
