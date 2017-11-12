@@ -25,7 +25,7 @@ public class KNNController {
 	class calculate implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("calculate");
+			p.calculate();
 		}
 	}
 }

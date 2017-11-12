@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-
+import java.util.Observable;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -9,17 +9,19 @@ import javax.swing.JOptionPane;
  * @version 1.0	
  *
  */
-public class Project {
+public class Project extends Observable{
 	String[] options = {"Euclidean", "Difference"};
 	DefaultListModel<Object> list;
 	int numOfNumbers;
 	int numOfPoints;
 	int numOfEnums;
 	ArrayList<Calculation> pointChoice;
+	ArrayList<Object> objects;
 	public Project()
 	{
 		pointChoice = new ArrayList<>();
 		list = new DefaultListModel<>();
+		objects = new ArrayList<>();
 	}
 	public void create()
 	{
@@ -55,26 +57,46 @@ public class Project {
 		float f;
 		String s = "";
 		Object o = new Object();
-		for (int i = 0; i < numOfNumbers; i++)
+		boolean isCorrect;
+		do
 		{
-			f = Float.parseFloat(JOptionPane.showInputDialog("Please input number value"));
-			Num n = new Num(f);
-			o.addType(n);
-		}
-		for (int i = 0; i < numOfPoints; i++)
-		{
-			s = JOptionPane.showInputDialog("Please input point value");
-			Point n = new Point(s);
-			n.setCalc(pointChoice.get(i));
-			o.addType(n);
-		}
-		for (int i = 0; i < numOfEnums; i++)
-		{
-			s = JOptionPane.showInputDialog("Please input enum value");
-			Type n = new Key(s);
-			o.addType(n);
-		}
+			isCorrect = true;
+			o = new Object();
+			try
+			{
+				for (int i = 0; i < numOfNumbers; i++)
+				{
+					f = Float.parseFloat(JOptionPane.showInputDialog("Please input number value"));
+					Num n = new Num(f);
+					o.addType(n);
+				}
+				for (int i = 0; i < numOfPoints; i++)
+				{
+					s = JOptionPane.showInputDialog("Please input point value");
+					Point n = new Point(s);
+					n.setCalc(pointChoice.get(i));
+					o.addType(n);
+				}
+				for (int i = 0; i < numOfEnums; i++)
+				{
+					s = JOptionPane.showInputDialog("Please input enum value");
+					if (s == null) throw new Exception();
+					Type n = new Key(s);
+					o.addType(n);
+				}
+			} catch(Exception e)
+			{
+				isCorrect = false;
+				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
+			}
+		} while (!isCorrect);
 		list.addElement(o);
+		objects.add(o);
+	}
+	public void calculate()
+	{
+		int n = Integer.parseInt(JOptionPane.showInputDialog("Please input enum value"));
+		notifyObservers("calculate");
 	}
 	public DefaultListModel<Object> getList()
 	{

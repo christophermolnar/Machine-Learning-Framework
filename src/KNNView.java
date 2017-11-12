@@ -15,7 +15,7 @@ public class KNNView extends JFrame implements Observer{
 		create = new JMenuItem("Create");
 		add = new JMenuItem("Add");
 		calculate = new JMenuItem("Calculate");
-		calculate.setEnabled(false);
+//		calculate.setEnabled(false);
 //		add.setEnabled(false);
 		menuCreate.add(create);
 		menuCreate.add(add);
