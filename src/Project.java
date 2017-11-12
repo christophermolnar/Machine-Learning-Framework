@@ -146,11 +146,49 @@ public class Project {
 		H8.addType(k2);
 		
 		//Diff of Callums + Eucl of Geoffs
-		System.out.println("Calc Difference = " + H1.calculateScore(H2));
-		System.out.println("Calc Euclidean = " +H3.calculateScore(H4));
-		System.out.println("Calc Key = " +H5.calculateScore(H6));
-		System.out.println("Total Score = " +H7.calculateScore(H8));
+//		System.out.println("Calc Difference = " + H1.calculateScore(H2));
+//		System.out.println("Calc Euclidean = " +H3.calculateScore(H4));
+//		System.out.println("Calc Key = " +H5.calculateScore(H6));
+//		System.out.println("Total Score = " +H7.calculateScore(H8));
 		
+		ArrayList<Object> lol = new ArrayList<>();
+		Type o1Pt = new Point("10,10", new CalculationEuclidean());
+		Type o2Pt = new Point("2,6", new CalculationEuclidean());
+		Type o3Pt = new Point("3,5", new CalculationEuclidean());
+		Type o4Pt = new Point("7,1", new CalculationEuclidean());
+		Type o1Str = new Key("NEW");
+		Type o2Str = new Key("OLD");
+		Type o3Str = new Key("NEW");
+		Type o4Str = new Key("OLD");
+		Type o1Num = new Num(10);
+		Type o2Num = new Num(5);
+		Type o3Num = new Num(2);
+		Type o4Num = new Num(7);
+		Object o1 = new Object("o1");
+		o1.addType(o1Pt);
+		o1.addType(o1Str);
+		o1.addType(o1Num);
+		Object o2 = new Object("o2");
+		o2.addType(o2Pt);
+		o2.addType(o2Str);
+		o2.addType(o2Num);
+		Object o3 = new Object("o3");
+		o3.addType(o3Pt);
+		o3.addType(o3Str);
+		o3.addType(o3Num);
+		Object o4 = new Object("o4");
+		o4.addType(o4Pt);
+		o4.addType(o4Str);
+		o4.addType(o4Num);
+		lol.add(o1);
+		lol.add(o2);
+		lol.add(o3);
+		lol.add(o4);
+		Object[] f = o4.findClosestK(2, lol);
+		for (int i = 0; i < f.length; i++)
+		{
+			System.out.println(f[i]);
+		}
 		//TERMINAL OUTPUT TESTING | END
 		
 //		for (Type t: house1.getData()){
@@ -161,8 +199,9 @@ public class Project {
 //				}
 //			}	
 //		}
-		Project p = new Project();
-		KNNView v = new KNNView(p.getList());
-		KNNController c = new KNNController(v, p);
+		
+//		Project p = new Project();
+//		KNNView v = new KNNView(p.getList());
+//		KNNController c = new KNNController(v, p);
 	}
 }
