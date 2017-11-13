@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 public class Project extends Observable{
 	String[] options = {"Euclidean", "Difference"};
 	DefaultListModel<Object> list;
-	int numOfNumbers;
-	int numOfPoints;
-	int numOfEnums;
+	int numOfNumbers, numOfPoints, numOfEnums;
+	int tempNum, tempPoint, tempEnum;
+	
 	ArrayList<Calculation> pointChoice;
 	ArrayList<Object> objects;
 	
@@ -30,15 +30,35 @@ public class Project extends Observable{
 	public void create()
 	{
 		boolean isCorrect;
+		String s = "";
 		do
 		{
 			isCorrect = true;
+			boolean cancel = false;
 			try
 			{
-				numOfNumbers = Integer.parseInt(JOptionPane.showInputDialog("How many 'Single Number' values do you have"));
-				numOfPoints = Integer.parseInt(JOptionPane.showInputDialog("How many 'Coordinate Point' values do you have"));
-				numOfEnums = Integer.parseInt(JOptionPane.showInputDialog("How many 'Text' values do you have"));
-				for (int i = 0; i < numOfPoints; i++)
+				s = JOptionPane.showInputDialog("How many 'Single Number' values do you have");
+				if(s != null){ //'OK' clicked
+					tempNum = Integer.parseInt(s);
+				} else { //'Cancel' Clicked	
+					cancel = true;
+					break;
+				}
+				s = JOptionPane.showInputDialog("How many 'Coordinate Point' values do you have");
+				if(s != null){ //'OK' clicked
+					tempPoint = Integer.parseInt(s);
+				} else { //'Cancel' Clicked
+					cancel = true;
+					break;
+				}
+				s = JOptionPane.showInputDialog("How many 'Text' values do you have");
+				if(s != null){ //'OK' clicked
+					tempEnum = Integer.parseInt(s);
+				} else { //'Cancel' Clicked
+					cancel = true;
+					break;
+				}
+				for (int i = 0; i < tempNum; i++)
 				{
 					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Point " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
 					if (options[index].equals("Euclidean"))
@@ -49,6 +69,11 @@ public class Project extends Observable{
 					{
 						pointChoice.add(new CalculationDifference());
 					}
+				}
+				if(!cancel){
+					numOfNumbers=tempNum;
+					numOfPoints=tempPoint;
+					numOfEnums=tempEnum;
 				}
 			}catch (NumberFormatException e){
 				isCorrect = false;
@@ -149,7 +174,6 @@ public class Project extends Observable{
 		else{
 			JOptionPane.showMessageDialog(null, "No Attribute was set to testvalue", "Testvalue not Set", JOptionPane.ERROR_MESSAGE);
 		}
-
 	}
 	
 	public void add()
@@ -183,7 +207,7 @@ public class Project extends Observable{
 					for (int i = 0; i < numOfPoints; i++) {
 						s = JOptionPane.showInputDialog("Please input point value");
 						if (s != null) { //'OK' clicked
-							Point n = new Point(s);
+							Point n = new Point(s.toString());
 							n.setCalc(pointChoice.get(i));
 							o.addType(n);
 						} else { //'Cancel' Clicked
