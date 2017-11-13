@@ -17,6 +17,10 @@ public class Project extends Observable{
 	
 	ArrayList<Calculation> pointChoice;
 	ArrayList<Object> objects;
+	
+	Object testObject;
+	String TESTVALUE = "testvalue";
+	
 	public Project()
 	{
 		pointChoice = new ArrayList<>();
@@ -79,8 +83,99 @@ public class Project extends Observable{
 		setChanged();
 		notifyObservers("create");
 	}
+	
+	private boolean isTestValue(String s){
+		return (s.toLowerCase().compareTo(TESTVALUE) == 0);
+	}
+	
 	public void testing(){
+		float f;
+		String s = "";
+		Object o;
+		boolean isCorrect;
+		boolean testvalueSet = false;
+		
+		outerloop:
+		do { 
+			isCorrect = true;
+			o = new Object();
+			try {
+				for (int i = 0; i < numOfNumbers; i++) {
+					s = JOptionPane.showInputDialog("Please input number value");
+					if (s != null) { //'OK' clicked
+						if (isTestValue(s) && !testvalueSet){
+							Type n = new Key(s.toLowerCase());
+							o.addType(n);
+							testvalueSet = true;
+						}
+						else{
+							f = Float.parseFloat(s);
+							Num n = new Num(f);
+							o.addType(n);
+						}
+					}
+					else { //'Cancel' Clicked
+						break outerloop;
+					}
+				} 
 
+				for (int i = 0; i < numOfPoints; i++) {
+					s = JOptionPane.showInputDialog("Please input point value");
+					
+					if (s != null) { //'OK' clicked
+						if (isTestValue(s) && !testvalueSet){
+							Type n = new Key(s.toLowerCase());
+							o.addType(n);
+							testvalueSet = true;
+						}
+						else{
+							Point n = new Point(s);
+							n.setCalc(pointChoice.get(i));
+							o.addType(n);
+						};
+					} else { //'Cancel' Clicked
+						break outerloop;
+					}
+				} 
+
+				for (int i = 0; i < numOfEnums; i++) {
+					s = JOptionPane.showInputDialog("Please input enum value");
+					if (s == ""){ //Nothing Entered --> 'OK' clicked
+						throw new Exception();
+					}
+					else if (s != null){ //Something Entered --> 'OK' clicked
+						if (isTestValue(s) && !testvalueSet){
+							Type n = new Key(s.toLowerCase());
+							o.addType(n);
+							testvalueSet = true;
+						}
+						else{
+							Type n = new Key(s);
+							o.addType(n);
+						}
+					}
+					else{ //'Cancel' clicked
+						break outerloop;
+					}
+				} 
+
+			} 
+			catch(Exception e){
+				isCorrect = false;
+				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
+			}	
+		} while (!isCorrect);
+		
+		if (testvalueSet) { //The user has not requested to cancel, thus all dialogs have been filled
+			//testObjet set to o
+			list.addElement(o);
+			objects.add(o);
+			setChanged();
+			//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "No Attribute was set to testvalue", "Testvalue not Set", JOptionPane.ERROR_MESSAGE);
+		}
 	}
 	
 	public void add()
