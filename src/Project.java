@@ -113,7 +113,7 @@ public class Project extends Observable{
 
 				for (int i = 0; i < numOfEnums; i++) {
 					s = JOptionPane.showInputDialog("Please input enum value");
-					if (s == ""){ //Nothing Entered --> 'OK' clciked
+					if (s == ""){ //Nothing Entered --> 'OK' clicked
 						throw new Exception();
 					}
 					else if (s != null){ //Something Entered --> 'OK' clicked
