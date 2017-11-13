@@ -40,7 +40,7 @@ public class Project extends Observable{
 					if (options[index].equals("Euclidean"))
 					{
 						pointChoice.add(new CalculationEuclidean());
-					}
+					} 
 					else
 					{
 						pointChoice.add(new CalculationDifference());
