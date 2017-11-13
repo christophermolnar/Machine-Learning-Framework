@@ -138,11 +138,6 @@ public class Project extends Observable{
 				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
 			}
 			
-//			if (!testvalueSet){
-//				isCorrect = false;
-//				JOptionPane.showMessageDialog(null, "No testvalue was set", "Input Error", JOptionPane.ERROR_MESSAGE);
-//			}
-			
 		} while (!isCorrect);
 		
 		if (testvalueSet) { //The user has not requested to cancel, thus all dialogs have been filled
