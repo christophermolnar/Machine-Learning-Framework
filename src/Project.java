@@ -12,9 +12,9 @@ import javax.swing.JOptionPane;
 public class Project extends Observable{
 	String[] options = {"Euclidean", "Difference"};
 	DefaultListModel<Object> list;
-	int numOfNumbers;
-	int numOfPoints;
-	int numOfEnums;
+	int numOfNumbers, numOfPoints, numOfEnums;
+	int tempNum, tempPoint, tempEnum;
+	
 	ArrayList<Calculation> pointChoice;
 	ArrayList<Object> objects;
 	public Project()
@@ -26,14 +26,34 @@ public class Project extends Observable{
 	public void create()
 	{
 		boolean isCorrect;
+		String s = "";
 		do
 		{
 			isCorrect = true;
+			boolean cancel = false;
 			try
 			{
-				numOfNumbers = Integer.parseInt(JOptionPane.showInputDialog("How many 'Single Number' values do you have"));
-				numOfPoints = Integer.parseInt(JOptionPane.showInputDialog("How many 'Coordinate Point' values do you have"));
-				numOfEnums = Integer.parseInt(JOptionPane.showInputDialog("How many 'Text' values do you have"));
+				s = JOptionPane.showInputDialog("How many 'Single Number' values do you have");
+				if(s != null){ //'OK' clicked
+					tempNum = Integer.parseInt(s);
+				} else { //'Cancel' Clicked	
+					cancel = true;
+					break;
+				}
+				s = JOptionPane.showInputDialog("How many 'Coordinate Point' values do you have");
+				if(s != null){ //'OK' clicked
+					tempPoint = Integer.parseInt(s);
+				} else { //'Cancel' Clicked
+					cancel = true;
+					break;
+				}
+				s = JOptionPane.showInputDialog("How many 'Text' values do you have");
+				if(s != null){ //'OK' clicked
+					tempEnum = Integer.parseInt(s);
+				} else { //'Cancel' Clicked
+					cancel = true;
+					break;
+				}
 				for (int i = 0; i < numOfPoints; i++)
 				{
 					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Point " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
@@ -45,6 +65,11 @@ public class Project extends Observable{
 					{
 						pointChoice.add(new CalculationDifference());
 					}
+				}
+				if(!cancel){
+					numOfNumbers=tempNum;
+					numOfPoints=tempPoint;
+					numOfEnums=tempEnum;
 				}
 			}catch (NumberFormatException e){
 				isCorrect = false;
