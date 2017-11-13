@@ -68,10 +68,18 @@ public class KNNView extends JFrame implements Observer{
 			{
 				testing.setEnabled(false);
 			}
+			else if (s.equals("training"))
+			{
+				
+			}
+			else if (s.equals("calculate"))
+			{
+				//set text of output text like in try statement
+			}
 		}
 		else
 		{
-			try
+			try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
 			{
 				String s = "Closest Objects: ";
 				int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
