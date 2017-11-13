@@ -58,31 +58,53 @@ public class Project extends Observable{
 		String s = "";
 		Object o = new Object();
 		boolean isCorrect;
+		boolean cancel;
 		do
 		{
 			isCorrect = true;
+			cancel = false;
 			o = new Object();
 			try
 			{
-				for (int i = 0; i < numOfNumbers; i++)
-				{
-					f = Float.parseFloat(JOptionPane.showInputDialog("Please input number value"));
-					Num n = new Num(f);
-					o.addType(n);
+				if (!cancel) {
+					for (int i = 0; i < numOfNumbers; i++) {
+						f = Float.parseFloat(JOptionPane.showInputDialog("Please input number value"));
+						if (s != null) { //'OK' clicked
+							Num n = new Num(f);
+							o.addType(n);
+						} else { //'Cancel' Clicked
+							cancel = true;
+							break;
+						}
+					} 
 				}
-				for (int i = 0; i < numOfPoints; i++)
-				{
-					s = JOptionPane.showInputDialog("Please input point value");
-					Point n = new Point(s);
-					n.setCalc(pointChoice.get(i));
-					o.addType(n);
+				if (!cancel) {
+					for (int i = 0; i < numOfPoints; i++) {
+						s = JOptionPane.showInputDialog("Please input point value");
+						System.out.println(s + " ");
+						if (s != null) { //'OK' clicked
+							Point n = new Point(s);
+							n.setCalc(pointChoice.get(i));
+							o.addType(n);
+						} else { //'Cancel' Clicked
+							cancel = true;
+							break;
+						}
+					} 
 				}
-				for (int i = 0; i < numOfEnums; i++)
-				{
-					s = JOptionPane.showInputDialog("Please input enum value");
-					if (s == null) throw new Exception();
-					Type n = new Key(s);
-					o.addType(n);
+				if (!cancel) { 
+					for (int i = 0; i < numOfEnums; i++) {
+						s = JOptionPane.showInputDialog("Please input enum value");
+						if (s == ""){ //Nothing Entered --> 'OK' clciked
+							throw new Exception();
+						}else if (s != null){ //Something Entered --> 'OK' clicked
+							Type n = new Key(s);
+							o.addType(n);
+						}else{ //'Cancel' clicked
+							cancel = true;
+							break;
+						}
+					} 
 				}
 			} catch(Exception e)
 			{
