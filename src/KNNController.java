@@ -21,7 +21,6 @@ public class KNNController {
 	class testing implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			//p.create();
 			p.testing();
 		}
 	}
