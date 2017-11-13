@@ -27,50 +27,60 @@ public class Project extends Observable{
 		list = new DefaultListModel<>();
 		objects = new ArrayList<>();
 	}
-	public void create()
-	{
+	
+	public void create(){
 		boolean isCorrect;
 		String s = "";
-		do
-		{
+		
+		outerloop:
+		do {
 			isCorrect = true;
-			boolean cancel = false;
-			try
-			{
+			try {
+				
 				s = JOptionPane.showInputDialog("How many 'Single Number' values do you have");
 				if(s != null){ //'OK' clicked
 					tempNum = Integer.parseInt(s);
-				} else { //'Cancel' Clicked	
-					cancel = true;
-					break;
 				}
+				else { //'Cancel' Clicked	
+					isCorrect = false;
+					break outerloop;
+				}
+				
 				s = JOptionPane.showInputDialog("How many 'Coordinate Point' values do you have");
 				if(s != null){ //'OK' clicked
 					tempPoint = Integer.parseInt(s);
-				} else { //'Cancel' Clicked
-					cancel = true;
-					break;
+				} 
+				else { //'Cancel' Clicked
+					isCorrect = false;
+					break outerloop;
 				}
+				
 				s = JOptionPane.showInputDialog("How many 'Text' values do you have");
 				if(s != null){ //'OK' clicked
 					tempEnum = Integer.parseInt(s);
-				} else { //'Cancel' Clicked
-					cancel = true;
-					break;
+				} 
+				else { //'Cancel' Clicked
+					isCorrect = false;
+					break outerloop;
 				}
-				for (int i = 0; i < tempNum; i++)
-				{
+				
+				for (int i = 0; i < tempPoint; i++) {
 					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Point " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
-					if (options[index].equals("Euclidean"))
-					{
-						pointChoice.add(new CalculationEuclidean());
-					} 
-					else
-					{
-						pointChoice.add(new CalculationDifference());
+					if (index != -1){
+						if (options[index].equals("Euclidean")) {
+							pointChoice.add(new CalculationEuclidean());
+						} 
+						else if (options[index].equals("Difference")){
+							pointChoice.add(new CalculationDifference());
+						}
+					}
+					else {
+						//pointChoice.add(new CalculationDifference());
+						isCorrect = false;
+						break outerloop;
 					}
 				}
-				if(!cancel){
+				if(isCorrect){
 					numOfNumbers=tempNum;
 					numOfPoints=tempPoint;
 					numOfEnums=tempEnum;
@@ -80,8 +90,11 @@ public class Project extends Observable{
 				JOptionPane.showMessageDialog(null, "Please input only integer values", "Input Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} while (!isCorrect);
-		setChanged();
-		notifyObservers("create");
+		
+		if (isCorrect){
+			setChanged();
+			notifyObservers("create");
+		}
 	}
 	
 	private boolean isTestValue(String s){
@@ -178,68 +191,63 @@ public class Project extends Observable{
 		}
 	}
 	
-	public void add()
-	{
+	public void training() {
 		float f;
 		String s = "";
 		Object o = new Object();
 		boolean isCorrect;
-		boolean cancel;
-		do
-		{ 
+		
+		outerloop:
+		do { 
 			isCorrect = true;
-			cancel = false;
 			o = new Object();
-			try
-			{
-				if (!cancel) {
-					for (int i = 0; i < numOfNumbers; i++) {
-						s = JOptionPane.showInputDialog("Please input number value");
-						if (s != null) { //'OK' clicked
-							f = Float.parseFloat(s);
-							Num n = new Num(f);
-							o.addType(n);
-						} else { //'Cancel' Clicked
-							cancel = true;
-							break;
-						}
+			try {
+				for (int i = 0; i < numOfNumbers; i++) {
+					s = JOptionPane.showInputDialog("Please input number value");
+					if (s != null) { //'OK' clicked
+						f = Float.parseFloat(s);
+						Num n = new Num(f);
+						o.addType(n);
 					} 
-				}
-				if (!cancel) {
-					for (int i = 0; i < numOfPoints; i++) {
-						s = JOptionPane.showInputDialog("Please input 'Coordinate Point' value");
-						if (s != null) { //'OK' clicked
-							Point n = new Point(s.toString());
-							n.setSelection(pointChoice.get(i));
-							o.addType(n);
-						} else { //'Cancel' Clicked
-							cancel = true;
-							break;
-						}
+					else { //'Cancel' Clicked
+						isCorrect = false;
+						break outerloop;
+					}
+				} 
+				for (int i = 0; i < numOfPoints; i++) {
+					s = JOptionPane.showInputDialog("Please input 'Coordinate Point' value");
+					if (s != null) { //'OK' clicked
+						Point n = new Point(s.toString());
+						n.setSelection(pointChoice.get(i));
+						o.addType(n);
 					} 
-				}
-				if (!cancel) { 
-					for (int i = 0; i < numOfEnums; i++) {
-						s = JOptionPane.showInputDialog("Please input 'Text' value");
-						if (s == ""){ //Nothing Entered --> 'OK' clciked
-							throw new Exception();
-						}else if (s != null){ //Something Entered --> 'OK' clicked
-							Type n = new Key(s);
-							o.addType(n);
-						}else{ //'Cancel' clicked
-							cancel = true;
-							break;
-						}
-					} 
-				}
-			} catch(Exception e)
-			{
+					else { //'Cancel' Clicked
+						isCorrect = false;
+						break outerloop;
+					}
+				} 
+				for (int i = 0; i < numOfEnums; i++) {
+					s = JOptionPane.showInputDialog("Please input 'Text' value");
+					if (s == ""){ //Nothing Entered --> 'OK' clicked
+						throw new Exception();
+					}
+					else if (s != null){ //Something Entered --> 'OK' clicked
+						Type n = new Key(s);
+						o.addType(n);
+					}
+					else{ //'Cancel' clicked
+						isCorrect = false;
+						break outerloop;
+					}
+				} 
+			} 
+			catch(Exception e){
 				isCorrect = false;
 				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} while (!isCorrect);
 		
-		if (!cancel) { //The user has not requested to cancel, thus all dialogs have been filled
+		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
 			list.addElement(o);
 			objects.add(o);
 			setChanged();
