@@ -68,8 +68,9 @@ public class Project extends Observable{
 			{
 				if (!cancel) {
 					for (int i = 0; i < numOfNumbers; i++) {
-						f = Float.parseFloat(JOptionPane.showInputDialog("Please input number value"));
+						s = JOptionPane.showInputDialog("Please input number value");
 						if (s != null) { //'OK' clicked
+							f = Float.parseFloat(s);
 							Num n = new Num(f);
 							o.addType(n);
 						} else { //'Cancel' Clicked
@@ -81,7 +82,6 @@ public class Project extends Observable{
 				if (!cancel) {
 					for (int i = 0; i < numOfPoints; i++) {
 						s = JOptionPane.showInputDialog("Please input point value");
-						System.out.println(s + " ");
 						if (s != null) { //'OK' clicked
 							Point n = new Point(s);
 							n.setCalc(pointChoice.get(i));
@@ -112,9 +112,12 @@ public class Project extends Observable{
 				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} while (!isCorrect);
-		list.addElement(o);
-		objects.add(o);
-		setChanged();
+		
+		if (!cancel) { //The user has not requested to cancel, thus all dialogs have been filled
+			list.addElement(o);
+			objects.add(o);
+			setChanged();
+		}
 	}
 	public void calculate()
 	{
