@@ -31,12 +31,12 @@ public class Project extends Observable{
 			isCorrect = true;
 			try
 			{
-				numOfNumbers = Integer.parseInt(JOptionPane.showInputDialog("How many number values do you have"));
-				numOfPoints = Integer.parseInt(JOptionPane.showInputDialog("How many points values do you have"));
-				numOfEnums = Integer.parseInt(JOptionPane.showInputDialog("How many enum values do you have"));
+				numOfNumbers = Integer.parseInt(JOptionPane.showInputDialog("How many 'Single Number' values do you have"));
+				numOfPoints = Integer.parseInt(JOptionPane.showInputDialog("How many 'Coordinate Point' values do you have"));
+				numOfEnums = Integer.parseInt(JOptionPane.showInputDialog("How many 'Text' values do you have"));
 				for (int i = 0; i < numOfPoints; i++)
 				{
-					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for point " + (i + 1), "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Point " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
 					if (options[index].equals("Euclidean"))
 					{
 						pointChoice.add(new CalculationEuclidean());
