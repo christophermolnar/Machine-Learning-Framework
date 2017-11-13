@@ -64,7 +64,7 @@ public class Project extends Observable{
 		boolean isCorrect;
 		boolean cancel;
 		do
-		{
+		{ 
 			isCorrect = true;
 			cancel = false;
 			o = new Object();
