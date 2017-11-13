@@ -112,7 +112,7 @@ public class Project extends Observable{
 				}
 				if (!cancel) {
 					for (int i = 0; i < numOfPoints; i++) {
-						s = JOptionPane.showInputDialog("Please input point value");
+						s = JOptionPane.showInputDialog("Please input 'Coordinate Point' value");
 						if (s != null) { //'OK' clicked
 							Point n = new Point(s.toString());
 							n.setCalc(pointChoice.get(i));
@@ -125,7 +125,7 @@ public class Project extends Observable{
 				}
 				if (!cancel) { 
 					for (int i = 0; i < numOfEnums; i++) {
-						s = JOptionPane.showInputDialog("Please input enum value");
+						s = JOptionPane.showInputDialog("Please input 'Text' value");
 						if (s == ""){ //Nothing Entered --> 'OK' clciked
 							throw new Exception();
 						}else if (s != null){ //Something Entered --> 'OK' clicked
