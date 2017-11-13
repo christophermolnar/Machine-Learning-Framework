@@ -283,6 +283,5 @@ public class Project extends Observable{
 		Project p = new Project();
 		KNNView v = new KNNView(p.getList());
 		KNNController c = new KNNController(v, p);
-		p.addObserver(v);
 	}
 }

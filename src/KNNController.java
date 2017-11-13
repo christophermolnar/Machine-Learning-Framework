@@ -6,6 +6,7 @@ public class KNNController {
 	{
 		this.p = p;
 		this.v = v;
+		this.p.addObserver(this.v);
 		v.setCreateActionListener(new create());
 		v.setCreateTestingActionListener(new testing());
 		v.setCreateTrainingActionListener(new training());
