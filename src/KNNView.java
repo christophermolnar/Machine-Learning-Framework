@@ -8,9 +8,12 @@ public class KNNView extends JFrame implements Observer{
 	JPanel input, output;
 	JList<Object> list;
 	JLabel outputText;
+	boolean hasCreatedTraining, hasCreatedTesting;
 	public KNNView(DefaultListModel<Object> m)
 	{
 		super("KNN");
+		hasCreatedTraining = false;
+		hasCreatedTesting = false;
 		outputText = new JLabel();
 		list = new JList<>(m);
 		JMenuBar menuBar = new JMenuBar();
@@ -66,11 +69,19 @@ public class KNNView extends JFrame implements Observer{
 			}
 			else if (s.equals("testing"))
 			{
-				testing.setEnabled(false);
+				hasCreatedTraining = true;
+				if (hasCreatedTesting)
+				{
+					calculate.setEnabled(true);
+				}
 			}
 			else if (s.equals("training"))
 			{
-				
+				hasCreatedTesting = true;
+				if (hasCreatedTraining)
+				{
+					calculate.setEnabled(true);
+				}
 			}
 			else if (s.equals("calculate"))
 			{

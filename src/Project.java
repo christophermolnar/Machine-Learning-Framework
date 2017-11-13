@@ -171,6 +171,7 @@ public class Project extends Observable{
 			list.addElement(o);
 			objects.add(o);
 			setChanged();
+			notifyObservers("testing");
 			//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
 		}
 		else{
@@ -243,10 +244,12 @@ public class Project extends Observable{
 			list.addElement(o);
 			objects.add(o);
 			setChanged();
+			notifyObservers("training");
 		}
 	}
 	public void calculate()
 	{
+		setChanged();
 		notifyObservers(objects);
 	}
 	public DefaultListModel<Object> getList()
