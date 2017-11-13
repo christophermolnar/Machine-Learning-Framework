@@ -2,8 +2,9 @@ import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 public class KNNView extends JFrame implements Observer{
-	JMenuItem  add, create, calculate, testing, training;
+	JMenuItem  create, edit, calculate, testing, training;
 	//JMenuItem create;
 	JPanel input, output;
 	JList<Object> list;
@@ -17,8 +18,11 @@ public class KNNView extends JFrame implements Observer{
 		JMenu menuCreate = new JMenu("Example");
 		create = new JMenuItem("Create");
 		//JMenu createSubMenu = new JMenu("Create");
-		add = new JMenuItem("Add");
 		JMenu addSubMenu = new JMenu("Add");
+		
+		edit = new JMenuItem("Edit");
+		edit.setEnabled(true); //@TODO set disabled unless jlist entry is selected
+		
 		calculate = new JMenuItem("Calculate");
 		calculate.setEnabled(false);
 		
@@ -31,6 +35,7 @@ public class KNNView extends JFrame implements Observer{
 		
 		menuCreate.add(create);
 		menuCreate.add(addSubMenu);
+		menuCreate.add(edit);
 		menuCreate.add(calculate);
 		
 		menuBar.add(menuCreate);
@@ -72,6 +77,10 @@ public class KNNView extends JFrame implements Observer{
 			{
 				
 			}
+			else if (s.equals("edit"))
+			{
+				
+			}
 			else if (s.equals("calculate"))
 			{
 				//set text of output text like in try statement
@@ -95,22 +104,31 @@ public class KNNView extends JFrame implements Observer{
 			}
 		}
 	}
+	
+	public int getJlistIndex(){
+		return list.getSelectedIndex();
+	}
+	
+	public Object getSelectedObject(){
+		return list.getSelectedValue();
+	}
+	
 	public void setCreateActionListener(ActionListener a)
 	{
 		create.addActionListener(a);
 	}
-	public void setCreateTestingActionListener(ActionListener a)
+	public void setTestingActionListener(ActionListener a)
 	{
 		testing.addActionListener(a);
 	}
-	public void setCreateTrainingActionListener(ActionListener a)
+	public void setTrainingActionListener(ActionListener a)
 	{
 		training.addActionListener(a);
 	}
-//	public void setAddActionListener(ActionListener a)
-//	{
-//		add.addActionListener(a);
-//	}
+	public void setEditActionListener(ActionListener a)
+	{
+		edit.addActionListener(a);
+	}	
 	public void setCalculateActionListener(ActionListener a)
 	{
 		calculate.addActionListener(a);

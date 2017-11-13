@@ -150,6 +150,48 @@ public class Project extends Observable{
 			setChanged();
 		}
 	}
+	
+	public void edit(Object editable){
+		float f;
+		String s = "";
+		String curr = "";
+		Object updatedData = new Object();
+		ArrayList<Type> currentData = editable.getData();
+			
+		boolean isCorrect;
+			
+		outerloop:
+		do { 
+			isCorrect = true;
+				
+				for(int i=0; i<currentData.size(); i++){
+					try {
+						curr = currentData.get(i).toString();
+						System.out.println(curr);
+						if(currentData.get(i) instanceof Point){
+							curr = curr.replaceAll("-*", "");
+							curr = curr.replaceAll("(", "");
+						} else {
+							curr = curr.replaceAll("|*", "");	
+						}
+						System.out.println(curr);
+						
+						s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+					}catch(Exception e){
+							isCorrect = false;
+							JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			
+		} while (!isCorrect);
+		
+		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
+			//list.addElement(o);
+			//objects.add(o);
+			//setChanged();
+		}
+	}
+	
 	public void calculate()
 	{
 		notifyObservers(objects);
