@@ -115,7 +115,7 @@ public class Project extends Observable{
 						s = JOptionPane.showInputDialog("Please input 'Coordinate Point' value");
 						if (s != null) { //'OK' clicked
 							Point n = new Point(s.toString());
-							n.setCalc(pointChoice.get(i));
+							n.setSelection(pointChoice.get(i));
 							o.addType(n);
 						} else { //'Cancel' Clicked
 							cancel = true;

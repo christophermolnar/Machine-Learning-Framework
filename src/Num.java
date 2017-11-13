@@ -47,7 +47,7 @@ public class Num extends Type{
 	public float getNum(){
 		return num;
 	}
-	public Double getDistance(Type compare){
+	public double getDistance(Type compare){
 		return distanceSelection.calculate(this, compare);
 	}
 	

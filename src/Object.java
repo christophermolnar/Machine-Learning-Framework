@@ -96,23 +96,12 @@ public class Object{
 		double totalScore = 0;
 		int index = 0;
 		for (Type t: this.getData()){
-			if (t instanceof Point){
-				Point pointT = (Point) t;
-				totalScore += pointT.getDistance(testObject.getData().get(index));
-			}
-			else if (t instanceof Key){
-				Key keyT = (Key) t;
-				totalScore += keyT.getDistance(testObject.getData().get(index));
-			}
-			else{
-				Num numT = (Num) t;
-				totalScore += numT.getDistance(testObject.getData().get(index));
-			}
+			totalScore += t.getDistance(testObject.getData().get(index));
 			index++;
 		}
-		
 		return totalScore;
 	}
+	
 	public String toString()
 	{
 		String tmp = "";

@@ -9,4 +9,5 @@ public abstract class Type {
 	{
 		return distanceSelection;
 	}
+	abstract double getDistance(Type compare);
 }

@@ -19,7 +19,7 @@ public class Point extends Type{
 			if (!isDouble(entry[i])) throw new IllegalArgumentException();
 			nums.add(Double.valueOf(entry[i]));
 		}
-		this.distanceSelection = calcType;
+		distanceSelection = calcType;
 	}
 	public Point(String corrds)
 	{
@@ -53,13 +53,14 @@ public class Point extends Type{
 		return this.nums;
 	}
 	
-	public void setCalc(Calculation calcType) {
-		this.distanceSelection = calcType;
-	}
+//	public void setCalc(Calculation calcType) {
+//		this.distanceSelection = calcType;
+//	}
 	
-	public Double getDistance(Type compare){
+	public double getDistance(Type compare){
 		return distanceSelection.calculate(this, compare);
 	}
+	
 	public String toString()
 	{
 		String tmp = "(";
