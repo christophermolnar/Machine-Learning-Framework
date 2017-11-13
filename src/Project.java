@@ -54,7 +54,7 @@ public class Project extends Observable{
 					cancel = true;
 					break;
 				}
-				for (int i = 0; i < numOfPoints; i++)
+				for (int i = 0; i < tempNum; i++)
 				{
 					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Point " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
 					if (options[index].equals("Euclidean"))
@@ -112,7 +112,7 @@ public class Project extends Observable{
 					for (int i = 0; i < numOfPoints; i++) {
 						s = JOptionPane.showInputDialog("Please input point value");
 						if (s != null) { //'OK' clicked
-							Point n = new Point(s);
+							Point n = new Point(s.toString());
 							n.setCalc(pointChoice.get(i));
 							o.addType(n);
 						} else { //'Cancel' Clicked
