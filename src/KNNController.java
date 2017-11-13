@@ -23,14 +23,12 @@ public class KNNController {
 		{
 			//p.create();
 			p.testing();
-			System.out.println("Testing 123");
 		}
 	}
 	class training implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
 			p.create();
-			System.out.println("Training 456");
 		}
 	}
 	class add implements ActionListener{
