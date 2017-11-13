@@ -3,7 +3,8 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 public class KNNView extends JFrame implements Observer{
-	JMenuItem create, add, calculate;
+	JMenuItem  add, calculate, testing, training;
+	//JMenuItem create;
 	JPanel input, output;
 	JList<Object> list;
 	JLabel outputText;
@@ -14,14 +15,22 @@ public class KNNView extends JFrame implements Observer{
 		list = new JList<>(m);
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
-		create = new JMenuItem("Create");
+		JMenu createSubMenu = new JMenu("Create");
 		add = new JMenuItem("Add");
 		calculate = new JMenuItem("Calculate");
 //		calculate.setEnabled(false);
 //		add.setEnabled(false);
-		menuCreate.add(create);
+		
+		testing = new JMenuItem("Testing");
+		training = new JMenuItem("Training");
+		
+		createSubMenu.add(testing);
+		createSubMenu.add(training);
+		
+		menuCreate.add(createSubMenu);
 		menuCreate.add(add);
 		menuCreate.add(calculate);
+		
 		menuBar.add(menuCreate);
 		setJMenuBar(menuBar);
 		setLayout (new BoxLayout(getContentPane(), BoxLayout.Y_AXIS)); 
@@ -61,9 +70,17 @@ public class KNNView extends JFrame implements Observer{
 		} catch(NumberFormatException e){	
 		}
 	}
-	public void setCreateActionListener(ActionListener a)
+//	public void setCreateActionListener(ActionListener a)
+//	{
+//		create.addActionListener(a);
+//	}
+	public void setCreateTestingActionListener(ActionListener a)
 	{
-		create.addActionListener(a);
+		testing.addActionListener(a);
+	}
+	public void setCreateTrainingActionListener(ActionListener a)
+	{
+		training.addActionListener(a);
 	}
 	public void setAddActionListener(ActionListener a)
 	{
