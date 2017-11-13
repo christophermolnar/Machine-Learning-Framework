@@ -3,7 +3,7 @@ import java.awt.event.*;
 import java.awt.*;
 import java.util.*;
 public class KNNView extends JFrame implements Observer{
-	JMenuItem  add, calculate, testing, training;
+	JMenuItem  add, create, calculate, testing, training;
 	//JMenuItem create;
 	JPanel input, output;
 	JList<Object> list;
@@ -15,8 +15,10 @@ public class KNNView extends JFrame implements Observer{
 		list = new JList<>(m);
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
-		JMenu createSubMenu = new JMenu("Create");
+		create = new JMenuItem("Create");
+		//JMenu createSubMenu = new JMenu("Create");
 		add = new JMenuItem("Add");
+		JMenu addSubMenu = new JMenu("Add");
 		calculate = new JMenuItem("Calculate");
 //		calculate.setEnabled(false);
 //		add.setEnabled(false);
@@ -24,11 +26,11 @@ public class KNNView extends JFrame implements Observer{
 		testing = new JMenuItem("Testing");
 		training = new JMenuItem("Training");
 		
-		createSubMenu.add(testing);
-		createSubMenu.add(training);
+		addSubMenu.add(testing);
+		addSubMenu.add(training);
 		
-		menuCreate.add(createSubMenu);
-		menuCreate.add(add);
+		menuCreate.add(create);
+		menuCreate.add(addSubMenu);
 		menuCreate.add(calculate);
 		
 		menuBar.add(menuCreate);
@@ -70,10 +72,10 @@ public class KNNView extends JFrame implements Observer{
 		} catch(NumberFormatException e){	
 		}
 	}
-//	public void setCreateActionListener(ActionListener a)
-//	{
-//		create.addActionListener(a);
-//	}
+	public void setCreateActionListener(ActionListener a)
+	{
+		create.addActionListener(a);
+	}
 	public void setCreateTestingActionListener(ActionListener a)
 	{
 		testing.addActionListener(a);
@@ -82,10 +84,10 @@ public class KNNView extends JFrame implements Observer{
 	{
 		training.addActionListener(a);
 	}
-	public void setAddActionListener(ActionListener a)
-	{
-		add.addActionListener(a);
-	}
+//	public void setAddActionListener(ActionListener a)
+//	{
+//		add.addActionListener(a);
+//	}
 	public void setCalculateActionListener(ActionListener a)
 	{
 		calculate.addActionListener(a);
