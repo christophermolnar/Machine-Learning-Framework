@@ -130,7 +130,7 @@ public class Project extends Observable{
 						}
 						else{
 							Point n = new Point(s);
-							n.setCalc(pointChoice.get(i));
+							n.setSelection(pointChoice.get(i));
 							o.addType(n);
 						};
 					} else { //'Cancel' Clicked
