@@ -52,6 +52,10 @@ public class Project extends Observable{
 			}
 		} while (!isCorrect);
 	}
+	public void testing(){
+		
+	}
+	
 	public void add()
 	{
 		float f;
