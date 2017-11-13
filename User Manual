@@ -1,0 +1,107 @@
+
+Creating Examples
+1- Create Example Format
+	-Click Example -> Create
+	-Enter how many Single number values you want (0,N) click okay
+	-Enter how many Coordinate Points you want (can be 1D-ND) (0, N) click okay
+	-Enter how many Text values you want (0, N) click okay
+	-For each Coordinate Point you entered you can choose the Comparison Method (Euclidean or Difference)
+	-Format for your example is now set up
+	-Can click cancel or Exit to quit out of making the examples format
+2- Create Training Examples
+	-Click Example -> Add -> Training
+	-Fill in your training example with the desired input for each attribute (click okay to go to next attribute)
+	-Can click cancel or Exit to quit out of making the examples format
+3- Create Testing Example
+	-Click Example -> Add -> Testing
+	-Fill in your training example with the desired input for each attribute (click okay to go to next attribute)
+	*Input testvalue into the attribute you want to test kNN on
+	-Can click cancel or Exit to quit out of making the examples format
+4- Calculate kNN
+	-Once the Example Format is created and the desired Training Examples and Testing Example are set up
+	-Click Example -> Calculate
+	**-Select the value of k for kNN 
+**5- Display Results 
+	**-Once Calculate is clicked it should display the results for the created example
+
+Tips:
+- Entering Data:
+	-Single numbers: $500,000 will be entered as 500000
+	-Coordinate: point (25, 20) will be entered as 25,20
+	-Text value: "new" will be entered as new
+- Testing Example:
+	-When choosing the attribute you want to test for enter testvalue
+
+Test Example (House):
+1- Create House Format:
+	-Click Example -> Create
+	-Enter 2 for the amount of Single number points (House sqrft and House price)
+	-Enter 1 for Coordinate Point (House Coordinate)
+	-Enter 1 for Text Value (House Age)
+	-Select Euclidean Comparison Method
+2- Create Training Houses:
+	-Create House1
+	-Click Example -> Add -> Training
+	-Enter 1200
+	-Enter 500000
+	-Enter 12,25
+	-Enter new
+	-Create House2
+	-Click Example -> Add -> Training
+	-Enter 1000
+	-Enter 300000
+	-Enter 10,50
+	-Enter old
+	-Create House3
+	-Click Example -> Add -> Training
+	-Enter 800
+	-Enter 400000
+	-Enter 30,100
+	-Enter new
+3- Create Testing House:
+	-Click Create -> Add -> Testing
+	-Enter 1000
+	-Enter testvalue (this is the value we want to calculate via kNN)
+	-Enter 15,20
+	-Enter new
+4- Calculate kNN
+	-Click Create -> Calculation
+	-Enter 1
+5- Display Results
+	-Results will be displayed
+	-kNN will be _______ **************
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
