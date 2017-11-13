@@ -138,19 +138,22 @@ public class Project extends Observable{
 				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
 			}
 			
-			if (!testvalueSet){
-				isCorrect = false;
-				JOptionPane.showMessageDialog(null, "No testvalue was set", "Input Error", JOptionPane.ERROR_MESSAGE);
-			}
+//			if (!testvalueSet){
+//				isCorrect = false;
+//				JOptionPane.showMessageDialog(null, "No testvalue was set", "Input Error", JOptionPane.ERROR_MESSAGE);
+//			}
 			
 		} while (!isCorrect);
 		
 		if (testvalueSet) { //The user has not requested to cancel, thus all dialogs have been filled
-			testObject.equals(o);
+			//testObjet set to o
 			list.addElement(o);
 			objects.add(o);
 			setChanged();
 			//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
+		}
+		else{
+			JOptionPane.showMessageDialog(null, "No Attribute was set to testvalue", "Testvalue not Set", JOptionPane.ERROR_MESSAGE);
 		}
 
 	}
