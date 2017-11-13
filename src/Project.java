@@ -136,8 +136,7 @@ public class Project extends Observable{
 			catch(Exception e){
 				isCorrect = false;
 				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
-			}
-			
+			}	
 		} while (!isCorrect);
 		
 		if (testvalueSet) { //The user has not requested to cancel, thus all dialogs have been filled
