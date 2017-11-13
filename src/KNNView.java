@@ -20,12 +20,12 @@ public class KNNView extends JFrame implements Observer{
 		add = new JMenuItem("Add");
 		JMenu addSubMenu = new JMenu("Add");
 		calculate = new JMenuItem("Calculate");
-//		calculate.setEnabled(false);
-//		add.setEnabled(false);
+		calculate.setEnabled(false);
 		
 		testing = new JMenuItem("Testing");
 		training = new JMenuItem("Training");
-		
+		testing.setEnabled(false);
+		training.setEnabled(false);
 		addSubMenu.add(testing);
 		addSubMenu.add(training);
 		
@@ -52,24 +52,39 @@ public class KNNView extends JFrame implements Observer{
   		add(input);
   		add(output);
   		output.add(outputText);
-  		add.setEnabled(true);
   		input.add(list);
 	}
 	public void update(Observable obs, java.lang.Object obj)
 	{
-		try
+		if (obj instanceof String)
 		{
-			String s = "Closest Objects: ";
-			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
-			ArrayList<Object> l = (ArrayList<Object>) obj;
-			Object[] closestK = list.getSelectedValue().findClosestK(n, l);
-			for (int i = 0; i < closestK.length; i++)
+			String s = (String) obj;
+			if (s.equals("create"))
 			{
-				s += closestK[i];
-				if (i < closestK.length - 1) s += ", ";
+				training.setEnabled(true);
+				testing.setEnabled(true);
 			}
-			outputText.setText(s);
-		} catch(NumberFormatException e){	
+			else if (s.equals("testing"))
+			{
+				testing.setEnabled(false);
+			}
+		}
+		else
+		{
+			try
+			{
+				String s = "Closest Objects: ";
+				int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
+				ArrayList<Object> l = (ArrayList<Object>) obj;
+				Object[] closestK = list.getSelectedValue().findClosestK(n, l);
+				for (int i = 0; i < closestK.length; i++)
+				{
+					s += closestK[i];
+					if (i < closestK.length - 1) s += ", ";
+				}
+				outputText.setText(s);
+			} catch(NumberFormatException e){	
+			}
 		}
 	}
 	public void setCreateActionListener(ActionListener a)

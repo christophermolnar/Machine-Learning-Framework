@@ -76,6 +76,8 @@ public class Project extends Observable{
 				JOptionPane.showMessageDialog(null, "Please input only integer values", "Input Error", JOptionPane.ERROR_MESSAGE);
 			}
 		} while (!isCorrect);
+		setChanged();
+		notifyObservers("create");
 	}
 	public void testing(){
 
