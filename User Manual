@@ -66,10 +66,9 @@ Test Example (House):
 	-Enter new
 4- Calculate kNN
 	-Click Create -> Calculation
-	-Enter 1
-5- Display Results
+	-Enter kNN value
 	-Results will be displayed
-	-kNN will be _______ **************
+	-With Testvalue averaged between the k results
 
 
 

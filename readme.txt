@@ -27,7 +27,7 @@ KNNView:
 Num:
 -Responsible for managing instances of integer and floating point value
 
-Object -> Example:
+Example:
 -Creates Testing and Training Examples
 
 Point:
@@ -36,7 +36,7 @@ Point:
 Project:
 -Main class
 
-Type -> Attribute <abstract class>:
+Attribute <abstract class>:
 -Abstract class for Key, Num and Point
 
 
@@ -47,11 +47,10 @@ Changes Made Since Last Deliverable:
 	-Calculation, CalculationDifference, CalculationEuclidean and CalculationKey
 	-Key
 	-KNNController and KNNView
-	-Object -> Element
-	-Type -> Attribute
+	-Example
+	-Attribute
 -Fixes:
-	-Added User Manual *****
-	-ERROR CALCULATION???????  ***
+	-Added User Manual
 	-Implemented KNN properly (before we were returning the closest object for each attribute and averaging them)
 	-Distance calculation is no longer responsibility of Point, Num or Key but its own interface and classes
 	-Updated Point to allow 2D, 3D, or ND points
@@ -77,11 +76,12 @@ Milestone 4:
 
 
 Known Issues:
-- *****
+-kNN doesn't work for k = 3
+-kNN for 3 displays results in order listed
 
 
 RoadMap Ahead:
-- ******
+-fix kNN where k = 3
 -Fix issues addressed by TA
 -Communicate with TA and Professor Esfandiari about any questions we have or problems we run into
 
