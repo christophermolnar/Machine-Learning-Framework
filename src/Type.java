@@ -1,4 +1,4 @@
-
+ 
 public abstract class Type {
 	protected Calculation distanceSelection;
 	public void setSelection(Calculation d)
@@ -10,4 +10,5 @@ public abstract class Type {
 		return distanceSelection;
 	}
 	abstract double getDistance(Type compare);
+	//abstract java.lang.Object getVal();
 }

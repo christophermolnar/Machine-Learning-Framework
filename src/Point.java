@@ -40,9 +40,13 @@ public class Point extends Type{
 			return false;
 		}
 	}
+	public ArrayList<Double> getVal()
+	{
+		return nums;
+	}
 	
 	//Return value of specified index, -1.0 if not in range
-	public Double getValue(int i){
+	public double getValue(int i){
 		if(i < this.nums.size())
 			return this.nums.get(i);
 		else

@@ -1,16 +1,10 @@
 import java.util.*;
 public class Object{
-	String id;
 	private ArrayList<Type> data;
-	
+	private boolean isTestingObject;
 	public Object ()
 	{
 		data = new ArrayList<>();
-	}
-	public Object (String s)
-	{
-		data = new ArrayList<>();
-		id = s;
 	}
 	
 	public Object (ArrayList<Type> data){
@@ -22,13 +16,13 @@ public class Object{
 	{
 		data.add(t);
 	}
-	public String getId()
-	{
-		return id;
-	}
 	
 	public ArrayList<Type> getData(){
 		return data;
+	}
+	public Type getValueAtIndex(int index)
+	{
+		return data.get(index);
 	}
 
 	public Object[] findClosestK(int k, ArrayList<Object> objectList)
@@ -114,6 +108,14 @@ public class Object{
 	
 	public double calculateTotalScore(ArrayList<Object> testObjects) {
 		return 0;
+	}
+	public void setTestingObject(boolean b)
+	{
+		isTestingObject = true;
+	}
+	public boolean getIsTesting()
+	{
+		return isTestingObject;
 	}
 //	public int compareTo(Object obj)
 //	{

@@ -14,6 +14,7 @@ public class Project extends Observable{
 	DefaultListModel<Object> list;
 	int numOfNumbers, numOfPoints, numOfEnums;
 	int tempNum, tempPoint, tempEnum;
+	int indexOfTestValue;
 	
 	ArrayList<Calculation> pointChoice;
 	ArrayList<Object> objects;
@@ -107,7 +108,8 @@ public class Project extends Observable{
 		Object o;
 		boolean isCorrect;
 		boolean testvalueSet = false;
-		
+		indexOfTestValue = 0;
+		int counter = 0;
 		outerloop:
 		do { 
 			isCorrect = true;
@@ -120,8 +122,10 @@ public class Project extends Observable{
 							Type n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
+							indexOfTestValue = counter;
 						}
 						else{
+							counter++;
 							f = Float.parseFloat(s);
 							Num n = new Num(f);
 							o.addType(n);
@@ -140,8 +144,10 @@ public class Project extends Observable{
 							Type n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
+							indexOfTestValue = counter;
 						}
 						else{
+							counter++;
 							Point n = new Point(s);
 							n.setSelection(pointChoice.get(i));
 							o.addType(n);
@@ -161,8 +167,10 @@ public class Project extends Observable{
 							Type n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
+							indexOfTestValue = counter;
 						}
 						else{
+							counter++;
 							Type n = new Key(s);
 							o.addType(n);
 						}
@@ -183,6 +191,7 @@ public class Project extends Observable{
 			//testObjet set to o
 			list.addElement(o);
 			objects.add(o);
+			o.setTestingObject(true);
 			setChanged();
 			notifyObservers("testing");
 			//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
@@ -257,8 +266,68 @@ public class Project extends Observable{
 	}
 	public void calculate()
 	{
-		setChanged();
-		notifyObservers(objects);
+		try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
+		{
+			Object testing = null;
+			String s = "Closest Objects: ";
+			Object[] closestK = null;
+			Type t;
+			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
+			double val = 0;
+			double count = 0;
+			for (Object o : objects)
+			{
+				if (o.getIsTesting())
+				{
+					closestK = o.findClosestK(n, objects);
+					break;
+				}
+			}
+			for (Object o : objects)
+			{
+				if (!o.getIsTesting())
+				{
+					testing = o;
+				}
+			}
+			if (testing != null && closestK != null)
+			{
+				System.out.println(indexOfTestValue);
+				t = testing.getValueAtIndex(indexOfTestValue);
+				if (t instanceof Num)
+				{
+					System.out.println("f");
+					for (int i = 0; i < closestK.length; i++)
+					{
+						System.out.println("a");
+						if (!closestK[i].getIsTesting())
+						{
+							System.out.println("b");
+							val += ((Num) closestK[i].getValueAtIndex(indexOfTestValue)).getVal();
+						}
+					}
+					val /= closestK.length;
+				}
+				else if (t instanceof Point)
+				{
+					//CALCULATION FOR POINT TEST VALUE
+				}
+				else
+				{
+					//CALCULATION FOR KEY TEST VALUE
+				}
+				for (int i = 0; i < closestK.length; i++)
+				{
+					s += closestK[i];
+					if (i < closestK.length - 1) s += ", ";
+				}
+				s += " Testvalue = " + val;
+				System.out.println(val);
+				setChanged();
+				notifyObservers(s);
+			}
+		} catch(NumberFormatException e){	
+		}
 	}
 	public DefaultListModel<Object> getList()
 	{
@@ -352,19 +421,19 @@ public class Project extends Observable{
 		Type o2Num = new Num(5);
 		Type o3Num = new Num(2);
 		Type o4Num = new Num(7);//7
-		Object o1 = new Object("o1");
+		Object o1 = new Object();
 		o1.addType(o1Pt);
 		o1.addType(o1Str);
 		o1.addType(o1Num);
-		Object o2 = new Object("o2");
+		Object o2 = new Object();
 		o2.addType(o2Pt);
 		o2.addType(o2Str);
 		o2.addType(o2Num);
-		Object o3 = new Object("o3");
+		Object o3 = new Object();
 		o3.addType(o3Pt);
 		o3.addType(o3Str);
 		o3.addType(o3Num);
-		Object o4 = new Object("o4");
+		Object o4 = new Object();
 		o4.addType(o4Pt);
 		o4.addType(o4Str);
 		o4.addType(o4Num);

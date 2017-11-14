@@ -83,27 +83,28 @@ public class KNNView extends JFrame implements Observer{
 					calculate.setEnabled(true);
 				}
 			}
-			else if (s.equals("calculate"))
+			else
 			{
-				//set text of output text like in try statement
+				outputText.setText((String)obj);
 			}
 		}
 		else
 		{
-			try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
-			{
-				String s = "Closest Objects: ";
-				int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
-				ArrayList<Object> l = (ArrayList<Object>) obj;
-				Object[] closestK = list.getSelectedValue().findClosestK(n, l);
-				for (int i = 0; i < closestK.length; i++)
-				{
-					s += closestK[i];
-					if (i < closestK.length - 1) s += ", ";
-				}
-				outputText.setText(s);
-			} catch(NumberFormatException e){	
-			}
+			outputText.setText("lol");
+//			try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
+//			{
+//				String s = "Closest Objects: ";
+//				int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
+//				ArrayList<Object> l = (ArrayList<Object>) obj;
+//				Object[] closestK = list.getSelectedValue().findClosestK(n, l);
+//				for (int i = 0; i < closestK.length; i++)
+//				{
+//					s += closestK[i];
+//					if (i < closestK.length - 1) s += ", ";
+//				}
+//				outputText.setText(s);
+//			} catch(NumberFormatException e){	
+//			}
 		}
 	}
 	public void setCreateActionListener(ActionListener a)

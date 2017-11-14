@@ -17,4 +17,8 @@ public class Key extends Type{
 	public double getDistance(Type compare){
 		return (new CalculationKey()).calculate(this, compare);
 	}
+	public String getVal()
+	{
+		return word;
+	}
 }
