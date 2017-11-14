@@ -26,12 +26,15 @@ public class Point extends Attribute{
 		nums = new ArrayList<>();
 		String[] entry = corrds.split(","); 
 		for(int i = 0; i < entry.length; i++){
-			//if (!isDouble(entry[i])) throw new IllegalArgumentException();
 			nums.add(Double.valueOf(entry[i]));
 		}
 	}
 	
-	//Check if (user) String entry, is numeric
+	/**	isDouble				Checks if string is number
+	 * 
+	 * @param str				String to be checked
+	 * @return	true/false		returns true if String is number
+	 */
 	public boolean isDouble(String str) {
 		try {
 			Double.parseDouble(str);
@@ -40,6 +43,11 @@ public class Point extends Attribute{
 			return false;
 		}
 	}
+	
+	/** getVal()		Getter for nums
+	 * 
+	 * @return nums		Array of nums
+	 */
 	public ArrayList<Double> getVal()
 	{
 		return nums;
@@ -57,6 +65,10 @@ public class Point extends Attribute{
 		return this.nums;
 	}
 	
+	/** getCoords()v		Gets String of coordinates of point
+	 * 
+	 * @return coords		String representation of coordinates
+	 */
 	public String getCoords(){
 		String coords = "";
 		for(int i=0; i<nums.size()-1; i++){
@@ -66,18 +78,27 @@ public class Point extends Attribute{
 		return coords;
 	}
 	
-//	public void setCalc(Calculation calcType) {
-//		this.distanceSelection = calcType;
-//	}
-	
+	/** getCalcType					Getter for calcType
+	 * 
+	 * @return distanceSelection	Type of distance metric (euclidean, difference)
+	 */
 	public Calculation getCalcType(){ //@ToDo This needs to be reworked
 		return distanceSelection;
 	}
 	
+	/** getDistance				Calculates distance between two points using chosen metric
+	 * 
+	 * 
+	 * @return distance			distance between points
+	 */
 	public double getDistance(Attribute compare){
 		return distanceSelection.calculate(this, compare);
 	}
 	
+	/** toString()			Returns the point as a String value
+	 * 
+	 * @return String		point as a String value
+	 */
 	public String toString()
 	{
 		String tmp = "(";
