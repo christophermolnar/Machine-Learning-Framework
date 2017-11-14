@@ -1,30 +1,59 @@
 import java.util.*;
+
+/** Example 	Represents a physical entity with Attributes
+ * 
+ * @author MZGA
+ * @version 2.0
+ *
+ */
 public class Example{
 	private ArrayList<Attribute> data;
-	private boolean isTestingObject;
+	private boolean isTestingObject; //Checks to see if a 'unknown' varaible has been enetered into the system
+	
+	//Creates new EMPTY (no attribute) example
 	public Example ()
 	{
 		data = new ArrayList<>();
 	}
 	
+	//Creates new example with Attibutes 'data'
 	public Example (ArrayList<Attribute> data){
 		this.data = data;
-		
 	}
 	
+	/** addType()			Add attibute to Object
+	 * 
+	 * @param t				Attribute to add
+	 */
 	public void addType(Attribute t)
 	{
 		data.add(t);
 	}
 	
+	/** getData()				Returns Attributes of object
+	 * 
+	 * @return ArrayList		All attributes of a given object
+	 */
 	public ArrayList<Attribute> getData(){
 		return data;
 	}
+	
+	/** getValueAtIndex()		Returns the Attibute at a given index
+	 * 
+	 * @param index				Index of value to get
+	 * @return Attribute		Attribute at given index
+	 */
 	public Attribute getValueAtIndex(int index)
 	{
 		return data.get(index);
 	}
 
+	/** findClosest() 			Returns list of k closest object, in order of proximity
+	 * 
+	 * @param k					Number of neighbors to find
+	 * @param objectList		List of all current Examples (Objects with Attributes)
+	 * @return	ListofExamples	List of k closest Examples
+	 */
 	public Example[] findClosestK(int k, ArrayList<Example> objectList)
 	{
 		objectList.remove(this);
@@ -61,36 +90,17 @@ public class Example{
 			closest[z] = list[z];
 			System.out.println(closest[z]);
 		}
-//		Object[] closest = new Object[k];
-//		float dist = 0;
-//		boolean added = false;
-//		for (Object o : objectList)
-//		{
-//			added = false;
-//			if (closest[0] == null)
-//			{
-//				closest[0] = o;
-//				added = true;
-//			}
-//			else if (closest[1] == null)
-//			{
-//				closest[1] = o;
-//				added = true;
-//			}
-//			for (int i = 0; i < closest.length; i++)
-//			{
-//				if (!added)
-//				{
-//					
-//				}
-//			}
-//		}
-//		objectList.add(this);
 		return closest;
 	}
 	
+	/** calculateScore				Returns teh score of a given Example, comparing with 'unknown' object
+	 * 
+	 * @param testObject			Object to compare
+	 * @return Score				The deteremined score of a given example
+	 * @calls getDistance			Calculates the individual score of a given attribute (Key, Point, Num)
+	 * @Todo 						Add weighting
+	 */
 	public double calculateScore(Example testObject){
-		
 		double totalScore = 0;
 		int index = 0;
 		for (Attribute t: this.getData()){
@@ -101,6 +111,10 @@ public class Example{
 		return totalScore;
 	}
 	
+	/** toString()			Returns all attributes as a String value
+	 * 
+	 * @return String		Coordinate 
+	 */
 	public String toString()
 	{
 		String tmp = "";
@@ -111,23 +125,22 @@ public class Example{
 		return tmp;
 	}
 	
+	//
+	/**@ToDo Remove if unused, REFACTOR
+	 */
 	public double calculateTotalScore(ArrayList<Example> testObjects) {
 		return 0;
 	}
+	
+	//Sets a selected example to a testingexample
 	public void setTestingObject(boolean b)
 	{
 		isTestingObject = true;
 	}
+	
+	//Returns if testingExample
 	public boolean getIsTesting()
 	{
 		return isTestingObject;
 	}
-//	public int compareTo(Object obj)
-//	{
-//		System.out.println(this.id + "comparing" + obj.getId());
-//		int p = (int) this.calculateScore(obj);
-//		System.out.println(p);
-//		return p;
-//	}
-	
 }
