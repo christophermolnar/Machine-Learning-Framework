@@ -11,22 +11,22 @@ import javax.swing.JOptionPane;
  */
 public class Project extends Observable{
 	String[] options = {"Euclidean", "Difference"};
-	DefaultListModel<Object> list;
+	DefaultListModel<Example> list;
 	int numOfNumbers, numOfPoints, numOfEnums;
 	int tempNum, tempPoint, tempEnum;
 	int indexOfTestValue;
 	
 	ArrayList<Calculation> pointChoice;
-	ArrayList<Object> objects;
+	ArrayList<Example> examples;
 	
-	Object testObject;
+	Example testObject;
 	String TESTVALUE = "testvalue";
 	
 	public Project()
 	{
 		pointChoice = new ArrayList<>();
 		list = new DefaultListModel<>();
-		objects = new ArrayList<>();
+		examples = new ArrayList<>();
 	}
 	
 	public void create(){
@@ -105,7 +105,7 @@ public class Project extends Observable{
 	public void testing(){
 		double d;
 		String s = "";
-		Object o;
+		Example o;
 		boolean isCorrect;
 		boolean testvalueSet = false;
 		indexOfTestValue = 0;
@@ -113,13 +113,13 @@ public class Project extends Observable{
 		outerloop:
 		do { 
 			isCorrect = true;
-			o = new Object();
+			o = new Example();
 			try {
 				for (int i = 0; i < numOfNumbers; i++) {
 					s = JOptionPane.showInputDialog("Please input number value");
 					if (s != null) { //'OK' clicked
 						if (isTestValue(s) && !testvalueSet){
-							Type n = new Key(s.toLowerCase());
+							Attribute n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
 							indexOfTestValue = counter;
@@ -141,7 +141,7 @@ public class Project extends Observable{
 					
 					if (s != null) { //'OK' clicked
 						if (isTestValue(s) && !testvalueSet){
-							Type n = new Key(s.toLowerCase());
+							Attribute n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
 							indexOfTestValue = counter;
@@ -164,14 +164,14 @@ public class Project extends Observable{
 					}
 					else if (s != null){ //Something Entered --> 'OK' clicked
 						if (isTestValue(s) && !testvalueSet){
-							Type n = new Key(s.toLowerCase());
+							Attribute n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
 							indexOfTestValue = counter;
 						}
 						else{
 							counter++;
-							Type n = new Key(s);
+							Attribute n = new Key(s);
 							o.addType(n);
 						}
 					}
@@ -190,7 +190,7 @@ public class Project extends Observable{
 		if (testvalueSet) { //The user has not requested to cancel, thus all dialogs have been filled
 			//testObjet set to o
 			list.addElement(o);
-			objects.add(o);
+			examples.add(o);
 			o.setTestingObject(true);
 			setChanged();
 			notifyObservers("testing");
@@ -204,13 +204,13 @@ public class Project extends Observable{
 	public void training() {
 		double d;
 		String s = "";
-		Object o = new Object();
+		Example o = new Example();
 		boolean isCorrect;
 		
 		outerloop:
 		do { 
 			isCorrect = true;
-			o = new Object();
+			o = new Example();
 			try {
 				for (int i = 0; i < numOfNumbers; i++) {
 					s = JOptionPane.showInputDialog("Please input number value");
@@ -242,7 +242,7 @@ public class Project extends Observable{
 						throw new Exception();
 					}
 					else if (s != null){ //Something Entered --> 'OK' clicked
-						Type n = new Key(s);
+						Attribute n = new Key(s);
 						o.addType(n);
 					}
 					else{ //'Cancel' clicked
@@ -259,17 +259,17 @@ public class Project extends Observable{
 		
 		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
 			list.addElement(o);
-			objects.add(o);
+			examples.add(o);
 			setChanged();
 			notifyObservers("training");
 		}
 	}
 	
-	public void edit(Object editable, int Index){
+	public void edit(Example editable, int Index){
 		String s = "";
 		String curr = "";
-		Object updatedData = new Object();
-		ArrayList<Type> currentData = editable.getData();
+		Example updatedData = new Example();
+		ArrayList<Attribute> currentData = editable.getData();
 			
 		boolean isCorrect;
 			
@@ -305,8 +305,8 @@ public class Project extends Observable{
 		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
 			list.remove(Index);
 			list.add(Index, updatedData);
-			objects.remove(Index);
-			objects.add(Index, updatedData);
+			examples.remove(Index);
+			examples.add(Index, updatedData);
 			setChanged();
 		}
 	}
@@ -315,21 +315,21 @@ public class Project extends Observable{
 	{
 		try
 		{
-			Object testing = null;
+			Example testing = null;
 			String s = "";
-			Object[] closestK = null;
-			Type t;
+			Example[] closestK = null;
+			Attribute t;
 			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
 			double val = 0;
-			for (Object o : objects)
+			for (Example o : examples)
 			{
 				if (o.getIsTesting())
 				{
-					closestK = o.findClosestK(n, objects);
+					closestK = o.findClosestK(n, examples);
 					break;
 				}
 			}
-			for (Object o : objects)
+			for (Example o : examples)
 			{
 				if (!o.getIsTesting())
 				{
@@ -394,7 +394,7 @@ public class Project extends Observable{
 		} catch(NumberFormatException e){	
 		}
 	}
-	public DefaultListModel<Object> getList()
+	public DefaultListModel<Example> getList()
 	{
 		return list;
 	}

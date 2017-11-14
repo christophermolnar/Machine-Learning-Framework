@@ -1,35 +1,35 @@
 import java.util.*;
-public class Object{
-	private ArrayList<Type> data;
+public class Example{
+	private ArrayList<Attribute> data;
 	private boolean isTestingObject;
-	public Object ()
+	public Example ()
 	{
 		data = new ArrayList<>();
 	}
 	
-	public Object (ArrayList<Type> data){
+	public Example (ArrayList<Attribute> data){
 		this.data = data;
 		
 	}
 	
-	public void addType(Type t)
+	public void addType(Attribute t)
 	{
 		data.add(t);
 	}
 	
-	public ArrayList<Type> getData(){
+	public ArrayList<Attribute> getData(){
 		return data;
 	}
-	public Type getValueAtIndex(int index)
+	public Attribute getValueAtIndex(int index)
 	{
 		return data.get(index);
 	}
 
-	public Object[] findClosestK(int k, ArrayList<Object> objectList)
+	public Example[] findClosestK(int k, ArrayList<Example> objectList)
 	{
 		objectList.remove(this);
-		Object[] closest = new Object[k];
-		Object[] list = new Object[objectList.size()];
+		Example[] closest = new Example[k];
+		Example[] list = new Example[objectList.size()];
 		double[] arr = new double[objectList.size()];
 		for (int p = 0; p < objectList.size(); p++) 
 		{
@@ -41,7 +41,7 @@ public class Object{
 			 for (int i = 0; i < arr.length; i++) {
 			        for (int j = i + 1; j < arr.length; j++) {
 			            double tmp = 0;
-			            Object temp;
+			            Example temp;
 			            if (arr[i] > arr[j]) {
 			                tmp = arr[i];
 			                arr[i] = arr[j];
@@ -85,11 +85,11 @@ public class Object{
 		return closest;
 	}
 	
-	public double calculateScore(Object testObject){
+	public double calculateScore(Example testObject){
 		
 		double totalScore = 0;
 		int index = 0;
-		for (Type t: this.getData()){
+		for (Attribute t: this.getData()){
 			totalScore += t.getDistance(testObject.getData().get(index));
 			index++;
 		}
@@ -99,14 +99,14 @@ public class Object{
 	public String toString()
 	{
 		String tmp = "";
-		for (Type t : data)
+		for (Attribute t : data)
 		{
 			tmp += t + " ";
 		}
 		return tmp;
 	}
 	
-	public double calculateTotalScore(ArrayList<Object> testObjects) {
+	public double calculateTotalScore(ArrayList<Example> testObjects) {
 		return 0;
 	}
 	public void setTestingObject(boolean b)
