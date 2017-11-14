@@ -65,23 +65,27 @@ Changes Made Since Last Deliverable:
 		-Calculate the KNN with a user entered K
 		-Displays the result(s)
 	-Added the Strategy Pattern to Calculation 
+	-Users can choose distance metrics
 
 
 Future Deliverables:
 Milestone3:
--GUI should allow the user to choose distance metrics for features from a predefined set
+-GUI should allow the user to choose distance metrics for features from a predefined set (BONUS: we allow the useres to choose distance metrics at Milestone 2!)
 -We will be provided with another kNN problem to solve
 Milestone 4:
 -Add load and save data functions
 
 
 Known Issues:
--kNN doesn't work for k = 3
--kNN for 3 displays results in order listed
+-Can't close or cancel when editting the testing or training example
+-Can't edit testing example properly
 
 
 RoadMap Ahead:
--fix kNN where k = 3
+-Make it so they can run a second calculation
+-Add a function to remove all testing and training examples
+-Remove all created training and testing examples if they create a new format
+-Resolve all Known Issues (see above)
 -Fix issues addressed by TA
 -Communicate with TA and Professor Esfandiari about any questions we have or problems we run into
 

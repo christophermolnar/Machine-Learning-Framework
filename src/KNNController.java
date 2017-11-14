@@ -1,3 +1,11 @@
+/** KNNController 				Responsible for creating action listeners for different buttons/actions in user interface
+ * 
+ * @author MZGA
+ * @version 2.0
+ *
+ *
+ */
+
 import java.awt.event.*;
 public class KNNController {
 	KNNView v;
