@@ -314,7 +314,7 @@ public class Project extends Observable{
 	
 	public void calculate()
 	{
-		try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
+		try
 		{
 			Object testing = null;
 			String s = "";

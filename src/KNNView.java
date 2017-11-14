@@ -92,8 +92,8 @@ public class KNNView extends JFrame implements Observer{
 			{
 				
 			}
-			else if (s.equals("calculate"))
-      {
+			else
+			{
 				outputText.setText((String)obj);
 			}
 		}
