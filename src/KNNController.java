@@ -8,9 +8,9 @@ public class KNNController {
 		this.v = v;
 		this.p.addObserver(this.v);
 		v.setCreateActionListener(new create());
-		v.setCreateTestingActionListener(new testing());
-		v.setCreateTrainingActionListener(new training());
-		//v.setAddActionListener(new add());
+		v.setTestingActionListener(new testing());
+		v.setTrainingActionListener(new training());
+		v.setEditActionListener(new edit());
 		v.setCalculateActionListener(new calculate());
 	}
 	class create implements ActionListener{
@@ -31,12 +31,16 @@ public class KNNController {
 			p.training();
 		}
 	}
-//	class add implements ActionListener{
-//		public void actionPerformed(ActionEvent e)
-//		{
-//			p.add();
-//		}
-//	}
+	class edit implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			Object selected = v.getSelectedObject();
+			int selectedIndex = v.getJlistIndex();
+			if(v.getJlistIndex()>=0)
+				p.edit(selected, selectedIndex);
+			//Else Nothing Selected
+		}
+	}
 	class calculate implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{

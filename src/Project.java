@@ -264,6 +264,54 @@ public class Project extends Observable{
 			notifyObservers("training");
 		}
 	}
+	
+	public void edit(Object editable, int Index){
+		float f;
+		String s = "";
+		String curr = "";
+		Object updatedData = new Object();
+		ArrayList<Type> currentData = editable.getData();
+			
+		boolean isCorrect;
+			
+		outerloop:
+		do { 
+			isCorrect = true;
+				for(int index=0; index<currentData.size(); index++){
+					try {
+						if (currentData.get(index) instanceof Num){
+							curr = Double.toString((((Num) currentData.get(index)).getNum()));
+							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+							updatedData.addType(new Num(Float.parseFloat(s)));
+							
+						}else if(currentData.get(index) instanceof Point){
+							curr = (((Point) currentData.get(index)).getCoords());
+							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+							updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
+						
+						} else { //instanceof Key
+							curr = ((Key)currentData.get(index)).getWord();
+							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+							updatedData.addType(new Key(s));
+						}
+						
+					}catch(Exception e){
+							isCorrect = false;
+							JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
+					}
+				}
+			
+		} while (!isCorrect);
+		
+		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
+			list.remove(Index);
+			list.add(Index, updatedData);
+			objects.remove(Index);
+			objects.add(Index, updatedData);
+			setChanged();
+		}
+	}
+	
 	public void calculate()
 	{
 		try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
