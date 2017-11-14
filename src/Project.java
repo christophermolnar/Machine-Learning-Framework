@@ -347,10 +347,14 @@ public class Project extends Observable{
 						System.out.println(closestK[i]);
 						if (!closestK[i].getIsTesting())
 						{
+							System.out.println("g" + closestK[i]);
 							val += ((Num) closestK[i].getValueAtIndex(indexOfTestValue)).getVal();
+							System.out.println(val);
 						}
 					}
+					System.out.println("a" + val);
 					val /= closestK.length;
+					System.out.println("a" + val);
 					s += "Testvalue = " + val + " ";
 				}
 				else if (t instanceof Point)
