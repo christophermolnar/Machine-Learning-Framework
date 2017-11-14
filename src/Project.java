@@ -344,6 +344,7 @@ public class Project extends Observable{
 				{
 					for (int i = 0; i < closestK.length; i++)
 					{
+						System.out.println(closestK[i]);
 						if (!closestK[i].getIsTesting())
 						{
 							val += ((Num) closestK[i].getValueAtIndex(indexOfTestValue)).getVal();
