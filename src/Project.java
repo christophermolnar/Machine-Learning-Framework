@@ -103,7 +103,7 @@ public class Project extends Observable{
 	}
 	
 	public void testing(){
-		float f;
+		double d;
 		String s = "";
 		Object o;
 		boolean isCorrect;
@@ -126,8 +126,8 @@ public class Project extends Observable{
 						}
 						else{
 							counter++;
-							f = Float.parseFloat(s);
-							Num n = new Num(f);
+							d = Double.parseDouble(s);
+							Num n = new Num(d);
 							o.addType(n);
 						}
 					}
@@ -202,7 +202,7 @@ public class Project extends Observable{
 	}
 	
 	public void training() {
-		float f;
+		double d;
 		String s = "";
 		Object o = new Object();
 		boolean isCorrect;
@@ -215,8 +215,8 @@ public class Project extends Observable{
 				for (int i = 0; i < numOfNumbers; i++) {
 					s = JOptionPane.showInputDialog("Please input number value");
 					if (s != null) { //'OK' clicked
-						f = Float.parseFloat(s);
-						Num n = new Num(f);
+						d = Double.parseDouble(s);
+						Num n = new Num(d);
 						o.addType(n);
 					} 
 					else { //'Cancel' Clicked
@@ -266,7 +266,6 @@ public class Project extends Observable{
 	}
 	
 	public void edit(Object editable, int Index){
-		float f;
 		String s = "";
 		String curr = "";
 		Object updatedData = new Object();
@@ -282,7 +281,7 @@ public class Project extends Observable{
 						if (currentData.get(index) instanceof Num){
 							curr = Double.toString((((Num) currentData.get(index)).getNum()));
 							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-							updatedData.addType(new Num(Float.parseFloat(s)));
+							updatedData.addType(new Num(Double.parseDouble(s)));
 							
 						}else if(currentData.get(index) instanceof Point){
 							curr = (((Point) currentData.get(index)).getCoords());
