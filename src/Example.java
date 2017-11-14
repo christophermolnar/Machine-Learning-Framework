@@ -93,6 +93,7 @@ public class Example{
 			totalScore += t.getDistance(testObject.getData().get(index));
 			index++;
 		}
+		System.out.println(totalScore);
 		return totalScore;
 	}
 	
