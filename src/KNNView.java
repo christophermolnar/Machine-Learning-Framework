@@ -1,3 +1,10 @@
+/** KNNView				Responsible for creating the user interface
+ * 
+ * @author MZGA
+ * @version 2.0
+ *
+ */
+
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
@@ -5,7 +12,6 @@ import java.util.*;
 import java.util.List;
 public class KNNView extends JFrame implements Observer{
 	JMenuItem  create, edit, calculate, testing, training;
-	//JMenuItem create;
 	JPanel input, output;
 	JList<Example> list;
 	JLabel outputText;
@@ -20,7 +26,6 @@ public class KNNView extends JFrame implements Observer{
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
 		create = new JMenuItem("Create");
-		//JMenu createSubMenu = new JMenu("Create");
 		JMenu addSubMenu = new JMenu("Add");
 		
 		edit = new JMenuItem("Edit");
@@ -49,6 +54,10 @@ public class KNNView extends JFrame implements Observer{
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		addInputOutput();
 	}
+	
+	/** addInputOutput		Add IO to user interface
+	 * 
+	 */
 	public void addInputOutput()
 	{
 		input = new JPanel();
@@ -62,6 +71,12 @@ public class KNNView extends JFrame implements Observer{
   		output.add(outputText);
   		input.add(list);
 	}
+	
+	/** update()		update state of UI
+	 * 
+	 * @param obs		Observer
+	 * @param obj		Object
+	 */
 	public void update(Observable obs, java.lang.Object obj)
 	{
 		if (obj instanceof String)
@@ -99,10 +114,18 @@ public class KNNView extends JFrame implements Observer{
 		}
 	}
 	
+	/** getJListIndex()		get list index
+	 * 
+	 * @return index		Selected index
+	 */
 	public int getJlistIndex(){
 		return list.getSelectedIndex();
 	}
 	
+	/** getselected() 		get selected example object
+	 * 
+	 * @return value		Selected value
+	 */
 	public Example getSelectedObject(){
 		return list.getSelectedValue();
 	}

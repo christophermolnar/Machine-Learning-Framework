@@ -1,22 +1,19 @@
 
-Scoring:
+Scoring: *Still needs to be implemented
 -Take all distances and divide by MAX
 -This will make everything between 0 and 1
 -ENUM: 
 	0 if ENUM is the same
 	1 if ENUM is not the same
 
-Update Main:
--Instantiate objects
-
-ENUM:
+ENUM: *Done (Key class)
 -Create a general ENUM Class
 -Remove Age class
 -It will have the closest to function
 	0 if ENUM is the same
 	1 if ENUM is not the same
 
-GUI:
+GUI: *Done (KNNView and KNNController)
 -Create new type
 	-Select how much of each they want (Points, ENUMS)
 	-This will also let them create there desired ENUMS
@@ -27,7 +24,7 @@ GUI:
 -Display all inputted examples
 -Exit/Quit
 
-User Manual:
+User Manual: *Done (see User Manual)
 -Add a user manual
 -Explaining how to use the GUI Interface
 

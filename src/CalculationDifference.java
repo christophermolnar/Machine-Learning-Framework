@@ -32,6 +32,15 @@ public class CalculationDifference implements Calculation{
 				return round(dist, 4);
 			}
 		}
+		return -1.0; //Not valid bounds
+
+		else if (a instanceof Num && b instanceof Num){
+			Double dist = 0.0;
+			Num A = ((Num) a);
+			Num B = ((Num) b);
+			dist = Math.abs(A.getNum() - B.getNum());
+			return round(dist, 4);
+		}
 		return -1.0; //Not a known type, catching method will prompt error
 	}
 	
