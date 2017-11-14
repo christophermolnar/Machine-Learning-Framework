@@ -339,6 +339,7 @@ public class Project extends Observable{
 			}
 			if (testing != null && closestK != null)
 			{
+				//if all values are correct
 				t = testing.getValueAtIndex(indexOfTestValue);
 				if (t instanceof Num)
 				{
