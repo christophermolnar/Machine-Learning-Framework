@@ -6,7 +6,7 @@ import javax.swing.JOptionPane;
 /** Project			Main class, responsible for testing
  *  
  * @author MZGA
- * @version 1.0	
+ * @version 2.0	
  *
  */
 public class Project extends Observable{
@@ -22,6 +22,7 @@ public class Project extends Observable{
 	Example testObject;
 	String TESTVALUE = "testvalue";
 	
+	//Create new Project
 	public Project()
 	{
 		pointChoice = new ArrayList<>();
@@ -29,6 +30,9 @@ public class Project extends Observable{
 		examples = new ArrayList<>();
 	}
 	
+	/** create() 		create the format for example
+	*
+	*/
 	public void create(){
 		boolean isCorrect;
 		String s = "";
@@ -102,6 +106,9 @@ public class Project extends Observable{
 		return (s.toLowerCase().compareTo(TESTVALUE) == 0);
 	}
 	
+	/** testing()		create the testing example
+	*
+	*/
 	public void testing(){
 		double d;
 		String s = "";
@@ -201,6 +208,9 @@ public class Project extends Observable{
 		}
 	}
 	
+	/** training()		create training examples
+	*
+	*/
 	public void training() {
 		double d;
 		String s = "";
@@ -265,6 +275,11 @@ public class Project extends Observable{
 		}
 	}
 	
+	/** edit()			Allows the user to edit testing and training examples
+	*
+	 @param editable		the testing or training example to edit
+	 @param index			the index of what is being edited 
+	*/
 	public void edit(Example editable, int Index){
 		String s = "";
 		String curr = "";
@@ -311,6 +326,9 @@ public class Project extends Observable{
 		}
 	}
 	
+	/** calculate()			calculate the score for each training example and find the testing examples kNN
+	*
+	*/
 	public void calculate()
 	{
 		try
