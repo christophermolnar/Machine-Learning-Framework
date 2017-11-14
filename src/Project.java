@@ -292,17 +292,13 @@ public class Project extends Observable{
 			}
 			if (testing != null && closestK != null)
 			{
-				System.out.println(indexOfTestValue);
 				t = testing.getValueAtIndex(indexOfTestValue);
 				if (t instanceof Num)
 				{
-					System.out.println("f");
 					for (int i = 0; i < closestK.length; i++)
 					{
-						System.out.println("a");
 						if (!closestK[i].getIsTesting())
 						{
-							System.out.println("b");
 							val += ((Num) closestK[i].getValueAtIndex(indexOfTestValue)).getVal();
 						}
 					}
@@ -322,7 +318,6 @@ public class Project extends Observable{
 					if (i < closestK.length - 1) s += ", ";
 				}
 				s += " Testvalue = " + val;
-				System.out.println(val);
 				setChanged();
 				notifyObservers(s);
 			}
