@@ -35,14 +35,17 @@ public class Example{
 		{
 			list[p] = objectList.get(p);
 			arr[p] = this.calculateScore(objectList.get(p));
+			System.out.println(list[p] + "score" + arr[p]);
 		}
-		if (k < objectList.size())
+		if (k <= objectList.size())
 		{
 			 for (int i = 0; i < arr.length; i++) {
 			        for (int j = i + 1; j < arr.length; j++) {
 			            double tmp = 0;
 			            Example temp;
+			            System.out.println("asfasf");
 			            if (arr[i] > arr[j]) {
+			            	System.out.println("arri" + arr[i] + "arrj" + arr[j]);
 			                tmp = arr[i];
 			                arr[i] = arr[j];
 			                arr[j] = tmp;
@@ -56,6 +59,7 @@ public class Example{
 		for (int z = 0; z < closest.length; z++)
 		{
 			closest[z] = list[z];
+			System.out.println(closest[z]);
 		}
 //		Object[] closest = new Object[k];
 //		float dist = 0;
