@@ -37,7 +37,7 @@ public class Example{
 			arr[p] = this.calculateScore(objectList.get(p));
 			System.out.println(list[p] + "score" + arr[p]);
 		}
-		if (k <= objectList.size())
+		if (k <= objectList.size())//if k is small enough
 		{
 			 for (int i = 0; i < arr.length; i++) {
 			        for (int j = i + 1; j < arr.length; j++) {
