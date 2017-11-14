@@ -1,5 +1,5 @@
  
-public abstract class Type {
+public abstract class Attribute {
 	protected Calculation distanceSelection;
 	public void setSelection(Calculation d)
 	{
@@ -9,6 +9,6 @@ public abstract class Type {
 	{
 		return distanceSelection;
 	}
-	abstract double getDistance(Type compare);
+	abstract double getDistance(Attribute compare);
 	//abstract java.lang.Object getVal();
 }

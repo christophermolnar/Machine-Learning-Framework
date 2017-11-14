@@ -1,4 +1,4 @@
 
 public interface Calculation {
-	public double calculate(Type a, Type b);
+	public double calculate(Attribute a, Attribute b);
 }

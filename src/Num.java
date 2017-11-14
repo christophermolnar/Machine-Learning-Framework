@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @version 1.0
  *
  */
-public class Num extends Type{
+public class Num extends Attribute{
 
 	private double num;
 	
@@ -51,7 +51,7 @@ public class Num extends Type{
 	{
 		return num;
 	}
-	public double getDistance(Type compare){
+	public double getDistance(Attribute compare){
 		return distanceSelection.calculate(this, compare);
 	}
 	
