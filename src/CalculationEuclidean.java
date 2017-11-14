@@ -1,8 +1,21 @@
 import java.util.ArrayList;
 
+/** CalculationEuclidean 	Calculates the difference between Two Attributes using their euclidean distances
+ * 							//IMPLEMENTS// Calculation.java
+ * @author MZGA
+ * @version 2.0
+ *
+ */
+
 public class CalculationEuclidean implements Calculation{
 	
 	//Calculate the distance between two Coordinates, test if Lists are equal length
+	/** calculate()			Responsible comparing 2 Attributes (Of same type [ie. Points]) from different examples
+	 * 
+	 * @param a				First Attribute to compare
+	 * @param b				Second Attribute to compare
+	 * @return distance		Difference between 2 Attributes
+	 */
 	public double calculate(Attribute a, Attribute b){
 		if (a instanceof Point && b instanceof Point){
 			ArrayList<Double> A = ((Point)a).getNums();
@@ -21,12 +34,21 @@ public class CalculationEuclidean implements Calculation{
 		}
 		return -1.0; //Not known type
 	}
-	
-	//Rounds value to specified decimal precision (d)
+		
+	/** round()				Rounds a passed numerical value to a specified precision (d)
+	 * 
+	 * @param value			Value to be rounded
+	 * @param d				Precision to round to, checks if less that 0
+	 * @return roundVal		Rounded Value
+	 */
 	public static double round(double value, int d) {
 		if (d < 0) throw new IllegalArgumentException();
 	    return Math.round(value*Math.pow(10, d))/Math.pow(10, d);
 	}
+	
+	/** toString()			Returns the current Calculation type of 'Euclidean'
+	 *  @return CalcType	Returns 'Differnce' --> Current CalcType
+	 */
 	public String toString()
 	{
 		return "Euclidean";
