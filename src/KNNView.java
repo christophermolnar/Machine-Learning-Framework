@@ -9,9 +9,12 @@ public class KNNView extends JFrame implements Observer{
 	JPanel input, output;
 	JList<Object> list;
 	JLabel outputText;
+	boolean hasCreatedTraining, hasCreatedTesting;
 	public KNNView(DefaultListModel<Object> m)
 	{
 		super("KNN");
+		hasCreatedTraining = false;
+		hasCreatedTesting = false;
 		outputText = new JLabel();
 		list = new JList<>(m);
 		JMenuBar menuBar = new JMenuBar();
@@ -71,37 +74,46 @@ public class KNNView extends JFrame implements Observer{
 			}
 			else if (s.equals("testing"))
 			{
-				testing.setEnabled(false);
+				hasCreatedTraining = true;
+				if (hasCreatedTesting)
+				{
+					calculate.setEnabled(true);
+				}
 			}
 			else if (s.equals("training"))
 			{
-				
+				hasCreatedTesting = true;
+				if (hasCreatedTraining)
+				{
+					calculate.setEnabled(true);
+				}
 			}
 			else if (s.equals("edit"))
 			{
 				
 			}
 			else if (s.equals("calculate"))
-			{
-				//set text of output text like in try statement
+      {
+				outputText.setText((String)obj);
 			}
 		}
 		else
 		{
-			try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
-			{
-				String s = "Closest Objects: ";
-				int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
-				ArrayList<Object> l = (ArrayList<Object>) obj;
-				Object[] closestK = list.getSelectedValue().findClosestK(n, l);
-				for (int i = 0; i < closestK.length; i++)
-				{
-					s += closestK[i];
-					if (i < closestK.length - 1) s += ", ";
-				}
-				outputText.setText(s);
-			} catch(NumberFormatException e){	
-			}
+			outputText.setText("lol");
+//			try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
+//			{
+//				String s = "Closest Objects: ";
+//				int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
+//				ArrayList<Object> l = (ArrayList<Object>) obj;
+//				Object[] closestK = list.getSelectedValue().findClosestK(n, l);
+//				for (int i = 0; i < closestK.length; i++)
+//				{
+//					s += closestK[i];
+//					if (i < closestK.length - 1) s += ", ";
+//				}
+//				outputText.setText(s);
+//			} catch(NumberFormatException e){	
+//			}
 		}
 	}
 	

@@ -28,7 +28,7 @@ public class KNNController {
 	class training implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			p.add();
+			p.training();
 		}
 	}
 	class edit implements ActionListener{

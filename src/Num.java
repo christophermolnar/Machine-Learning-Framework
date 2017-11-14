@@ -8,10 +8,10 @@ import java.util.ArrayList;
  */
 public class Num extends Type{
 
-	private float num;
+	private double num;
 	
 	//Create new NUM
-	public Num(float num){
+	public Num(double num){
 		this.num = num;
 		distanceSelection = new CalculationDifference();
 	}
@@ -24,9 +24,9 @@ public class Num extends Type{
 	 * @return best_position	The position of the closest numbers
 	 */
 	public int findClosest(ArrayList<Num> compareList){
-		float closest_distance;
+		double closest_distance;
 		int best_position;
-		float temp_distance;
+		double temp_distance;
 		
 		closest_distance = Math.abs(num - compareList.get(0).getNum());
 		best_position = 0;
@@ -44,7 +44,11 @@ public class Num extends Type{
 	 * 
 	 * @return num			Float value of NUM
 	 */
-	public float getNum(){
+	public double getNum(){
+		return num;
+	}
+	public double getVal()
+	{
 		return num;
 	}
 	public double getDistance(Type compare){
