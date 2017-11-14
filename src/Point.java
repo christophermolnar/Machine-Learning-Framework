@@ -57,9 +57,22 @@ public class Point extends Type{
 		return this.nums;
 	}
 	
+	public String getCoords(){
+		String coords = "";
+		for(int i=0; i<nums.size()-1; i++){
+			coords = coords + nums.get(i) + ", ";
+		}
+		coords = coords + nums.get(nums.size()-1);
+		return coords;
+	}
+	
 //	public void setCalc(Calculation calcType) {
 //		this.distanceSelection = calcType;
 //	}
+	
+	public Calculation getCalcType(){ //@ToDo This needs to be reworked
+		return distanceSelection;
+	}
 	
 	public double getDistance(Type compare){
 		return distanceSelection.calculate(this, compare);
