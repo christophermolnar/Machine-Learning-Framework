@@ -35,8 +35,9 @@ public class KNNController {
 		public void actionPerformed(ActionEvent e)
 		{
 			Object selected = v.getSelectedObject();
+			int selectedIndex = v.getJlistIndex();
 			if(v.getJlistIndex()>=0)
-				p.edit(selected);
+				p.edit(selected, selectedIndex);
 			//Else Nothing Selected
 		}
 	}

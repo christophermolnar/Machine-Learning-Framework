@@ -151,7 +151,7 @@ public class Project extends Observable{
 		}
 	}
 	
-	public void edit(Object editable){
+	public void edit(Object editable, int Index){
 		float f;
 		String s = "";
 		String curr = "";
@@ -163,20 +163,24 @@ public class Project extends Observable{
 		outerloop:
 		do { 
 			isCorrect = true;
-				
-				for(int i=0; i<currentData.size(); i++){
+				for(int index=0; index<currentData.size(); index++){
 					try {
-						curr = currentData.get(i).toString();
-						System.out.println(curr);
-						if(currentData.get(i) instanceof Point){
-							curr = curr.replaceAll("-*", "");
-							curr = curr.replaceAll("(", "");
-						} else {
-							curr = curr.replaceAll("|*", "");	
-						}
-						System.out.println(curr);
+						if (currentData.get(index) instanceof Num){
+							curr = Float.toString((((Num) currentData.get(index)).getNum()));
+							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+							updatedData.addType(new Num(Float.parseFloat(s)));
+							
+						}else if(currentData.get(index) instanceof Point){
+							curr = (((Point) currentData.get(index)).getCoords());
+							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+							updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
 						
-						s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+						} else { //instanceof Key
+							curr = ((Key)currentData.get(index)).getWord();
+							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+							updatedData.addType(new Key(s));
+						}
+						
 					}catch(Exception e){
 							isCorrect = false;
 							JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
@@ -186,9 +190,11 @@ public class Project extends Observable{
 		} while (!isCorrect);
 		
 		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
-			//list.addElement(o);
-			//objects.add(o);
-			//setChanged();
+			list.remove(Index);
+			list.add(Index, updatedData);
+			objects.remove(Index);
+			objects.add(Index, updatedData);
+			setChanged();
 		}
 	}
 	
