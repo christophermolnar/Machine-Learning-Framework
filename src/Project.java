@@ -280,7 +280,7 @@ public class Project extends Observable{
 				for(int index=0; index<currentData.size(); index++){
 					try {
 						if (currentData.get(index) instanceof Num){
-							curr = Float.toString((((Num) currentData.get(index)).getNum()));
+							curr = Double.toString((((Num) currentData.get(index)).getNum()));
 							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 							updatedData.addType(new Num(Float.parseFloat(s)));
 							
