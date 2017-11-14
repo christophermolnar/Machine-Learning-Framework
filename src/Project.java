@@ -269,12 +269,11 @@ public class Project extends Observable{
 		try//REMOVE THIS AND PUT THE CODE INTO PROJECT !!IMPORTANT!!
 		{
 			Object testing = null;
-			String s = "Closest Objects: ";
+			String s = "";
 			Object[] closestK = null;
 			Type t;
 			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
 			double val = 0;
-			double count = 0;
 			for (Object o : objects)
 			{
 				if (o.getIsTesting())
@@ -303,21 +302,44 @@ public class Project extends Observable{
 						}
 					}
 					val /= closestK.length;
+					s += "Testvalue = " + val + " ";
 				}
 				else if (t instanceof Point)
 				{
 					//CALCULATION FOR POINT TEST VALUE
+					double pointCount = 0;
+					double[] listOfPointValues = new double[((Point) t).getNums().size()];
+					for (int i = 0; i < closestK.length; i++)
+					{
+						for (int j = 0; j < listOfPointValues.length; j++)
+						{
+							listOfPointValues[j] += ((Point) closestK[i].getValueAtIndex(indexOfTestValue)).getNums().get(j);
+						}
+						pointCount++;
+					}
+					for (int i = 0; i < listOfPointValues.length; i++)
+					{
+						listOfPointValues[i] /= pointCount;
+					}
+					s += "Testvalue = (";
+					for (int i = 0; i < listOfPointValues.length; i++)
+					{
+						s += listOfPointValues[i];
+						if (i < listOfPointValues.length - 1) s += ", ";
+					}
+					s += ")";
 				}
 				else
 				{
 					//CALCULATION FOR KEY TEST VALUE
+					s += "Testvalue = " + closestK[0].getValueAtIndex(indexOfTestValue) + " ";
 				}
+				s += "Closest Objects:"; 
 				for (int i = 0; i < closestK.length; i++)
 				{
 					s += closestK[i];
 					if (i < closestK.length - 1) s += ", ";
 				}
-				s += " Testvalue = " + val;
 				setChanged();
 				notifyObservers(s);
 			}
