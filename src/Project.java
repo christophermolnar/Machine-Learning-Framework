@@ -338,7 +338,7 @@ public class Project extends Observable{
 			}
 			if (testing != null && closestK != null)
 			{
-				//if all values are correct
+				//if all the values are correct
 				t = testing.getValueAtIndex(indexOfTestValue);
 				if (t instanceof Num)
 				{
@@ -353,6 +353,7 @@ public class Project extends Observable{
 						}
 					}
 					System.out.println("a" + val);
+					System.out.println("before");
 					val /= closestK.length;
 					System.out.println("a" + val);
 					s += "Testvalue = " + val + " ";
