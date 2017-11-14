@@ -3,6 +3,9 @@ Group: MZGA - Christopher Molnar, Callum Kirby, Brandon Hartford, and Geoff Scor
 
 Classes:
 
+Attribute <abstract class>:
+-Abstract class for Key, Num and Point
+
 Calculation <interface>:
 -Interface for the different types of Calculations
 
@@ -14,6 +17,9 @@ CalculationEuclidian:
 
 CalculationKey:
 -Calculate the distance between keys (See if they are the same key)
+
+Example:
+-Creates Testing and Training Examples
 
 Key:
 -Responsible for managing instances of Strings (keys)
@@ -27,17 +33,11 @@ KNNView:
 Num:
 -Responsible for managing instances of integer and floating point value
 
-Example:
--Creates Testing and Training Examples
-
 Point:
 -Responsible for managing instances of coordinate values
 
 Project:
 -Main class
-
-Attribute <abstract class>:
--Abstract class for Key, Num and Point
 
 
 Changes Made Since Last Deliverable:
