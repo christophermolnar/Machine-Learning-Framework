@@ -1,5 +1,5 @@
 
-public class Key extends Type{
+public class Key extends Attribute{
 	private String word;
 	public Key(String w)
 	{
@@ -14,7 +14,7 @@ public class Key extends Type{
 		return word;
 	}
 	
-	public double getDistance(Type compare){
+	public double getDistance(Attribute compare){
 		return (new CalculationKey()).calculate(this, compare);
 	}
 	public String getVal()

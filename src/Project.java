@@ -11,22 +11,22 @@ import javax.swing.JOptionPane;
  */
 public class Project extends Observable{
 	String[] options = {"Euclidean", "Difference"};
-	DefaultListModel<Object> list;
+	DefaultListModel<Example> list;
 	int numOfNumbers, numOfPoints, numOfEnums;
 	int tempNum, tempPoint, tempEnum;
 	int indexOfTestValue;
 	
 	ArrayList<Calculation> pointChoice;
-	ArrayList<Object> objects;
+	ArrayList<Example> examples;
 	
-	Object testObject;
+	Example testObject;
 	String TESTVALUE = "testvalue";
 	
 	public Project()
 	{
 		pointChoice = new ArrayList<>();
 		list = new DefaultListModel<>();
-		objects = new ArrayList<>();
+		examples = new ArrayList<>();
 	}
 	
 	public void create(){
@@ -105,7 +105,7 @@ public class Project extends Observable{
 	public void testing(){
 		double d;
 		String s = "";
-		Object o;
+		Example o;
 		boolean isCorrect;
 		boolean testvalueSet = false;
 		indexOfTestValue = 0;
@@ -113,13 +113,13 @@ public class Project extends Observable{
 		outerloop:
 		do { 
 			isCorrect = true;
-			o = new Object();
+			o = new Example();
 			try {
 				for (int i = 0; i < numOfNumbers; i++) {
 					s = JOptionPane.showInputDialog("Please input number value");
 					if (s != null) { //'OK' clicked
 						if (isTestValue(s) && !testvalueSet){
-							Type n = new Key(s.toLowerCase());
+							Attribute n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
 							indexOfTestValue = counter;
@@ -141,7 +141,7 @@ public class Project extends Observable{
 					
 					if (s != null) { //'OK' clicked
 						if (isTestValue(s) && !testvalueSet){
-							Type n = new Key(s.toLowerCase());
+							Attribute n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
 							indexOfTestValue = counter;
@@ -164,14 +164,14 @@ public class Project extends Observable{
 					}
 					else if (s != null){ //Something Entered --> 'OK' clicked
 						if (isTestValue(s) && !testvalueSet){
-							Type n = new Key(s.toLowerCase());
+							Attribute n = new Key(s.toLowerCase());
 							o.addType(n);
 							testvalueSet = true;
 							indexOfTestValue = counter;
 						}
 						else{
 							counter++;
-							Type n = new Key(s);
+							Attribute n = new Key(s);
 							o.addType(n);
 						}
 					}
@@ -190,7 +190,7 @@ public class Project extends Observable{
 		if (testvalueSet) { //The user has not requested to cancel, thus all dialogs have been filled
 			//testObjet set to o
 			list.addElement(o);
-			objects.add(o);
+			examples.add(o);
 			o.setTestingObject(true);
 			setChanged();
 			notifyObservers("testing");
@@ -204,13 +204,13 @@ public class Project extends Observable{
 	public void training() {
 		double d;
 		String s = "";
-		Object o = new Object();
+		Example o = new Example();
 		boolean isCorrect;
 		
 		outerloop:
 		do { 
 			isCorrect = true;
-			o = new Object();
+			o = new Example();
 			try {
 				for (int i = 0; i < numOfNumbers; i++) {
 					s = JOptionPane.showInputDialog("Please input number value");
@@ -242,7 +242,7 @@ public class Project extends Observable{
 						throw new Exception();
 					}
 					else if (s != null){ //Something Entered --> 'OK' clicked
-						Type n = new Key(s);
+						Attribute n = new Key(s);
 						o.addType(n);
 					}
 					else{ //'Cancel' clicked
@@ -259,17 +259,17 @@ public class Project extends Observable{
 		
 		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
 			list.addElement(o);
-			objects.add(o);
+			examples.add(o);
 			setChanged();
 			notifyObservers("training");
 		}
 	}
 	
-	public void edit(Object editable, int Index){
+	public void edit(Example editable, int Index){
 		String s = "";
 		String curr = "";
-		Object updatedData = new Object();
-		ArrayList<Type> currentData = editable.getData();
+		Example updatedData = new Example();
+		ArrayList<Attribute> currentData = editable.getData();
 			
 		boolean isCorrect;
 			
@@ -305,8 +305,8 @@ public class Project extends Observable{
 		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
 			list.remove(Index);
 			list.add(Index, updatedData);
-			objects.remove(Index);
-			objects.add(Index, updatedData);
+			examples.remove(Index);
+			examples.add(Index, updatedData);
 			setChanged();
 		}
 	}
@@ -315,21 +315,21 @@ public class Project extends Observable{
 	{
 		try
 		{
-			Object testing = null;
+			Example testing = null;
 			String s = "";
-			Object[] closestK = null;
-			Type t;
+			Example[] closestK = null;
+			Attribute t;
 			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
 			double val = 0;
-			for (Object o : objects)
+			for (Example o : examples)
 			{
 				if (o.getIsTesting())
 				{
-					closestK = o.findClosestK(n, objects);
+					closestK = o.findClosestK(n, examples);
 					break;
 				}
 			}
-			for (Object o : objects)
+			for (Example o : examples)
 			{
 				if (!o.getIsTesting())
 				{
@@ -399,7 +399,7 @@ public class Project extends Observable{
 		} catch(NumberFormatException e){	
 		}
 	}
-	public DefaultListModel<Object> getList()
+	public DefaultListModel<Example> getList()
 	{
 		return list;
 	}
@@ -414,119 +414,7 @@ public class Project extends Observable{
 	
 	public static void main (String args[])
 	{
-		//Point location1 = new Point("12,25");
-		//Point location4 = new Point("15,25");
-		Num sqft1 = new Num(1200);
-		Num sqft4 = new Num(1000);
-		Key key1 = new Key("new");
-		Key key4 = new Key("new");
-		Num price1 = new Num(500000);
-		Num price4 = null;
-		
-		Object house1 = new Object();
-		//house1.addType(location1);
-		house1.addType(sqft1);
-		house1.addType(key1);
-		house1.addType(price1);
-		
-		Object house4 = new Object();
-		//house4.addType(location4);
-		house4.addType(sqft4);
-		house4.addType(key4);
-		house4.addType(price4);
-		
-		//TERMINAL OUTPUT TESTING | START
-		
-		//CalculationDifference attributes
-		Point sqCallum = new Point("1200,300", new CalculationDifference());
-		Point sqCallum2 = new Point("1000,200", new CalculationDifference());
-		
-		//CalculationEuclidean attributes
-		Point sqGeoff = new Point("1200,300", new CalculationEuclidean());
-		Point sqGeoff2 = new Point("1000,200", new CalculationEuclidean());
-		
-		//CalculationKey attributes
-		Key k1 = new Key("OLD");
-		Key k2 = new Key("NEW");
-		
-		//House objects
-		Object H1 = new Object();
-		Object H2 = new Object();
-		Object H3 = new Object();
-		Object H4 = new Object();
-		Object H5 = new Object();
-		Object H6 = new Object();
-		Object H7 = new Object();
-		Object H8 = new Object();
-		
-		H1.addType(sqCallum);
-		H2.addType(sqCallum2);
-		H3.addType(sqGeoff);
-		H4.addType(sqGeoff2);
-		H5.addType(k1);
-		H6.addType(k2);
-		H7.addType(sqCallum); //H7 and H8 have 3 attributes
-		H7.addType(sqGeoff);
-		H7.addType(k1);
-		H8.addType(sqCallum2);
-		H8.addType(sqGeoff2);
-		H8.addType(k2);
-		
-		//Diff of Callums + Eucl of Geoffs
-//		System.out.println("Calc Difference = " + H1.calculateScore(H2));
-//		System.out.println("Calc Euclidean = " +H3.calculateScore(H4));
-//		System.out.println("Calc Key = " +H5.calculateScore(H6));
-//		System.out.println("Total Score = " +H7.calculateScore(H8));
-		
-		ArrayList<Object> lol = new ArrayList<>();
-		Type o1Pt = new Point("10,10", new CalculationEuclidean());
-		Type o2Pt = new Point("2,6", new CalculationEuclidean());
-		Type o3Pt = new Point("3,5", new CalculationEuclidean());
-		Type o4Pt = new Point("7,1", new CalculationEuclidean());
-		Type o1Str = new Key("NEW");
-		Type o2Str = new Key("OLD");
-		Type o3Str = new Key("NEW");
-		Type o4Str = new Key("OLD");
-		Type o1Num = new Num(10);//10
-		Type o2Num = new Num(5);
-		Type o3Num = new Num(2);
-		Type o4Num = new Num(7);//7
-		Object o1 = new Object();
-		o1.addType(o1Pt);
-		o1.addType(o1Str);
-		o1.addType(o1Num);
-		Object o2 = new Object();
-		o2.addType(o2Pt);
-		o2.addType(o2Str);
-		o2.addType(o2Num);
-		Object o3 = new Object();
-		o3.addType(o3Pt);
-		o3.addType(o3Str);
-		o3.addType(o3Num);
-		Object o4 = new Object();
-		o4.addType(o4Pt);
-		o4.addType(o4Str);
-		o4.addType(o4Num);
-		lol.add(o1);
-		lol.add(o2);
-		lol.add(o3);
-		lol.add(o4);
-		Object[] f = o4.findClosestK(2, lol);
-		for (int i = 0; i < f.length; i++)
-		{
-			System.out.println(f[i]);
-		}
-		//TERMINAL OUTPUT TESTING | END
-		
-//		for (Type t: house1.getData()){
-//			if (t instanceof Point){
-//				Point t2 = (Point) t;
-//				for (int position = 0; position < t2.getNums().size(); position ++ ){
-//					System.out.println("Point " + t2.getNums().get(position) + " at position " + position);
-//				}
-//			}	
-//		}
-		
+
 		Project p = new Project();
 		KNNView v = new KNNView(p.getList());
 		KNNController c = new KNNController(v, p);

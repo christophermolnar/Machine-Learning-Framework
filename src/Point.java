@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * @version 1.0
  *
  */
-public class Point extends Type{
+public class Point extends Attribute{
 	
 	private ArrayList<Double> nums;
 	
@@ -74,7 +74,7 @@ public class Point extends Type{
 		return distanceSelection;
 	}
 	
-	public double getDistance(Type compare){
+	public double getDistance(Attribute compare){
 		return distanceSelection.calculate(this, compare);
 	}
 	

@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class CalculationDifference implements Calculation{
 
-	public double calculate(Type a, Type b)
+	public double calculate(Attribute a, Attribute b)
 	{
 		if (a instanceof Point && b instanceof Point){
 			ArrayList<Double> A = ((Point)a).getNums();

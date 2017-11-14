@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class CalculationEuclidean implements Calculation{
 	
 	//Calculate the distance between two Coordinates, test if Lists are equal length
-	public double calculate(Type a, Type b){
+	public double calculate(Attribute a, Attribute b){
 		if (a instanceof Point && b instanceof Point){
 			ArrayList<Double> A = ((Point)a).getNums();
 			ArrayList<Double> B = ((Point)b).getNums();

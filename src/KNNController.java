@@ -34,7 +34,7 @@ public class KNNController {
 	class edit implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			Object selected = v.getSelectedObject();
+			Example selected = v.getSelectedObject();
 			int selectedIndex = v.getJlistIndex();
 			if(v.getJlistIndex()>=0)
 				p.edit(selected, selectedIndex);

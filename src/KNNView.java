@@ -7,10 +7,10 @@ public class KNNView extends JFrame implements Observer{
 	JMenuItem  create, edit, calculate, testing, training;
 	//JMenuItem create;
 	JPanel input, output;
-	JList<Object> list;
+	JList<Example> list;
 	JLabel outputText;
 	boolean hasCreatedTraining, hasCreatedTesting;
-	public KNNView(DefaultListModel<Object> m)
+	public KNNView(DefaultListModel<Example> m)
 	{
 		super("KNN");
 		hasCreatedTraining = false;
@@ -103,7 +103,7 @@ public class KNNView extends JFrame implements Observer{
 		return list.getSelectedIndex();
 	}
 	
-	public Object getSelectedObject(){
+	public Example getSelectedObject(){
 		return list.getSelectedValue();
 	}
 	
