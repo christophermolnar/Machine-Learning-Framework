@@ -32,8 +32,6 @@ public class CalculationDifference implements Calculation{
 				return round(dist, 4);
 			}
 		}
-		return -1.0; //Not valid bounds
-
 		else if (a instanceof Num && b instanceof Num){
 			Double dist = 0.0;
 			Num A = ((Num) a);
