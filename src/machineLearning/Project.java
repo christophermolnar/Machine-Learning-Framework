@@ -120,8 +120,11 @@ public class Project extends Observable{
 		ArrayList<Attribute> testingExampleArray = testingExample.getData();
 		int testingValue = 0;
 		for (int position = 0; position < testingExampleArray.size(); position++){
-			if (isTestValue(testingExampleArray.get(position).toString())){
-				testingValue++;
+			if (testingExampleArray.get(position) instanceof Key){
+				Key value = ((Key)testingExampleArray.get(position));
+				if (isTestValue(value.getVal())){
+					testingValue++;
+				}
 			}
 		}
 		if (testingValue == 1){
@@ -219,71 +222,80 @@ public class Project extends Observable{
 		} //End of createTester
 	}
 	
-	/** training()		create training examples
-	*
-	*/
-	public void training() {
-		double d;
-		String s = "";
-		Example o = new Example();
-		boolean isCorrect;
+	public void training(){
+		Example training;	
+		String input;
+		double numberInput;
 		
-		outerloop:
-		do { 
-			isCorrect = true;
-			o = new Example();
+		createTrainer: { //Subroutine??
+			
+			training = new Example();
 			try {
 				for (int i = 0; i < numOfNumbers; i++) {
-					s = JOptionPane.showInputDialog("Please input number value");
-					if (s != null) { //'OK' clicked
-						d = Double.parseDouble(s);
-						Num n = new Num(d);
-						o.addType(n);
-					} 
+					input = JOptionPane.showInputDialog("Please input number value");
+					if (input != null) { //'OK' clicked
+						if (isNoneValue(input)){ //Check to see if none was entered
+							Attribute n = new Key(input.toLowerCase());
+							training.addType(n);
+						}
+						else{
+							numberInput = Double.parseDouble(input);
+							Num n = new Num(numberInput);
+							training.addType(n);
+						}
+					}
 					else { //'Cancel' Clicked
-						isCorrect = false;
-						break outerloop;
+						break createTrainer;
 					}
 				} 
+
 				for (int i = 0; i < numOfPoints; i++) {
-					s = JOptionPane.showInputDialog("Please input 'Coordinate Point' value");
-					if (s != null) { //'OK' clicked
-						Point n = new Point(s.toString());
-						n.setSelection(pointChoice.get(i));
-						o.addType(n);
-					} 
-					else { //'Cancel' Clicked
-						isCorrect = false;
-						break outerloop;
+					input = JOptionPane.showInputDialog("Please input point value");
+					
+					if (input != null) { //'OK' clicked
+						if (isNoneValue(input)){ //Check to see if none was entered
+							Attribute n = new Key(input.toLowerCase());
+							training.addType(n);
+						}
+						else{
+							Point n = new Point(input);
+							n.setSelection(pointChoice.get(i));
+							training.addType(n);
+						};
+					} else { //'Cancel' Clicked
+						break createTrainer;
 					}
 				} 
+
 				for (int i = 0; i < numOfEnums; i++) {
-					s = JOptionPane.showInputDialog("Please input 'Text' value");
-					if (s == ""){ //Nothing Entered --> 'OK' clicked
-						throw new Exception();
-					}
-					else if (s != null){ //Something Entered --> 'OK' clicked
-						Attribute n = new Key(s);
-						o.addType(n);
+					input = JOptionPane.showInputDialog("Please input enum value");
+					if (input != null){ //Something Entered --> 'OK' clicked
+						if (isNoneValue(input)){ //Check to see if none was entered
+							Attribute n = new Key(input.toLowerCase());
+							training.addType(n);
+						}
+						else{
+							Attribute n = new Key(input);
+							training.addType(n);
+						}
 					}
 					else{ //'Cancel' clicked
-						isCorrect = false;
-						break outerloop;
+						break createTrainer;
 					}
 				} 
 			} 
 			catch(Exception e){
-				isCorrect = false;
-				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
-			}
-		} while (!isCorrect);
-		
-		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
-			list.addElement(o);
-			examples.add(o);
+				InvalidInputMessage("Input is invalid");
+				break createTrainer;
+			}	
+			
+			//Add training Example to the list
+			list.addElement(training);
+			examples.add(training);
 			setChanged();
 			notifyObservers("training");
-		}
+		
+		} //End of createTrainer
 	}
 	
 	/** edit()			Allows the user to edit testing and training examples

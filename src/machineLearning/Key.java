@@ -31,7 +31,7 @@ public class Key extends Attribute{
 	 */
 	public String toString()
 	{
-		return word;
+		return (word + " | ");
 	}
 	
 	/** getDistance()			Gets distance between 2 keys (0 or 1)
