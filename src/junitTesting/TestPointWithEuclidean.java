@@ -2,7 +2,7 @@ package junitTesting;
 import junit.framework.*;
 import machineLearning.*;
 
-public class TestExampleWithEuclidean extends TestCase{
+public class TestPointWithEuclidean extends TestCase{
 	
 	private Point coords1;
 	private Point coords2;
@@ -10,7 +10,7 @@ public class TestExampleWithEuclidean extends TestCase{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		junit.textui.TestRunner.run(TestExampleWithEuclidean.class);
+		junit.textui.TestRunner.run(TestPointWithEuclidean.class);
 	}
 	
 	public void setUp(){

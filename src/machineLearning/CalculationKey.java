@@ -17,8 +17,14 @@ public class CalculationKey implements Calculation{
 	*/
 	public double calculate(Attribute a, Attribute b)
 	{
-		//Key wordA = (Key) a;
-		if (a.equals(b)) return 0;
-		else return 1;
+		if (a instanceof Key && b instanceof Key){
+			Key key1 = (Key) a;
+			Key key2 = (Key) b;
+			if (key1.getWord().equals(key2.getWord())) {
+				return 0;
+			}
+		}
+		return 1;
+		
 	}
 }

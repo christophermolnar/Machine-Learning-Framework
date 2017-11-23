@@ -429,12 +429,5 @@ public class Project extends Observable{
 	 * @case2		Create a catalogue of video games with various attributes, predict the missing value
 	 * 				of 'testVideoGame' by comparing known attributes with other Video Game attributes
 	 */
-	
-	public static void main (String args[])
-	{
 
-		Project p = new Project();
-		KNNView v = new KNNView(p.getList());
-		KNNController c = new KNNController(v, p);
-	}
 }
