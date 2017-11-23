@@ -1,30 +1,29 @@
 
-Scoring: *Still needs to be implemented
--Take all distances and divide by MAX
--This will make everything between 0 and 1
--ENUM: 
-	0 if ENUM is the same
-	1 if ENUM is not the same
+Updated Objectives:
 
-ENUM: *Done (Key class)
--Create a general ENUM Class
--Remove Age class
--It will have the closest to function
-	0 if ENUM is the same
-	1 if ENUM is not the same
+Scoring: 
+	-Take all distances and divide by MAX
+	-This will make everything between 0 and 1
 
-GUI: *Done (KNNView and KNNController)
--Create new type
-	-Select how much of each they want (Points, ENUMS)
-	-This will also let them create there desired ENUMS
--Create Training examples
-	-Display the training examples at bottom as they are created
--Create one Testing example
--Calculate the test example
--Display all inputted examples
--Exit/Quit
+Choosing District Metrics:
+	-Allow them to choos distance metrics for the feature 
+	-Point has difference and Euclidean
 
-User Manual: *Done (see User Manual)
--Add a user manual
--Explaining how to use the GUI Interface
+Solve New Problem:
+	-Soccer Problem
+	*Need to allow the user to add blank/or nothing to attributes
 
+Error Calculation:
+	-Talk to prof/ta
+	-Can be like our first attempt at KNN
+	-Take the best one for each attribute and divide by total attributes or take the most common
+
+Unit Testing:
+	-Add Unit Testing
+	
+Extra & Clean Up:
+	-Add a Attribute that can contain Attributes (feature in a feture) 
+	-Delete Num and let Point account for everything
+	-Refactor Project class
+	-Work on cohesion and coupling
+	-Does the code smell?
