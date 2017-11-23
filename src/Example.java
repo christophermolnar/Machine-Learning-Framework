@@ -107,7 +107,6 @@ public class Example{
 			totalScore += t.getDistance(testObject.getData().get(index));
 			index++;
 		}
-		System.out.println(totalScore);
 		return totalScore;
 	}
 	
@@ -123,13 +122,6 @@ public class Example{
 			tmp += t + " ";
 		}
 		return tmp;
-	}
-	
-	//
-	/**@ToDo Remove if unused, REFACTOR
-	 */
-	public double calculateTotalScore(ArrayList<Example> testObjects) {
-		return 0;
 	}
 	
 	//Sets a selected example to a testingexample
