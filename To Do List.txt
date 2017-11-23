@@ -6,7 +6,7 @@ Scoring:
 	-This will make everything between 0 and 1
 
 Choosing District Metrics:
-	-Allow them to choos distance metrics for the feature 
+	-Allow them to choose distance metrics for the feature 
 	-Point has difference and Euclidean
 
 Solve New Problem:
@@ -21,15 +21,17 @@ Error Calculation:
 Unit Testing:
 	-Add Unit Testing
 	
-Extra & Clean Up:
-	-Add a Attribute that can contain Attributes (feature in a feture) 
-	-Delete Num and let Point account for everything
-	-Refactor Project class
-	-Work on cohesion and coupling
-	-Does the code smell?
-
 Create Packages:
 	-Separate package for MCV
 	-package for junit testing
 	-package for machine learning
 	-Separate project class into 2 (one for 'main' and one for functions)
+	
+Extra & Clean Up:
+	-Add a Attribute that can contain Attributes (feature in a feature) 
+	-Delete Num and let Point account for everything
+	-Refactor Project class
+	-Work on cohesion and coupling
+	-Does the code smell?
+
+
