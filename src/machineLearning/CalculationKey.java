@@ -1,3 +1,6 @@
+package machineLearning;
+
+
 /** CalculationKey 			Calculates if two keys are equal
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA

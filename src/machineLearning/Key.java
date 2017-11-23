@@ -1,3 +1,6 @@
+package machineLearning;
+
+
 /** Key 				Responsible for managing instances of String attributes
  * 
  * @author MZGA

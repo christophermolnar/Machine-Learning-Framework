@@ -1,3 +1,4 @@
+package userInterface;
 /** KNNController 				Responsible for creating action listeners for different buttons/actions in user interface
  * 
  * @author MZGA
@@ -6,7 +7,13 @@
  *
  */
 
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import machineLearning.Example;
+import machineLearning.Project;
+
+
 public class KNNController {
 	KNNView v;
 	Project p;

@@ -1,4 +1,7 @@
-import java.util.*;
+package machineLearning;
+
+import java.util.ArrayList;
+
 
 /** Example 	Represents a physical entity with Attributes
  * 

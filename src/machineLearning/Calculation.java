@@ -1,3 +1,6 @@
+package machineLearning;
+
+
 /** Calculation 	//INTERFACE// Uses Strategy Pattern to provide multiple methods to compare
  * 
  * @author MZGA

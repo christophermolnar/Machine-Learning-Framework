@@ -1,4 +1,8 @@
+package machineLearning;
+
+
 import java.util.ArrayList;
+
 
 /** CalculationEuclidean 	Calculates the difference between Two Attributes using their euclidean distances
  * 							//IMPLEMENTS// Calculation.java
