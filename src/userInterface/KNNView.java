@@ -1,3 +1,4 @@
+package userInterface;
 /** KNNView				Responsible for creating the user interface
  * 
  * @author MZGA
@@ -5,11 +6,25 @@
  *
  */
 
-import javax.swing.*;
-import java.awt.event.*;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
+
+import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+
+import machineLearning.Example;
+
 public class KNNView extends JFrame implements Observer{
 	JMenuItem  create, edit, calculate, testing, training;
 	JPanel input, output;
@@ -129,7 +144,6 @@ public class KNNView extends JFrame implements Observer{
 	public Example getSelectedObject(){
 		return list.getSelectedValue();
 	}
-	
 	public void setCreateActionListener(ActionListener a)
 	{
 		create.addActionListener(a);

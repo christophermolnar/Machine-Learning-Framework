@@ -1,4 +1,7 @@
+package machineLearning;
+
 import java.util.ArrayList;
+
 
 /** Point 		Responsible for managing instances of coordinate values
  * 

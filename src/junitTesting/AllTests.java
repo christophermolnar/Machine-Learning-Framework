@@ -8,6 +8,7 @@ public class AllTests extends TestSuite {
 	
 	public static Test suite(){
 		TestSuite suite = new TestSuite();
+		suite.addTest(new TestSuite(TestExampleWithEuclidean.class));
 		return suite;
 	}
 }

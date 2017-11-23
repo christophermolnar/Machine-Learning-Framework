@@ -1,3 +1,7 @@
+package machineLearning;
+
+
+
 /** Attribute 		Uses Template Pattern to provide children classes with calculation features
  * 
  * @author MZGA
@@ -8,7 +12,7 @@ public abstract class Attribute {
 	//Type of calculation to use when comparing, either 'Euclidean' or 'Difference'
 	protected Calculation distanceSelection;
 	
-	/** setSelection()				Sets the calculation method for a given child class, is passed Calculation type ‘d’ 
+	/** setSelection()				Sets the calculation method for a given child class, is passed Calculation type ï¿½dï¿½ 
 	 * 
 	 * @param d						Calculation type to use, either 'Euclidean' or 'Difference'
 	 */

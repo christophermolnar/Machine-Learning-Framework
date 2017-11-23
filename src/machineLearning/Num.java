@@ -1,4 +1,7 @@
+package machineLearning;
+
 import java.util.ArrayList;
+
 
 /** NUMclass 				Responsible for managing instances of integer and floating point values
  * 

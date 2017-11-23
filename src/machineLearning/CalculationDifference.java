@@ -1,4 +1,8 @@
+package machineLearning;
+
+
 import java.util.ArrayList;
+
 
 /** CalculationDifference 	Calculates the difference between Two Attributes using their absolute phsyical distances
  * 							//IMPLEMENTS// Calculation.java
