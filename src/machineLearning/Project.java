@@ -26,6 +26,7 @@ public class Project extends Observable{
 	
 	Example testObject;
 	String TESTVALUE = "testvalue";
+	String NONE = "none";
 	
 	//Create new Project
 	public Project()
@@ -111,106 +112,111 @@ public class Project extends Observable{
 		return (s.toLowerCase().compareTo(TESTVALUE) == 0);
 	}
 	
-	/** testing()		create the testing example
-	*
-	*/
+	private boolean isNoneValue(String s){
+		return (s.toLowerCase().compareTo(NONE) == 0);
+	}
+	
+	private boolean checkForTestValue(Example testingExample){
+		ArrayList<Attribute> testingExampleArray = testingExample.getData();
+		int testingValue = 0;
+		for (int position = 0; position < testingExampleArray.size(); position++){
+			if (isTestValue(testingExampleArray.get(position).toString())){
+				testingValue++;
+			}
+		}
+		if (testingValue == 1){
+			return true;
+		}
+		return false;
+	}
+	
+	private void InvalidInputMessage(String message){
+		JOptionPane.showMessageDialog(null, message, "Input Error", JOptionPane.ERROR_MESSAGE);
+	}
+	
+	
 	public void testing(){
-		double d;
-		String s = "";
-		Example o;
-		boolean isCorrect;
-		boolean testvalueSet = false;
-		indexOfTestValue = 0;
-		int counter = 0;
-		outerloop:
-		do { 
-			isCorrect = true;
-			o = new Example();
+		Example tester;	
+		String input;
+		double numberInput;
+		
+		createTester: { //Subroutine??
+			
+			tester = new Example();
 			try {
 				for (int i = 0; i < numOfNumbers; i++) {
-					s = JOptionPane.showInputDialog("Please input number value");
-					if (s != null) { //'OK' clicked
-						if (isTestValue(s) && !testvalueSet){
-							Attribute n = new Key(s.toLowerCase());
-							o.addType(n);
-							testvalueSet = true;
-							indexOfTestValue = counter;
+					input = JOptionPane.showInputDialog("Please input number value");
+					if (input != null) { //'OK' clicked
+						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
+							Attribute n = new Key(input.toLowerCase());
+							tester.addType(n);
 						}
 						else{
-							counter++;
-							d = Double.parseDouble(s);
-							Num n = new Num(d);
-							o.addType(n);
+							numberInput = Double.parseDouble(input);
+							Num n = new Num(numberInput);
+							tester.addType(n);
 						}
 					}
 					else { //'Cancel' Clicked
-						break outerloop;
+						break createTester;
 					}
 				} 
 
 				for (int i = 0; i < numOfPoints; i++) {
-					s = JOptionPane.showInputDialog("Please input point value");
+					input = JOptionPane.showInputDialog("Please input point value");
 					
-					if (s != null) { //'OK' clicked
-						if (isTestValue(s) && !testvalueSet){
-							Attribute n = new Key(s.toLowerCase());
-							o.addType(n);
-							testvalueSet = true;
-							indexOfTestValue = counter;
+					if (input != null) { //'OK' clicked
+						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
+							Attribute n = new Key(input.toLowerCase());
+							tester.addType(n);
 						}
 						else{
-							counter++;
-							Point n = new Point(s);
+							Point n = new Point(input);
 							n.setSelection(pointChoice.get(i));
-							o.addType(n);
+							tester.addType(n);
 						};
 					} else { //'Cancel' Clicked
-						break outerloop;
+						break createTester;
 					}
 				} 
 
 				for (int i = 0; i < numOfEnums; i++) {
-					s = JOptionPane.showInputDialog("Please input enum value");
-					if (s == ""){ //Nothing Entered --> 'OK' clicked
-						throw new Exception();
-					}
-					else if (s != null){ //Something Entered --> 'OK' clicked
-						if (isTestValue(s) && !testvalueSet){
-							Attribute n = new Key(s.toLowerCase());
-							o.addType(n);
-							testvalueSet = true;
-							indexOfTestValue = counter;
+					input = JOptionPane.showInputDialog("Please input enum value");
+					if (input != null){ //Something Entered --> 'OK' clicked
+						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
+							Attribute n = new Key(input.toLowerCase());
+							tester.addType(n);
 						}
 						else{
-							counter++;
-							Attribute n = new Key(s);
-							o.addType(n);
+							Attribute n = new Key(input);
+							tester.addType(n);
 						}
 					}
 					else{ //'Cancel' clicked
-						break outerloop;
+						break createTester;
 					}
 				} 
 
 			} 
 			catch(Exception e){
-				isCorrect = false;
-				JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
+				InvalidInputMessage("Input is invalid");
+				break createTester;
 			}	
-		} while (!isCorrect);
+			
+			if (checkForTestValue(tester)) { //Check to see if the user entered everything properly
+				list.addElement(tester);
+				examples.add(tester);
+				tester.setTestingObject(true);
+				setChanged();
+				notifyObservers("testing");
+				//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
+				//Block the creation of testing
+			}
+			else{
+				InvalidInputMessage("No Attribute was set to testvalue");
+			}
 		
-		if (testvalueSet) { //The user has not requested to cancel, thus all dialogs have been filled
-			//testObjet set to o
-			list.addElement(o);
-			examples.add(o);
-			o.setTestingObject(true);
-			setChanged();
-			notifyObservers("testing");
-			//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
-		}
-		else{
-			JOptionPane.showMessageDialog(null, "No Attribute was set to testvalue", "Testvalue not Set", JOptionPane.ERROR_MESSAGE);
-		}
+		} //End of createTester
 	}
 	
 	/** training()		create training examples
