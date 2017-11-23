@@ -1,7 +1,6 @@
 package junitTesting;
 import junit.framework.*;
 
-
 public class AllTests extends TestSuite {
 	public static void main(String[] args) {
 		junit.textui.TestRunner.run(AllTests.suite());

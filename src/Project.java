@@ -3,7 +3,7 @@ import java.util.Observable;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
+import junitTesting.AllTests;
 /** Project			Main class, responsible for testing
  *  
  * @author MZGA
