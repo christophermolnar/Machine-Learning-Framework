@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.ArrayList;
 
 /** Example 	Represents a physical entity with Attributes
  * 
