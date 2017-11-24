@@ -11,6 +11,8 @@ public class AllTests extends TestSuite {
 		suite.addTest(new TestSuite(TestPointWithEuclidean.class));
 		suite.addTest(new TestSuite(TestPointWithDifference.class));
 		suite.addTest(new TestSuite(TestKeyAttribute.class));
+		suite.addTest(new TestSuite(TestNumAttribute.class));
+		//suite.addTest(new TestSuite(TestCalculationsWithTrainingExamples.class));
 		return suite;
 	}
 }
