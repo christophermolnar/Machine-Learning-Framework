@@ -118,5 +118,31 @@ public class Point extends Attribute{
 		tmp += ")";
 		return tmp +  "->" + distanceSelection + " | ";
 	}
+	public String calculateTestValue(Example[] closestK, int index)
+	{
+		String result = ""; 
+		double pointCount = 0;
+		double[] listOfPointValues = new double[((Point) this).getNums().size()];
+		for (int i = 0; i < closestK.length; i++)
+		{
+			for (int j = 0; j < listOfPointValues.length; j++)
+			{
+				listOfPointValues[j] += ((Point) closestK[i].getValueAtIndex(index)).getNums().get(j);
+			}
+			pointCount++;
+		}
+		for (int i = 0; i < listOfPointValues.length; i++)
+		{
+			listOfPointValues[i] /= pointCount;
+		}
+		result += "Testvalue = (";
+		for (int i = 0; i < listOfPointValues.length; i++)
+		{
+			result += listOfPointValues[i];
+			if (i < listOfPointValues.length - 1) result += ", ";
+		}
+		result += ")";
+		return result;
+	}
 }
 

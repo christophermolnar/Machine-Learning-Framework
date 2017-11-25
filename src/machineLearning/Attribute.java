@@ -37,4 +37,5 @@ public abstract class Attribute {
 	 * @return distance				Numerical Distance value between 2 Attributes
 	 */
 	abstract double getDistance(Attribute compare);
+	abstract String calculateTestValue(Example[] closestK, int index); 
 }

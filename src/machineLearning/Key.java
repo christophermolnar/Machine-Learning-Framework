@@ -51,4 +51,9 @@ public class Key extends Attribute{
 	{
 		return word;
 	}
+	
+	public String calculateTestValue(Example[] closestK, int index)
+	{
+		return "Testvalue = " + closestK[0].getValueAtIndex(index) + " ";
+	}
 }

@@ -66,5 +66,18 @@ public class Num extends Attribute{
 	public String toString(){
 		return ("" + num + " | ");
 	}
+	public String calculateTestValue(Example[] closestK, int index)
+	{
+		double val = 0;
+		for (int i = 0; i < closestK.length; i++)
+		{
+			if (!closestK[i].getIsTesting())
+			{
+				val += ((Num) closestK[i].getValueAtIndex(index)).getVal();
+			}
+		}
+		val /= closestK.length;
+		return "Testvalue = " + val + " ";
+	}
 	
 }
