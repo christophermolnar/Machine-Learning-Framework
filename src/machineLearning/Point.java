@@ -6,7 +6,7 @@ import java.util.ArrayList;
 /** Point 		Responsible for managing instances of coordinate values
  * 
  * @author MZGA
- * @version 1.0
+ * @version 3.0
  *
  */
 public class Point extends Attribute{
@@ -24,8 +24,8 @@ public class Point extends Attribute{
 		}
 		distanceSelection = calcType;
 	}
-	public Point(String corrds)
-	{
+	
+	public Point(String corrds) {
 		nums = new ArrayList<>();
 		String[] entry = corrds.split(","); 
 		for(int i = 0; i < entry.length; i++){
@@ -51,8 +51,7 @@ public class Point extends Attribute{
 	 * 
 	 * @return nums		Array of nums
 	 */
-	public ArrayList<Double> getVal()
-	{
+	public ArrayList<Double> getVal() {
 		return nums;
 	}
 	
@@ -102,8 +101,7 @@ public class Point extends Attribute{
 	 * 
 	 * @return String		point as a String value
 	 */
-	public String toString()
-	{
+	public String toString() {
 		String tmp = "(";
 		int index = 0;
 		for (Double d : nums)
@@ -118,26 +116,21 @@ public class Point extends Attribute{
 		tmp += ")";
 		return tmp +  "->" + distanceSelection + " | ";
 	}
-	public String calculateTestValue(Example[] closestK, int index)
-	{
+	public String calculateTestValue(Example[] closestK, int index) {
 		String result = ""; 
 		double pointCount = 0;
 		double[] listOfPointValues = new double[((Point) this).getNums().size()];
-		for (int i = 0; i < closestK.length; i++)
-		{
-			for (int j = 0; j < listOfPointValues.length; j++)
-			{
+		for (int i = 0; i < closestK.length; i++) {
+			for (int j = 0; j < listOfPointValues.length; j++) {
 				listOfPointValues[j] += ((Point) closestK[i].getValueAtIndex(index)).getNums().get(j);
 			}
 			pointCount++;
 		}
-		for (int i = 0; i < listOfPointValues.length; i++)
-		{
+		for (int i = 0; i < listOfPointValues.length; i++) {
 			listOfPointValues[i] /= pointCount;
 		}
 		result += "Testvalue = (";
-		for (int i = 0; i < listOfPointValues.length; i++)
-		{
+		for (int i = 0; i < listOfPointValues.length; i++) {
 			result += listOfPointValues[i];
 			if (i < listOfPointValues.length - 1) result += ", ";
 		}

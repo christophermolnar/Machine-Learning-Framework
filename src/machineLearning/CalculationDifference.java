@@ -10,7 +10,6 @@ import java.util.ArrayList;
  * @version 2.0
  *
  */
-
 public class CalculationDifference implements Calculation{
 
 	/** calculate()			Responsible comparing 2 Attributes (Of same type [ie. Points]) from different examples
@@ -19,8 +18,7 @@ public class CalculationDifference implements Calculation{
 	 * @param b				Second Attribute to compare
 	 * @return distance		Difference between 2 Attributes
 	 */
-	public double calculate(Attribute a, Attribute b)
-	{
+	public double calculate(Attribute a, Attribute b) {
 		if (a instanceof Point && b instanceof Point){
 			ArrayList<Double> A = ((Point)a).getNums();
 			ArrayList<Double> B = ((Point)b).getNums();
@@ -28,7 +26,8 @@ public class CalculationDifference implements Calculation{
 			if(B.size() != A.size()){ //Check if Coordinates are of equal size, exit if false
 				System.out.print("Coordinate Dimensions Mismatch: ");
 			
-			} else { //Calculate the distance between two points by taking their absolute realitive distance
+			} 
+			else { //Calculate the distance between two points by taking their absolute realitive distance
 				Double dist = 0.0;
 				for(int i = 0; i < A.size(); i++){
 					dist = dist + Math.abs((A.get(i) - B.get(i)));
@@ -60,8 +59,7 @@ public class CalculationDifference implements Calculation{
 	/** toString()			Returns the current Calculation type of 'Difference'
 	 *  @return CalcType	Returns 'Differnce' --> Current CalcType
 	 */
-	public String toString()
-	{
+	public String toString() {
 		return "Difference";
 	}
 }

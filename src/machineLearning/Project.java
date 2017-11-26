@@ -15,18 +15,16 @@ import userInterface.KNNView;
  *
  */
 public class Project extends Observable{
-	String[] options = {"Euclidean", "Difference"};
-	DefaultListModel<Example> list;
-	int numOfNumbers, numOfPoints, numOfEnums;
-	int tempNum, tempPoint, tempEnum;
-	int indexOfTestValue;
-	
-	ArrayList<Calculation> pointChoice;
-	ArrayList<Example> examples;
-	
-	Example testObject;
-	String TESTVALUE = "testvalue";
-	String NONE = "none";
+	private String[] options = {"Euclidean", "Difference"};
+	private DefaultListModel<Example> list;
+	private int numOfNumbers, numOfPoints, numOfEnums;
+	private int tempNum, tempPoint, tempEnum;
+	private int indexOfTestValue;
+	private ArrayList<Calculation> pointChoice;
+	private ArrayList<Example> examples;
+	private Example testObject;
+	public static final String TESTVALUE = "testvalue";
+	public static final String NONE = "none";
 	
 	//Create new Project
 	public Project()
