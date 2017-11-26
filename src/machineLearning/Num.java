@@ -15,9 +15,14 @@ public class Num extends Attribute{
 	
 	
 	//Create new NUM
+	public Num(double num){
+		this.num = num;
+	}
+	
+	//Create new NUM with type of calculation specified
 	public Num(double num, Calculation distanceSelection){
 		this.num = num;
-		this.distanceSelection = new CalculationDifference();
+		this.distanceSelection = distanceSelection;
 	}
 	
 	

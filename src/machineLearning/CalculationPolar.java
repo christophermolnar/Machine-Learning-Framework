@@ -14,7 +14,7 @@ public class CalculationPolar implements Calculation {
 			double numberValueA = convertToPolar(numberA);
 			double numberValueB = convertToPolar(numberB);
 			
-			distance = Math.min(Math.abs(numberValueA - numberValueB), Math.abs(numberValueB - numberValueA));
+			distance = Math.min(Math.abs(numberValueA - numberValueB), Math.abs(360- (numberValueA - numberValueB)));
 			
 			return round(distance, 4);
 		}
