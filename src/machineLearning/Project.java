@@ -154,7 +154,7 @@ public class Project extends Observable{
 						}
 						else{
 							numberInput = Double.parseDouble(input);
-							Num n = new Num(numberInput);
+							Num n = new Num(numberInput, new CalculationDifference());
 							tester.addType(n);
 						}
 					}
@@ -238,7 +238,7 @@ public class Project extends Observable{
 						}
 						else{
 							numberInput = Double.parseDouble(input);
-							Num n = new Num(numberInput);
+							Num n = new Num(numberInput, new CalculationDifference());
 							training.addType(n);
 						}
 					}
@@ -320,7 +320,7 @@ public class Project extends Observable{
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Num(Double.parseDouble(s)));
+								updatedData.addType(new Num(Double.parseDouble(s), new CalculationDifference()));
 								
 							}else if(currentData.get(index) instanceof Point){
 								curr = (((Point) currentData.get(index)).getCoords());

@@ -15,9 +15,9 @@ public class TestNumAttribute extends TestCase{
 	}
 	
 	public void setUp(){
-		num1 = new Num(2);
-		num2 = new Num(5);
-		num3 = new Num(-4);
+		num1 = new Num(2, new CalculationDifference());
+		num2 = new Num(5, new CalculationDifference());
+		num3 = new Num(-4, new CalculationDifference());
 
 	}
 	
