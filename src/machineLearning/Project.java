@@ -360,7 +360,7 @@ public class Project extends Observable{
 			String s = "";
 			Example[] closestK = null;
 			Attribute t;
-			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
+			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours: "));
 			double val = 0;
 			for (Example o : examples)
 			{
