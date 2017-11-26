@@ -16,7 +16,6 @@ public class Num extends Attribute{
 	//Create new NUM
 	public Num(double num){
 		this.num = num;
-		distanceSelection = new CalculationDifference();
 	}
 	
 	
@@ -55,7 +54,7 @@ public class Num extends Attribute{
 		return num;
 	}
 	public double getDistance(Attribute compare){
-		return distanceSelection.calculate(this, compare);
+		return (new CalculationDifference()).calculate(this, compare);
 	}
 	
 	

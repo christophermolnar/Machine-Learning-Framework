@@ -110,7 +110,8 @@ public class Example{
 			totalScore += t.getDistance(testObject.getData().get(index));
 			index++;
 		}
-		return totalScore;
+		return CalculationDifference.round(totalScore, 4);
+		
 	}
 	
 	/** toString()			Returns all attributes as a String value
