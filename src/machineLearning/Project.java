@@ -312,40 +312,48 @@ public class Project extends Observable{
 		boolean isCorrect;
 			
 		outerloop:
-		do { 
-			isCorrect = true;
-				for(int index=0; index<currentData.size(); index++){
-					try {
-						if (currentData.get(index) instanceof Num){
-							curr = Double.toString((((Num) currentData.get(index)).getNum()));
-							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-							updatedData.addType(new Num(Double.parseDouble(s)));
+		{
+			do { 
+				isCorrect = true;
+					for(int index=0; index<currentData.size(); index++){
+						try {
+							if (currentData.get(index) instanceof Num){
+								curr = Double.toString((((Num) currentData.get(index)).getNum()));
+								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+								if(s==null)
+									break outerloop; //Cancel Pressed
+								updatedData.addType(new Num(Double.parseDouble(s)));
+								
+							}else if(currentData.get(index) instanceof Point){
+								curr = (((Point) currentData.get(index)).getCoords());
+								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+								if(s==null)
+									break outerloop; //Cancel Pressed
+								updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
 							
-						}else if(currentData.get(index) instanceof Point){
-							curr = (((Point) currentData.get(index)).getCoords());
-							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-							updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
-						
-						} else { //instanceof Key
-							curr = ((Key)currentData.get(index)).getWord();
-							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-							updatedData.addType(new Key(s));
+							} else { //instanceof Key
+								curr = ((Key)currentData.get(index)).getWord();
+								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+								if(s==null)
+									break outerloop; //Cancel Pressed
+								updatedData.addType(new Key(s));
+							}
+						}catch(Exception e){
+								//isCorrect = false; //No longer needed, reprompts errored value
+								JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
+								index--; //Reprompt Value
 						}
-						
-					}catch(Exception e){
-							isCorrect = false;
-							JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
 					}
-				}
+				
+			} while (!isCorrect);
 			
-		} while (!isCorrect);
-		
-		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
-			list.remove(Index);
-			list.add(Index, updatedData);
-			examples.remove(Index);
-			examples.add(Index, updatedData);
-			setChanged();
+			if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
+				list.remove(Index);
+				list.add(Index, updatedData);
+				examples.remove(Index);
+				examples.add(Index, updatedData);
+				setChanged();
+			}
 		}
 	}
 	
