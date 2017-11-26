@@ -360,7 +360,7 @@ public class Project extends Observable{
 			String s = "";
 			Example[] closestK = null;
 			Attribute t;
-			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours"));
+			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours: "));
 			double val = 0;
 			for (Example o : examples)
 			{
@@ -398,13 +398,4 @@ public class Project extends Observable{
 	{
 		return list;
 	}
-	/** Main()		Test program
-	 * 
-	 * @case1		Create a list of houses with various attributes, predict the missing attribute of 'h4'
-	 * 				(price) by comparing it's known attributes with the attributes of the other houses
-	 * 
-	 * @case2		Create a catalogue of video games with various attributes, predict the missing value
-	 * 				of 'testVideoGame' by comparing known attributes with other Video Game attributes
-	 */
-
 }
