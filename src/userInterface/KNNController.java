@@ -15,8 +15,10 @@ import machineLearning.Project;
 
 
 public class KNNController {
-	KNNView v;
-	Project p;
+	
+	private KNNView v;
+	private Project p;
+	
 	public KNNController(KNNView v, Project p)
 	{
 		this.p = p;

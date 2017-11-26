@@ -15,18 +15,16 @@ import userInterface.KNNView;
  *
  */
 public class Project extends Observable{
-	String[] options = {"Euclidean", "Difference"};
-	DefaultListModel<Example> list;
-	int numOfNumbers, numOfPoints, numOfEnums;
-	int tempNum, tempPoint, tempEnum;
-	int indexOfTestValue;
-	
-	ArrayList<Calculation> pointChoice;
-	ArrayList<Example> examples;
-	
-	Example testObject;
-	String TESTVALUE = "testvalue";
-	String NONE = "none";
+	private String[] options = {"Euclidean", "Difference"};
+	private DefaultListModel<Example> list;
+	private int numOfNumbers, numOfPoints, numOfEnums;
+	private int tempNum, tempPoint, tempEnum;
+	private int indexOfTestValue;
+	private ArrayList<Calculation> pointChoice;
+	private ArrayList<Example> examples;
+	private Example testObject;
+	public static final String TESTVALUE = "testvalue";
+	public static final String NONE = "none";
 	
 	//Create new Project
 	public Project()
@@ -369,39 +367,46 @@ public class Project extends Observable{
 			Example[] closestK = null;
 			Attribute t;
 			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours: "));
-			double val = 0;
-			for (Example o : examples)
+			if (n <= examples.size() - 1)
 			{
-				if (o.getIsTesting())
+				double val = 0;
+				for (Example o : examples)
 				{
 					closestK = o.findClosestK(n, examples);
 					if (closestK == null){
 						InvalidInputMessage("Point Dimension Mismatch - Please Check Entries");
-						return;
+						return; //Halt Calculation
 					}
 					break;
 				}
-			}
-			for (Example o : examples)
-			{
-				if (!o.getIsTesting())
+				for (Example o : examples)
 				{
-					testing = o;
+					if (!o.getIsTesting())
+					{
+						testing = o;
+					}
+				}
+				if (testing != null && closestK != null)
+				{
+					//if all the values are correct
+					t = testing.getValueAtIndex(indexOfTestValue);
+					s = t.calculateTestValue(closestK, indexOfTestValue);
+					s += "Closest Objects:"; 
+					for (int i = 0; i < closestK.length; i++)
+					{
+						s += closestK[i];
+						if (i < closestK.length - 1) s += ", ";
+					}
+					setChanged();
+					notifyObservers(s);
 				}
 			}
-			if (testing != null && closestK != null)
+			else
 			{
-				//if all the values are correct
-				t = testing.getValueAtIndex(indexOfTestValue);
-				s = t.calculateTestValue(closestK, indexOfTestValue);
-				s += "Closest Objects:"; 
-				for (int i = 0; i < closestK.length; i++)
-				{
-					s += closestK[i];
-					if (i < closestK.length - 1) s += ", ";
-				}
-				setChanged();
-				notifyObservers(s);
+				JOptionPane.showMessageDialog(null,
+					    "Too many neighbours.",
+					    "K Value Error",
+					    JOptionPane.ERROR_MESSAGE);
 			}
 		} catch(NumberFormatException e){	
 		}

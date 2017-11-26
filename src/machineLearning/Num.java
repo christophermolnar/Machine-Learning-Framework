@@ -6,17 +6,17 @@ import java.util.ArrayList;
 /** NUMclass 				Responsible for managing instances of integer and floating point values
  * 
  * @author MZGA
- * @version 1.0
+ * @version 3.0
  *
  */
 public class Num extends Attribute{
 
 	private double num;
 	
+	
 	//Create new NUM
 	public Num(double num){
 		this.num = num;
-		distanceSelection = new CalculationDifference();
 	}
 	
 	
@@ -47,15 +47,16 @@ public class Num extends Attribute{
 	 * 
 	 * @return num			Float value of NUM
 	 */
-	public double getNum(){
+	public double getNum() {
 		return num;
 	}
-	public double getVal()
-	{
+	
+	public double getVal() {
 		return num;
 	}
+	
 	public double getDistance(Attribute compare){
-		return distanceSelection.calculate(this, compare);
+		return (new CalculationDifference()).calculate(this, compare);
 	}
 	
 	
@@ -66,13 +67,11 @@ public class Num extends Attribute{
 	public String toString(){
 		return ("" + num + " | ");
 	}
-	public String calculateTestValue(Example[] closestK, int index)
-	{
+	
+	public String calculateTestValue(Example[] closestK, int index) {
 		double val = 0;
-		for (int i = 0; i < closestK.length; i++)
-		{
-			if (!closestK[i].getIsTesting())
-			{
+		for (int i = 0; i < closestK.length; i++) {
+			if (!closestK[i].getIsTesting()) {
 				val += ((Num) closestK[i].getValueAtIndex(index)).getVal();
 			}
 		}

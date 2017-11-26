@@ -4,10 +4,11 @@ package machineLearning;
 /** Calculation 	//INTERFACE// Uses Strategy Pattern to provide multiple methods to compare
  * 
  * @author MZGA
- * @version 2.0
+ * @version 3.0
  *
  */
 public interface Calculation {
+	
 	/** calculate()			Responsible comparing 2 Attributes (Of same type [ie. Points]) from different objects
 	 * 
 	 * @param a				First Attribute to compare
@@ -15,4 +16,6 @@ public interface Calculation {
 	 * @return				Difference between 2 Attributes
 	 */
 	public double calculate(Attribute a, Attribute b);
+
 }
+

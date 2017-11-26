@@ -46,6 +46,6 @@ public class TestCalculationsWithTrainingExamples extends TestCase{
 	
 	public void testSize(){
 		assertEquals("Score calculation between the same example items should return 0.0", 0.0, house1.calculateScore(house1));
-		assertEquals("Score calculation between two example items should return 6.8284", 0, house1.calculateScore(house2));
+		assertEquals("Score calculation between two example items should return 17.8284", 17.8284 , house1.calculateScore(house2));
 	}
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /** CalculationEuclidean 	Calculates the difference between Two Attributes using their euclidean distances
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA
- * @version 2.0
+ * @version 3.0
  *
  */
 
@@ -55,8 +55,7 @@ public class CalculationEuclidean implements Calculation{
 	/** toString()			Returns the current Calculation type of 'Euclidean'
 	 *  @return CalcType	Returns 'Differnce' --> Current CalcType
 	 */
-	public String toString()
-	{
+	public String toString() {
 		return "Euclidean";
 	}
 }
