@@ -5,33 +5,22 @@ Scoring:
 	-Take all distances and divide by MAX
 	-This will make everything between 0 and 1
 
-Choosing District Metrics:
-	-Allow them to choose distance metrics for the feature 
-	-Point has difference and Euclidean
+Geoff:
+	-Finishing with the Polar Coordinates
 
 Solve New Problem:
 	-Soccer Problem
 	*Need to allow the user to add blank/or nothing to attributes
 
 Error Calculation:
-	-Talk to prof/ta
-	-Can be like our first attempt at KNN
-	-Take the best one for each attribute and divide by total attributes or take the most common
+	-Finish implementing this
+	-Need to save testvalue
+	-Then compare with user inputted value
 
-Unit Testing:
-	-Add Unit Testing
-	
-Create Packages:
-	-Separate package for MCV
-	-package for junit testing
-	-package for machine learning
-	-Separate project class into 2 (one for 'main' and one for functions)
-	
 Extra & Clean Up:
+	-Clean up result display
 	-Add a Attribute that can contain Attributes (feature in a feature) 
-	-Delete Num and let Point account for everything
-	-Refactor Project class
 	-Work on cohesion and coupling
-	-Does the code smell?
+	-Does the code smell
 
 
