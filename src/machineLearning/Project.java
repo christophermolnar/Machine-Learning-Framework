@@ -135,6 +135,19 @@ public class Project extends Observable{
 		JOptionPane.showMessageDialog(null, message, "Input Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	private int getTestValuePosition(Example testingExample){
+		ArrayList<Attribute> testingExampleArray = testingExample.getData();
+		for (int position = 0; position < testingExampleArray.size(); position++){
+			if (testingExampleArray.get(position) instanceof Key){
+				Key value = ((Key)testingExampleArray.get(position));
+				if (isTestValue(value.getVal())){
+					return position;
+				}
+			}
+		}
+		return 0;
+	}
+	
 	
 	public void testing(){
 		Example tester;	
@@ -205,6 +218,7 @@ public class Project extends Observable{
 			}	
 			
 			if (checkForTestValue(tester)) { //Check to see if the user entered everything properly
+				indexOfTestValue = getTestValuePosition(tester);
 				list.addElement(tester);
 				examples.add(tester);
 				tester.setTestingObject(true);
