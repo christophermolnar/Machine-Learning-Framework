@@ -369,35 +369,45 @@ public class Project extends Observable{
 			Example[] closestK = null;
 			Attribute t;
 			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours: "));
-			double val = 0;
-			for (Example o : examples)
+			if (n <= examples.size() - 1)
 			{
-				if (o.getIsTesting())
+				double val = 0;
+				for (Example o : examples)
 				{
-					closestK = o.findClosestK(n, examples);
-					break;
+					if (o.getIsTesting())
+					{
+						closestK = o.findClosestK(n, examples);
+						break;
+					}
+				}
+				for (Example o : examples)
+				{
+					if (!o.getIsTesting())
+					{
+						testing = o;
+					}
+				}
+				if (testing != null && closestK != null)
+				{
+					//if all the values are correct
+					t = testing.getValueAtIndex(indexOfTestValue);
+					s = t.calculateTestValue(closestK, indexOfTestValue);
+					s += "Closest Objects:"; 
+					for (int i = 0; i < closestK.length; i++)
+					{
+						s += closestK[i];
+						if (i < closestK.length - 1) s += ", ";
+					}
+					setChanged();
+					notifyObservers(s);
 				}
 			}
-			for (Example o : examples)
+			else
 			{
-				if (!o.getIsTesting())
-				{
-					testing = o;
-				}
-			}
-			if (testing != null && closestK != null)
-			{
-				//if all the values are correct
-				t = testing.getValueAtIndex(indexOfTestValue);
-				s = t.calculateTestValue(closestK, indexOfTestValue);
-				s += "Closest Objects:"; 
-				for (int i = 0; i < closestK.length; i++)
-				{
-					s += closestK[i];
-					if (i < closestK.length - 1) s += ", ";
-				}
-				setChanged();
-				notifyObservers(s);
+				JOptionPane.showMessageDialog(null,
+					    "Too many neighbours.",
+					    "K Value Error",
+					    JOptionPane.ERROR_MESSAGE);
 			}
 		} catch(NumberFormatException e){	
 		}
