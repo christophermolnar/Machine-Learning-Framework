@@ -13,6 +13,7 @@ public class Num extends Attribute{
 
 	private double num;
 	
+	
 	//Create new NUM
 	public Num(double num){
 		this.num = num;
