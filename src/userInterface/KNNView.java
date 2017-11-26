@@ -27,7 +27,7 @@ import machineLearning.Example;
 
 public class KNNView extends JFrame implements Observer {
 	
-	private JMenuItem  create, edit, calculate, testing, training;
+	private JMenuItem  create, edit, calculate, testing, training, errorCalculation;
 	private JPanel input, output;
 	private JList<Example> list;
 	private JLabel outputText;
@@ -50,6 +50,9 @@ public class KNNView extends JFrame implements Observer {
 		calculate = new JMenuItem("Calculate");
 		calculate.setEnabled(false);
 		
+		errorCalculation = new JMenuItem("Error Calculation");
+		errorCalculation.setEnabled(false);
+		
 		testing = new JMenuItem("Testing");
 		training = new JMenuItem("Training");
 		testing.setEnabled(false);
@@ -61,6 +64,7 @@ public class KNNView extends JFrame implements Observer {
 		menuCreate.add(addSubMenu);
 		menuCreate.add(edit);
 		menuCreate.add(calculate);
+		menuCreate.add(errorCalculation);
 		
 		menuBar.add(menuCreate);
 		setJMenuBar(menuBar);
@@ -118,6 +122,7 @@ public class KNNView extends JFrame implements Observer {
 			}
 			else {
 				outputText.setText((String)obj);
+				errorCalculation.setEnabled(true);
 			}
 		}
 	}
@@ -151,5 +156,8 @@ public class KNNView extends JFrame implements Observer {
 	}	
 	public void setCalculateActionListener(ActionListener a) {
 		calculate.addActionListener(a);
+	}
+	public void setErrorCalculationActionListener(ActionListener a) {
+		errorCalculation.addActionListener(a);
 	}
 }
