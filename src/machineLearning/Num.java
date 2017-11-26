@@ -19,6 +19,12 @@ public class Num extends Attribute{
 		this.num = num;
 	}
 	
+	//Create new NUM with type of calculation specified
+	public Num(double num, Calculation distanceSelection){
+		this.num = num;
+		this.distanceSelection = distanceSelection;
+	}
+	
 	
 	/** findClosest()			Finds the closest number given an ArrayList of numbers
 	 * 
@@ -56,7 +62,7 @@ public class Num extends Attribute{
 	}
 	
 	public double getDistance(Attribute compare){
-		return (new CalculationDifference()).calculate(this, compare);
+		return distanceSelection.calculate(this, compare);
 	}
 	
 	
