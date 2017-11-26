@@ -23,8 +23,9 @@ public class CalculationDifference implements Calculation{
 			ArrayList<Double> A = ((Point)a).getNums();
 			ArrayList<Double> B = ((Point)b).getNums();
 			
-			if(B.size() != A.size()){ //Check if Coordinates are of equal size, exit if false
+			if(B.size() != A.size()){ //Check if Coordinates are of equal size
 				System.out.print("Coordinate Dimensions Mismatch: ");
+				return -2.0; //Caught by caller
 			
 			} 
 			else { //Calculate the distance between two points by taking their absolute realitive distance

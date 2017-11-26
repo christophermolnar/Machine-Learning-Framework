@@ -372,11 +372,12 @@ public class Project extends Observable{
 				double val = 0;
 				for (Example o : examples)
 				{
-					if (o.getIsTesting())
-					{
-						closestK = o.findClosestK(n, examples);
-						break;
+					closestK = o.findClosestK(n, examples);
+					if (closestK == null){
+						InvalidInputMessage("Point Dimension Mismatch - Please Check Entries");
+						return; //Halt Calculation
 					}
+					break;
 				}
 				for (Example o : examples)
 				{
@@ -410,6 +411,7 @@ public class Project extends Observable{
 		} catch(NumberFormatException e){	
 		}
 	}
+	
 	public DefaultListModel<Example> getList()
 	{
 		return list;
