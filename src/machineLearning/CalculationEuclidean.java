@@ -25,9 +25,11 @@ public class CalculationEuclidean implements Calculation{
 			ArrayList<Double> A = ((Point)a).getNums();
 			ArrayList<Double> B = ((Point)b).getNums();
 			
-			if(B.size() != A.size()){
+			if(B.size() != A.size()){ //Check if Coordinates are of equal size, exit if false
 				System.out.print("Coordinate Dimensions Mismatch: ");
-			} else {
+				return -2.0; //Caught by caller
+			
+			} else { //Calculate the distance between two points by taking their calculated distance
 				Double dist = 0.0;
 				for(int i = 0; i < A.size(); i++){
 					dist = dist + (Math.pow(A.get(i) - B.get(i), 2));

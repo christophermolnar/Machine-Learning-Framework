@@ -375,6 +375,10 @@ public class Project extends Observable{
 				if (o.getIsTesting())
 				{
 					closestK = o.findClosestK(n, examples);
+					if (closestK == null){
+						InvalidInputMessage("Point Dimension Mismatch - Please Check Entries");
+						return;
+					}
 					break;
 				}
 			}
@@ -402,6 +406,7 @@ public class Project extends Observable{
 		} catch(NumberFormatException e){	
 		}
 	}
+	
 	public DefaultListModel<Example> getList()
 	{
 		return list;
