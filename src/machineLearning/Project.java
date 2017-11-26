@@ -410,6 +410,15 @@ public class Project extends Observable{
 		} catch(NumberFormatException e){	
 		}
 	}
+	
+	public void errorCalculation(){
+		String s = JOptionPane.showInputDialog("Enter the expected value for the testvalue: ");
+		if(s != null){ //'OK' clicked
+			System.out.println("Calculating");
+		} 
+		System.out.println("Error Calculation");
+	}
+	
 	public DefaultListModel<Example> getList()
 	{
 		return list;
