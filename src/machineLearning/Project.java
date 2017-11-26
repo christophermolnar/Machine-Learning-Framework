@@ -372,13 +372,15 @@ public class Project extends Observable{
 				double val = 0;
 				for (Example o : examples)
 				{
-					closestK = o.findClosestK(n, examples);
-					System.out.println(closestK[0]);
-					if (closestK == null){
-						InvalidInputMessage("Point Dimension Mismatch - Please Check Entries");
-						return; //Halt Calculation
+					if (o.getIsTesting())
+					{
+						closestK = o.findClosestK(n, examples);
+						if (closestK == null){
+							InvalidInputMessage("Point Dimension Mismatch - Please Check Entries");
+							return; //Halt Calculation
+						}
+						break;
 					}
-					break;
 				}
 				for (Example o : examples)
 				{
