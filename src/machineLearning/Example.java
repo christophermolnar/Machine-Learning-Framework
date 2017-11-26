@@ -9,13 +9,13 @@ import java.util.ArrayList;
  * @version 2.0
  *
  */
-public class Example{
+public class Example {
+	
 	private ArrayList<Attribute> data;
 	private boolean isTestingObject; //Checks to see if a 'unknown' varaible has been enetered into the system
 	
 	//Creates new EMPTY (no attribute) example
-	public Example ()
-	{
+	public Example () {
 		data = new ArrayList<>();
 	}
 	

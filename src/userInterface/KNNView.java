@@ -25,14 +25,15 @@ import javax.swing.JPanel;
 
 import machineLearning.Example;
 
-public class KNNView extends JFrame implements Observer{
-	JMenuItem  create, edit, calculate, testing, training;
-	JPanel input, output;
-	JList<Example> list;
-	JLabel outputText;
-	boolean hasCreatedTraining, hasCreatedTesting;
-	public KNNView(DefaultListModel<Example> m)
-	{
+public class KNNView extends JFrame implements Observer {
+	
+	private JMenuItem  create, edit, calculate, testing, training;
+	private JPanel input, output;
+	private JList<Example> list;
+	private JLabel outputText;
+	private boolean hasCreatedTraining, hasCreatedTesting;
+	
+	public KNNView(DefaultListModel<Example> m) {
 		super("KNN");
 		hasCreatedTraining = false;
 		hasCreatedTesting = false;
