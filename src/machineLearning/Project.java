@@ -15,18 +15,16 @@ import userInterface.KNNView;
  *
  */
 public class Project extends Observable{
-	String[] options = {"Euclidean", "Difference"};
-	DefaultListModel<Example> list;
-	int numOfNumbers, numOfPoints, numOfEnums;
-	int tempNum, tempPoint, tempEnum;
-	int indexOfTestValue;
-	
-	ArrayList<Calculation> pointChoice;
-	ArrayList<Example> examples;
-	
-	Example testObject;
-	String TESTVALUE = "testvalue";
-	String NONE = "none";
+	private String[] options = {"Euclidean", "Difference"};
+	private DefaultListModel<Example> list;
+	private int numOfNumbers, numOfPoints, numOfEnums;
+	private int tempNum, tempPoint, tempEnum;
+	private int indexOfTestValue;
+	private ArrayList<Calculation> pointChoice;
+	private ArrayList<Example> examples;
+	private Example testObject;
+	public static final String TESTVALUE = "testvalue";
+	public static final String NONE = "none";
 	
 	//Create new Project
 	public Project()
@@ -312,40 +310,48 @@ public class Project extends Observable{
 		boolean isCorrect;
 			
 		outerloop:
-		do { 
-			isCorrect = true;
-				for(int index=0; index<currentData.size(); index++){
-					try {
-						if (currentData.get(index) instanceof Num){
-							curr = Double.toString((((Num) currentData.get(index)).getNum()));
-							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-							updatedData.addType(new Num(Double.parseDouble(s)));
+		{
+			do { 
+				isCorrect = true;
+					for(int index=0; index<currentData.size(); index++){
+						try {
+							if (currentData.get(index) instanceof Num){
+								curr = Double.toString((((Num) currentData.get(index)).getNum()));
+								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+								if(s==null)
+									break outerloop; //Cancel Pressed
+								updatedData.addType(new Num(Double.parseDouble(s)));
+								
+							}else if(currentData.get(index) instanceof Point){
+								curr = (((Point) currentData.get(index)).getCoords());
+								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+								if(s==null)
+									break outerloop; //Cancel Pressed
+								updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
 							
-						}else if(currentData.get(index) instanceof Point){
-							curr = (((Point) currentData.get(index)).getCoords());
-							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-							updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
-						
-						} else { //instanceof Key
-							curr = ((Key)currentData.get(index)).getWord();
-							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-							updatedData.addType(new Key(s));
+							} else { //instanceof Key
+								curr = ((Key)currentData.get(index)).getWord();
+								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+								if(s==null)
+									break outerloop; //Cancel Pressed
+								updatedData.addType(new Key(s));
+							}
+						}catch(Exception e){
+								//isCorrect = false; //No longer needed, reprompts errored value
+								JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
+								index--; //Reprompt Value
 						}
-						
-					}catch(Exception e){
-							isCorrect = false;
-							JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);
 					}
-				}
+				
+			} while (!isCorrect);
 			
-		} while (!isCorrect);
-		
-		if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
-			list.remove(Index);
-			list.add(Index, updatedData);
-			examples.remove(Index);
-			examples.add(Index, updatedData);
-			setChanged();
+			if (isCorrect) { //The user has not requested to cancel, thus all dialogs have been filled
+				list.remove(Index);
+				list.add(Index, updatedData);
+				examples.remove(Index);
+				examples.add(Index, updatedData);
+				setChanged();
+			}
 		}
 	}
 	
@@ -361,35 +367,45 @@ public class Project extends Observable{
 			Example[] closestK = null;
 			Attribute t;
 			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours: "));
-			double val = 0;
-			for (Example o : examples)
+			if (n <= examples.size() - 1)
 			{
-				if (o.getIsTesting())
+				double val = 0;
+				for (Example o : examples)
 				{
-					closestK = o.findClosestK(n, examples);
-					break;
+					if (o.getIsTesting())
+					{
+						closestK = o.findClosestK(n, examples);
+						break;
+					}
+				}
+				for (Example o : examples)
+				{
+					if (!o.getIsTesting())
+					{
+						testing = o;
+					}
+				}
+				if (testing != null && closestK != null)
+				{
+					//if all the values are correct
+					t = testing.getValueAtIndex(indexOfTestValue);
+					s = t.calculateTestValue(closestK, indexOfTestValue);
+					s += "Closest Objects:"; 
+					for (int i = 0; i < closestK.length; i++)
+					{
+						s += closestK[i];
+						if (i < closestK.length - 1) s += ", ";
+					}
+					setChanged();
+					notifyObservers(s);
 				}
 			}
-			for (Example o : examples)
+			else
 			{
-				if (!o.getIsTesting())
-				{
-					testing = o;
-				}
-			}
-			if (testing != null && closestK != null)
-			{
-				//if all the values are correct
-				t = testing.getValueAtIndex(indexOfTestValue);
-				s = t.calculateTestValue(closestK, indexOfTestValue);
-				s += "Closest Objects:"; 
-				for (int i = 0; i < closestK.length; i++)
-				{
-					s += closestK[i];
-					if (i < closestK.length - 1) s += ", ";
-				}
-				setChanged();
-				notifyObservers(s);
+				JOptionPane.showMessageDialog(null,
+					    "Too many neighbours.",
+					    "K Value Error",
+					    JOptionPane.ERROR_MESSAGE);
 			}
 		} catch(NumberFormatException e){	
 		}

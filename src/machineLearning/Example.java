@@ -6,16 +6,16 @@ import java.util.ArrayList;
 /** Example 	Represents a physical entity with Attributes
  * 
  * @author MZGA
- * @version 2.0
+ * @version 3.0
  *
  */
-public class Example{
+public class Example {
+	
 	private ArrayList<Attribute> data;
 	private boolean isTestingObject; //Checks to see if a 'unknown' varaible has been enetered into the system
 	
 	//Creates new EMPTY (no attribute) example
-	public Example ()
-	{
+	public Example () {
 		data = new ArrayList<>();
 	}
 	
@@ -28,8 +28,7 @@ public class Example{
 	 * 
 	 * @param t				Attribute to add
 	 */
-	public void addType(Attribute t)
-	{
+	public void addType(Attribute t) {
 		data.add(t);
 	}
 	
@@ -46,8 +45,7 @@ public class Example{
 	 * @param index				Index of value to get
 	 * @return Attribute		Attribute at given index
 	 */
-	public Attribute getValueAtIndex(int index)
-	{
+	public Attribute getValueAtIndex(int index) {
 		return data.get(index);
 	}
 
@@ -57,8 +55,7 @@ public class Example{
 	 * @param objectList		List of all current Examples (Objects with Attributes)
 	 * @return	ListofExamples	List of k closest Examples
 	 */
-	public Example[] findClosestK(int k, ArrayList<Example> objectList)
-	{
+	public Example[] findClosestK(int k, ArrayList<Example> objectList) {
 		objectList.remove(this);
 		Example[] closest = new Example[k];
 		Example[] list = new Example[objectList.size()];
@@ -118,8 +115,7 @@ public class Example{
 	 * 
 	 * @return String		Coordinate 
 	 */
-	public String toString()
-	{
+	public String toString() {
 		String tmp = "";
 		for (Attribute t : data)
 		{
@@ -129,14 +125,12 @@ public class Example{
 	}
 	
 	//Sets a selected example to a testingexample
-	public void setTestingObject(boolean b)
-	{
+	public void setTestingObject(boolean b) {
 		isTestingObject = true;
 	}
 	
 	//Returns if testingExample
-	public boolean getIsTesting()
-	{
+	public boolean getIsTesting() {
 		return isTestingObject;
 	}
 }

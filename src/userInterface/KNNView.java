@@ -25,14 +25,15 @@ import javax.swing.JPanel;
 
 import machineLearning.Example;
 
-public class KNNView extends JFrame implements Observer{
-	JMenuItem  create, edit, calculate, testing, training;
-	JPanel input, output;
-	JList<Example> list;
-	JLabel outputText;
-	boolean hasCreatedTraining, hasCreatedTesting;
-	public KNNView(DefaultListModel<Example> m)
-	{
+public class KNNView extends JFrame implements Observer {
+	
+	private JMenuItem  create, edit, calculate, testing, training;
+	private JPanel input, output;
+	private JList<Example> list;
+	private JLabel outputText;
+	private boolean hasCreatedTraining, hasCreatedTesting;
+	
+	public KNNView(DefaultListModel<Example> m) {
 		super("KNN");
 		hasCreatedTraining = false;
 		hasCreatedTesting = false;
@@ -73,8 +74,7 @@ public class KNNView extends JFrame implements Observer{
 	/** addInputOutput		Add IO to user interface
 	 * 
 	 */
-	public void addInputOutput()
-	{
+	public void addInputOutput() {
 		input = new JPanel();
 		input.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
   		output = new JPanel();
@@ -94,36 +94,29 @@ public class KNNView extends JFrame implements Observer{
 	 */
 	public void update(Observable obs, java.lang.Object obj)
 	{
-		if (obj instanceof String)
-		{
+		if (obj instanceof String) {
 			String s = (String) obj;
-			if (s.equals("create"))
-			{
+			if (s.equals("create")) {
 				training.setEnabled(true);
 				testing.setEnabled(true);
 			}
-			else if (s.equals("testing"))
-			{
+			else if (s.equals("testing")) {
 				hasCreatedTraining = true;
 				if (hasCreatedTesting)
 				{
 					calculate.setEnabled(true);
 				}
 			}
-			else if (s.equals("training"))
-			{
+			else if (s.equals("training")) {
 				hasCreatedTesting = true;
-				if (hasCreatedTraining)
-				{
+				if (hasCreatedTraining) {
 					calculate.setEnabled(true);
 				}
 			}
-			else if (s.equals("edit"))
-			{
+			else if (s.equals("edit")) {
 				
 			}
-			else
-			{
+			else {
 				outputText.setText((String)obj);
 			}
 		}
@@ -144,24 +137,19 @@ public class KNNView extends JFrame implements Observer{
 	public Example getSelectedObject(){
 		return list.getSelectedValue();
 	}
-	public void setCreateActionListener(ActionListener a)
-	{
+	public void setCreateActionListener(ActionListener a) {
 		create.addActionListener(a);
 	}
-	public void setTestingActionListener(ActionListener a)
-	{
+	public void setTestingActionListener(ActionListener a) {
 		testing.addActionListener(a);
 	}
-	public void setTrainingActionListener(ActionListener a)
-	{
+	public void setTrainingActionListener(ActionListener a) {
 		training.addActionListener(a);
 	}
-	public void setEditActionListener(ActionListener a)
-	{
+	public void setEditActionListener(ActionListener a) {
 		edit.addActionListener(a);
 	}	
-	public void setCalculateActionListener(ActionListener a)
-	{
+	public void setCalculateActionListener(ActionListener a) {
 		calculate.addActionListener(a);
 	}
 }
