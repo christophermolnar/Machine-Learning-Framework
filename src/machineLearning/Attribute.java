@@ -5,7 +5,7 @@ package machineLearning;
 /** Attribute 		Uses Template Pattern to provide children classes with calculation features
  * 
  * @author MZGA
- * @version 2.0
+ * @version 3.0
  *
  */ 
 public abstract class Attribute {
@@ -16,8 +16,7 @@ public abstract class Attribute {
 	 * 
 	 * @param d						Calculation type to use, either 'Euclidean' or 'Difference'
 	 */
-	public void setSelection(Calculation d)
-	{
+	public void setSelection(Calculation d) {
 		distanceSelection = d;
 	}
 	
@@ -25,8 +24,7 @@ public abstract class Attribute {
 	 * 
 	 * @return	distanceSelection	CalcType, either 'Euclidean' or 'Difference'
 	 */
-	public Calculation getSelection()
-	{
+	public Calculation getSelection() {
 		return distanceSelection;
 	}
 	

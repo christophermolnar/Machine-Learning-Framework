@@ -11,8 +11,7 @@ public class Key extends Attribute{
 	private String word;
 	
 	//Create new Key
-	public Key(String w)
-	{
+	public Key(String w) {
 		word = w;
 	}
 	
@@ -20,8 +19,7 @@ public class Key extends Attribute{
 	 * 
 	 * @return String		String value of key
 	 */
-	public String getWord()
-	{
+	public String getWord() {
 		return word;
 	}
 	
@@ -29,8 +27,7 @@ public class Key extends Attribute{
 	 * 
 	 * @return String		String value of key
 	 */
-	public String toString()
-	{
+	public String toString() {
 		return (word + " | ");
 	}
 	
@@ -47,13 +44,11 @@ public class Key extends Attribute{
 	 * 
 	 * @return value			String value of Key					
 	 */
-	public String getVal()
-	{
+	public String getVal() {
 		return word;
 	}
 	
-	public String calculateTestValue(Example[] closestK, int index)
-	{
+	public String calculateTestValue(Example[] closestK, int index) {
 		return "Testvalue = " + closestK[0].getValueAtIndex(index) + " ";
 	}
 }

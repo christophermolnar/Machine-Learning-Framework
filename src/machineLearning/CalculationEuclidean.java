@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /** CalculationEuclidean 	Calculates the difference between Two Attributes using their euclidean distances
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA
- * @version 2.0
+ * @version 3.0
  *
  */
 
@@ -27,7 +27,8 @@ public class CalculationEuclidean implements Calculation{
 			
 			if(B.size() != A.size()){
 				System.out.print("Coordinate Dimensions Mismatch: ");
-			} else {
+			} 
+			else {
 				Double dist = 0.0;
 				for(int i = 0; i < A.size(); i++){
 					dist = dist + (Math.pow(A.get(i) - B.get(i), 2));
@@ -53,8 +54,7 @@ public class CalculationEuclidean implements Calculation{
 	/** toString()			Returns the current Calculation type of 'Euclidean'
 	 *  @return CalcType	Returns 'Differnce' --> Current CalcType
 	 */
-	public String toString()
-	{
+	public String toString() {
 		return "Euclidean";
 	}
 }

@@ -15,8 +15,7 @@ public class CalculationKey implements Calculation{
 	* @param b				Second Attribute to compare
 	* @return distance		Distance of 0 if the Attributes are equal, 1 otherwise
 	*/
-	public double calculate(Attribute a, Attribute b)
-	{
+	public double calculate(Attribute a, Attribute b) {
 		if (a instanceof Key && b instanceof Key){
 			Key key1 = (Key) a;
 			Key key2 = (Key) b;
