@@ -64,6 +64,11 @@ public class Example {
 		{
 			list[p] = objectList.get(p);
 			arr[p] = this.calculateScore(objectList.get(p));
+
+			if (arr[p] == -2.0){ //An error has occoured
+				return null;
+			}
+			
 			System.out.println(list[p] + "score" + arr[p]);
 		}
 		if (k <= objectList.size())//if k is small enough
@@ -72,9 +77,7 @@ public class Example {
 			        for (int j = i + 1; j < arr.length; j++) {
 			            double tmp = 0;
 			            Example temp;
-			            System.out.println("asfasf");
 			            if (arr[i] > arr[j]) {
-			            	System.out.println("arri" + arr[i] + "arrj" + arr[j]);
 			                tmp = arr[i];
 			                arr[i] = arr[j];
 			                arr[j] = tmp;
@@ -88,8 +91,8 @@ public class Example {
 		for (int z = 0; z < closest.length; z++)
 		{
 			closest[z] = list[z];
-			System.out.println(closest[z]);
 		}
+		objectList.add(this);
 		return closest;
 	}
 	
@@ -97,14 +100,20 @@ public class Example {
 	 * 
 	 * @param testObject			Object to compare
 	 * @return Score				The deteremined score of a given example
+	 * 		   **RETURNS -2 ON ERROR**
 	 * @calls getDistance			Calculates the individual score of a given attribute (Key, Point, Num)
 	 * @Todo 						Add weighting
 	 */
 	public double calculateScore(Example testObject){
 		double totalScore = 0;
 		int index = 0;
-		for (Attribute t: this.getData()){
-			totalScore += t.getDistance(testObject.getData().get(index));
+		for (Attribute attr: this.getData()){
+			double t = attr.getDistance(testObject.getData().get(index));
+			
+			if (t == -2.0) //Dimension Mismatch Detected
+				return t;
+			
+			totalScore += t;	
 			index++;
 		}
 		return CalculationDifference.round(totalScore, 4);
