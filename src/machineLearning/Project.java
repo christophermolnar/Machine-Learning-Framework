@@ -382,48 +382,6 @@ public class Project extends Observable{
 				//if all the values are correct
 				t = testing.getValueAtIndex(indexOfTestValue);
 				s = t.calculateTestValue(closestK, indexOfTestValue);
-//				if (t instanceof Num)
-//				{
-//					for (int i = 0; i < closestK.length; i++)
-//					{
-//						if (!closestK[i].getIsTesting())
-//						{
-//							val += ((Num) closestK[i].getValueAtIndex(indexOfTestValue)).getVal();
-//						}
-//					}
-//					val /= closestK.length;
-//					s += "Testvalue = " + val + " ";
-//				}
-//				else if (t instanceof Point)
-//				{
-//					//CALCULATION FOR POINT TEST VALUE
-//					double pointCount = 0;
-//					double[] listOfPointValues = new double[((Point) t).getNums().size()];
-//					for (int i = 0; i < closestK.length; i++)
-//					{
-//						for (int j = 0; j < listOfPointValues.length; j++)
-//						{
-//							listOfPointValues[j] += ((Point) closestK[i].getValueAtIndex(indexOfTestValue)).getNums().get(j);
-//						}
-//						pointCount++;
-//					}
-//					for (int i = 0; i < listOfPointValues.length; i++)
-//					{
-//						listOfPointValues[i] /= pointCount;
-//					}
-//					s += "Testvalue = (";
-//					for (int i = 0; i < listOfPointValues.length; i++)
-//					{
-//						s += listOfPointValues[i];
-//						if (i < listOfPointValues.length - 1) s += ", ";
-//					}
-//					s += ")";
-//				}
-//				else
-//				{
-//					//CALCULATION FOR KEY TEST VALUE
-//					s += "Testvalue = " + closestK[0].getValueAtIndex(indexOfTestValue) + " ";
-//				}
 				s += "Closest Objects:"; 
 				for (int i = 0; i < closestK.length; i++)
 				{
