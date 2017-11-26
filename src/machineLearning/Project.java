@@ -25,8 +25,8 @@ public class Project extends Observable{
 	ArrayList<Example> examples;
 	
 	Example testObject;
-	String TESTVALUE = "testvalue";
-	String NONE = "none";
+	public static final String TESTVALUE = "testvalue";
+	public static final String NONE = "none";
 	
 	//Create new Project
 	public Project()
