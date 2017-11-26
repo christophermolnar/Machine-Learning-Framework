@@ -343,7 +343,7 @@ public class Project extends Observable{
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Num(Double.parseDouble(s), new CalculationDifference()));
+								updatedData.addType(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
 								
 							}else if(currentData.get(index) instanceof Point){
 								curr = (((Point) currentData.get(index)).getCoords());
