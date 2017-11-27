@@ -82,6 +82,10 @@ public class Num extends Attribute{
 			}
 		}
 		val /= closestK.length;
+		if (distanceSelection instanceof CalculationPolar)
+		{
+			val %= 180;
+		}
 		return "Testvalue = " + val + " ";
 	}
 	
