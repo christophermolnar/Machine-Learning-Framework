@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import junit.framework.*;
 import machineLearning.*;
 
-public class TestCalculationsWithTrainingExamples extends TestCase{
+public class TestScoreCalculationsWithTrainingExamples extends TestCase{
 
 	private Example house1; 
 	private Example house2;
@@ -20,7 +20,7 @@ public class TestCalculationsWithTrainingExamples extends TestCase{
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		junit.textui.TestRunner.run(TestCalculationsWithTrainingExamples.class);
+		junit.textui.TestRunner.run(TestScoreCalculationsWithTrainingExamples.class);
 	}
 	
 	public void setUp(){
