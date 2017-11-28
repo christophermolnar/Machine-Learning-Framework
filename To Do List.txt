@@ -5,19 +5,9 @@ Scoring:
 	-Take all distances and divide by MAX
 	-This will make everything between 0 and 1
 
-Solve New Problem:
-	-Soccer Problem
-	*Need to allow the user to add blank/or nothing to attributes
-
-Error Calculation:
-	-Finish implementing this
-	-Need to save testvalue
-	-Then compare with user inputted value
-
 Extra & Clean Up:
-	-Clean up result display
 	-Add a Attribute that can contain Attributes (feature in a feature) 
 	-Work on cohesion and coupling
-	-Does the code smell
+	-Does the code smell?
 
 
