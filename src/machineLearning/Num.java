@@ -76,12 +76,17 @@ public class Num extends Attribute{
 	
 	public String calculateTestValue(Example[] closestK, int index) {
 		double val = 0;
+		int count = 0;
 		for (int i = 0; i < closestK.length; i++) {
 			if (!closestK[i].getIsTesting()) {
-				val += ((Num) closestK[i].getValueAtIndex(index)).getVal();
+				if (!(closestK[i].getValueAtIndex(index) instanceof Key))
+				{
+					val += ((Num) closestK[i].getValueAtIndex(index)).getVal();
+					count++;
+				}
 			}
 		}
-		val /= closestK.length;
+		val /= count;
 		if (distanceSelection instanceof CalculationPolar)
 		{
 			val %= 180;

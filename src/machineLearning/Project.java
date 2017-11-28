@@ -18,8 +18,8 @@ public class Project extends Observable{
 	private String[] optionsPoint = {"Euclidean", "Difference"};
 	private String[] optionsNum = {"Difference", "Polar"};
 	private DefaultListModel<Example> list;
-	private int numOfNumbers, numOfPoints, numOfEnums;
-	private int tempNum, tempPoint, tempEnum;
+	private int numOfNumbers, numOfPoints, numOfKeys;
+	private int tempNum, tempPoint, tempKey;
 	private int indexOfTestValue;
 	private ArrayList<Calculation> pointChoice;
 	private ArrayList<Calculation> numChoice;
@@ -30,6 +30,7 @@ public class Project extends Observable{
 	private char testvalueType;
 	private String testvalueResult;
 	private boolean distanceMetric = true;
+	private boolean exampleAdded;
 	
 	//Create new Project
 	public Project()
@@ -38,6 +39,7 @@ public class Project extends Observable{
 		numChoice = new ArrayList<>();
 		list = new DefaultListModel<>();
 		examples = new ArrayList<>();
+		exampleAdded = false;
 	}
 	
 	/** create() 		create the format for example
@@ -72,7 +74,7 @@ public class Project extends Observable{
 				
 				s = JOptionPane.showInputDialog("How many 'Text' values do you have");
 				if(s != null){ //'OK' clicked
-					tempEnum = Integer.parseInt(s);
+					tempKey = Integer.parseInt(s);
 				} 
 				else { //'Cancel' Clicked
 					isCorrect = false;
@@ -116,7 +118,7 @@ public class Project extends Observable{
 				if(isCorrect){
 					numOfNumbers=tempNum;
 					numOfPoints=tempPoint;
-					numOfEnums=tempEnum;
+					numOfKeys=tempKey;
 				}
 			}catch (NumberFormatException e){
 				isCorrect = false;
@@ -187,19 +189,13 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
-							tester.addType(n);
-							if (isTestValue(input)){
-								testvalueType = 'n';
-								if(numChoice.get(i) instanceof CalculationDifference){
-									distanceMetric = false;
-								}
-							}
+							tester.addAttribute(n);
 						}
 						else{
 							numberInput = Double.parseDouble(input);
 							Num n = new Num(numberInput);
 							n.setSelection(numChoice.get(i));
-							tester.addType(n);
+							tester.addAttribute(n);
 						}
 					}
 					else { //'Cancel' Clicked
@@ -213,45 +209,34 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
-							tester.addType(n);
-							if (isTestValue(input)){
-								testvalueType = 'p';
-								System.out.println(pointChoice.get(i));
-								if(pointChoice.get(i) instanceof CalculationDifference){
-									distanceMetric = false;
-								}
-							}
+							tester.addAttribute(n);
 						}
 						else{
 							Point n = new Point(input);
 							n.setSelection(pointChoice.get(i));
-							tester.addType(n);
+							tester.addAttribute(n);
 						};
 					} else { //'Cancel' Clicked
 						break createTester;
 					}
 				} 
 
-				for (int i = 0; i < numOfEnums; i++) {
+				for (int i = 0; i < numOfKeys; i++) {
 					input = JOptionPane.showInputDialog("Please input enum value");
 					if (input != null){ //Something Entered --> 'OK' clicked
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
-							tester.addType(n);
-							if (isTestValue(input)){
-								testvalueType = 'k';
-							}
+							tester.addAttribute(n);
 						}
 						else{
 							Attribute n = new Key(input);
-							tester.addType(n);
+							tester.addAttribute(n);
 						}
 					}
 					else{ //'Cancel' clicked
 						break createTester;
 					}
 				} 
-
 			} 
 			catch(Exception e){
 				InvalidInputMessage("Input is invalid");
@@ -263,6 +248,7 @@ public class Project extends Observable{
 				list.addElement(tester);
 				examples.add(tester);
 				tester.setTestingObject(true);
+				exampleAdded = true;
 				setChanged();
 				notifyObservers("testing");
 				//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
@@ -280,7 +266,7 @@ public class Project extends Observable{
 		String input;
 		double numberInput;
 		
-		createTrainer: { //Subroutine??
+		createTrainer: {
 			
 			training = new Example();
 			try {
@@ -289,13 +275,13 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isNoneValue(input)){ //Check to see if none was entered
 							Attribute n = new Key(input.toLowerCase());
-							training.addType(n);
+							training.addAttribute(n);
 						}
 						else{
 							numberInput = Double.parseDouble(input);
 							Num n = new Num(numberInput);
 							n.setSelection(numChoice.get(i));
-							training.addType(n);
+							training.addAttribute(n);
 						}
 					}
 					else { //'Cancel' Clicked
@@ -309,28 +295,28 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isNoneValue(input)){ //Check to see if none was entered
 							Attribute n = new Key(input.toLowerCase());
-							training.addType(n);
+							training.addAttribute(n);
 						}
 						else{
 							Point n = new Point(input);
 							n.setSelection(pointChoice.get(i));
-							training.addType(n);
+							training.addAttribute(n);
 						};
 					} else { //'Cancel' Clicked
 						break createTrainer;
 					}
 				} 
 
-				for (int i = 0; i < numOfEnums; i++) {
+				for (int i = 0; i < numOfKeys; i++) {
 					input = JOptionPane.showInputDialog("Please input enum value");
 					if (input != null){ //Something Entered --> 'OK' clicked
 						if (isNoneValue(input)){ //Check to see if none was entered
 							Attribute n = new Key(input.toLowerCase());
-							training.addType(n);
+							training.addAttribute(n);
 						}
 						else{
 							Attribute n = new Key(input);
-							training.addType(n);
+							training.addAttribute(n);
 						}
 					}
 					else{ //'Cancel' clicked
@@ -344,6 +330,7 @@ public class Project extends Observable{
 			}	
 			
 			//Add training Example to the list
+			exampleAdded = true;
 			list.addElement(training);
 			examples.add(training);
 			setChanged();
@@ -376,21 +363,21 @@ public class Project extends Observable{
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
+								updatedData.addAttribute(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
 								
 							}else if(currentData.get(index) instanceof Point){
 								curr = (((Point) currentData.get(index)).getCoords());
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
+								updatedData.addAttribute(new Point(s, ((Point) currentData.get(index)).getCalcType()));
 							
 							} else { //instanceof Key
 								curr = ((Key)currentData.get(index)).getWord();
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Key(s));
+								updatedData.addAttribute(new Key(s));
 							}
 						}catch(Exception e){
 								//isCorrect = false; //No longer needed, reprompts errored value
@@ -453,12 +440,13 @@ public class Project extends Observable{
 					
 					// Save the testValueResult
 					setTestValueResult(s);				
-					
-					s += "Closest Objects:"; 
+          
+					s += "\nClosest Objects:\n"; 
+
 					for (int i = 0; i < closestK.length; i++)
 					{
 						s += closestK[i];
-						if (i < closestK.length - 1) s += ", ";
+						if (i < closestK.length - 1) s += "\n";
 					}
 					setChanged();
 					notifyObservers(s);
@@ -522,8 +510,595 @@ public class Project extends Observable{
 		
 	}
 	
+	public boolean exampleIsAdded(){
+		return exampleAdded;
+	}
+	
 	public DefaultListModel<Example> getList()
 	{
 		return list;
+	}
+	/**
+	 * Loads in all of the training data from the excel sheet
+	 */
+	public void soccerScenario()
+	{
+		Attribute n1, n2, n3, n4, n5, n6, n7, n8, n9;
+		Key k;
+		Example training = new Example();
+		numOfNumbers=8;
+		numOfPoints=0;
+		numOfKeys=1;
+		numChoice.add(new CalculationDifference());
+		numChoice.add(new CalculationPolar());
+		numChoice.add(new CalculationDifference());
+		numChoice.add(new CalculationPolar());
+		numChoice.add(new CalculationDifference());
+		numChoice.add(new CalculationPolar());
+		numChoice.add(new CalculationDifference());
+		numChoice.add(new CalculationPolar());
+		numChoice.add(new CalculationKey());
+		//ROW 1
+		n1 = new Num(1.9);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(-167);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(63.8);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(31);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Num(39.1);
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Num(-41);
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Kick");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 2
+		training = new Example();
+		n1 = new Num(1.9);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(50);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(63.8);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(31);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Num(39.1);
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Num(-41);
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Kick");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 3
+		training = new Example();
+		n1 = new Num(1.8);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(2);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(61.9);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(-4);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Kick");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 4
+		training = new Example();
+		n1 = new Num(1.8);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(-85);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(53.5);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(17);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Kick");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 5
+		training = new Example();
+		n1 = new Num(19.2);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(24.6);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(-17);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Dash");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 6
+		training = new Example();
+		n1 = new Num(15.9);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(22.3);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(-18);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Dash");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 7
+		training = new Example();
+		n1 = new Num(14.5);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(20.7);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(-20);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Dash");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 8
+		training = new Example();
+		n1 = new Num(11);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Key("none");
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Key("none");
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Num(44.8);
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Num(-5);
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Dash");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 9
+		training = new Example();
+		n1 = new Num(10);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(61.3);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(-31);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Num(41.4);
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Num(43);
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Dash");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 10
+		training = new Example();
+		n1 = new Num(45.7);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(96.6);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(2);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Num(55.6);
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Num(-37);
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Num(55.6);
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Num(40);
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Dash");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 11
+		training = new Example();
+		n1 = new Num(50.4);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(-1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(101.5);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(14);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Num(75.4);
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Num(-24);
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Num(46.2);
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Num(40);
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Turn");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 12
+		training = new Example();
+		n1 = new Num(41.4);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(0);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(90.1);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(18);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Num(65.1);
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Num(-27);
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Turn");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 13
+		training = new Example();
+		n1 = new Num(14.5);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(15);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(60.1);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(27);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Turn");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 14
+		training = new Example();
+		n1 = new Num(41.4);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(3);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(94.7);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(4);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Num(55.1);
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Num(-36);
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Num(53.5);
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Num(43);
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Turn");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 15
+		training = new Example();
+		n1 = new Num(23.2);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(0);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(76.9);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(2);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Turn");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 16
+		training = new Example();
+		n1 = new Num(12);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(24);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Key("none");
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Key("none");
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Num(42.7);
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Num(-40);
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Turn");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 17
+		training = new Example();
+		n1 = new Key("none");
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Key("none");
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(26.3);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(2);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Turn");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 18
+		training = new Example();
+		n1 = new Num(3.5);
+		n1.setSelection(numChoice.get(0));
+		training.addAttribute(n1);
+		n2 = new Num(1);
+		n2.setSelection(numChoice.get(1));
+		training.addAttribute(n2);
+		n3 = new Num(56.1);
+		n3.setSelection(numChoice.get(2));
+		training.addAttribute(n3);
+		n4 = new Num(4);
+		n4.setSelection(numChoice.get(3));
+		training.addAttribute(n4);
+		n5 = new Key("none");
+		n5.setSelection(numChoice.get(4));
+		training.addAttribute(n5);
+		n6 = new Key("none");
+		n6.setSelection(numChoice.get(5));
+		training.addAttribute(n6);
+		n7 = new Key("none");
+		n7.setSelection(numChoice.get(6));
+		training.addAttribute(n7);
+		n8 = new Key("none");
+		n8.setSelection(numChoice.get(7));
+		training.addAttribute(n8);
+		n9 = new Key("Dash");
+		n9.setSelection(numChoice.get(8));
+		training.addAttribute(n9);
+		list.addElement(training);
+		examples.add(training);
+		//ROW 18
+		setChanged();
+		notifyObservers("create");
+		setChanged();
+		notifyObservers("training");
 	}
 }

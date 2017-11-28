@@ -1,5 +1,4 @@
 package machineLearning;
-
 import java.util.ArrayList;
 
 
@@ -116,6 +115,7 @@ public class Point extends Attribute{
 		tmp += ")";
 		return tmp +  "->" + distanceSelection + " | ";
 	}
+	
 	public String calculateTestValue(Example[] closestK, int index) {
 		String result = ""; 
 		double pointCount = 0;

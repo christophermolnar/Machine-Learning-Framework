@@ -19,7 +19,7 @@ public class Example {
 		data = new ArrayList<>();
 	}
 	
-	//Creates new example with Attibutes 'data'
+	//Creates new example with Attributes 'data'
 	public Example (ArrayList<Attribute> data){
 		this.data = data;
 	}
@@ -28,7 +28,7 @@ public class Example {
 	 * 
 	 * @param t				Attribute to add
 	 */
-	public void addType(Attribute t) {
+	public void addAttribute(Attribute t) {
 		data.add(t);
 	}
 	
@@ -96,7 +96,7 @@ public class Example {
 		return closest;
 	}
 	
-	/** calculateScore				Returns teh score of a given Example, comparing with 'unknown' object
+	/** calculateScore				Returns the score of a given Example, comparing with 'unknown' object
 	 * 
 	 * @param testObject			Object to compare
 	 * @return Score				The deteremined score of a given example
@@ -108,16 +108,13 @@ public class Example {
 		double totalScore = 0;
 		int index = 0;
 		for (Attribute attr: this.getData()){
-			double t = attr.getDistance(testObject.getData().get(index));
-			
+			double t = attr.getDistance(testObject.getData().get(index));	
 			if (t == -2.0) //Dimension Mismatch Detected
-				return t;
-			
-			totalScore += t;	
+				return t;		
+			totalScore += t;
 			index++;
 		}
 		return CalculationDifference.round(totalScore, 4);
-		
 	}
 	
 	/** toString()			Returns all attributes as a String value

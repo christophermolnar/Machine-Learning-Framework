@@ -16,6 +16,5 @@ public interface Calculation {
 	 * @return				Difference between 2 Attributes
 	 */
 	public double calculate(Attribute a, Attribute b);
-
 }
 
