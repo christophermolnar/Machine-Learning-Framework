@@ -5,6 +5,7 @@ Creating Examples
 	-Enter how many Single number values you want (0,N) click okay
 	-Enter how many Coordinate Points you want (can be 1D-ND) (0, N) click okay
 	-Enter how many Text values you want (0, N) click okay
+	-For each Num you entered you can choose the Comparison Method (Difference or Polar)
 	-For each Coordinate Point you entered you can choose the Comparison Method (Euclidean or Difference)
 	-Format for your example is now set up
 	-Can click cancel or Exit to quit out of making the examples format
@@ -20,15 +21,18 @@ Creating Examples
 4- Calculate kNN
 	-Once the Example Format is created and the desired Training Examples and Testing Example are set up
 	-Click Example -> Calculate
-	**-Select the value of k for kNN 
-**5- Display Results 
-	**-Once Calculate is clicked it should display the results for the created example
+	-Select the value of k for kNN 
+5- Display Results 
+	-Once Calculate is clicked it should display the results for the created example
+	-Shows the average value of testvalue using all of the kNN
+	-Shows the kNN objects in order
 
 Tips:
 - Entering Data:
 	-Single numbers: $500,000 will be entered as 500000
 	-Coordinate: point (25, 20) will be entered as 25,20
 	-Text value: "new" will be entered as new
+	-The keyword "none" can be used to fill in fields as blanks	
 - Testing Example:
 	-When choosing the attribute you want to test for enter testvalue
 
@@ -38,7 +42,9 @@ Test Example (House):
 	-Enter 2 for the amount of Single number points (House sqrft and House price)
 	-Enter 1 for Coordinate Point (House Coordinate)
 	-Enter 1 for Text Value (House Age)
-	-Select Euclidean Comparison Method
+	-Select Difference Comparison Method (num 1)
+	-Select Difference Comparison Method (num 2)
+	-Select Euclidean Comparison Method (point)
 2- Create Training Houses:
 	-Create House1
 	-Click Example -> Add -> Training

@@ -106,6 +106,7 @@ public class KNNView extends JFrame implements Observer {
 			}
 			else if (s.equals("testing")) {
 				hasCreatedTraining = true;
+				create.setEnabled(false);
 				if (hasCreatedTesting)
 				{
 					calculate.setEnabled(true);
@@ -113,6 +114,7 @@ public class KNNView extends JFrame implements Observer {
 			}
 			else if (s.equals("training")) {
 				hasCreatedTesting = true;
+				create.setEnabled(false);
 				if (hasCreatedTraining) {
 					calculate.setEnabled(true);
 				}
