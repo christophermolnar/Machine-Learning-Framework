@@ -45,10 +45,10 @@ public class KNNView extends JFrame implements Observer {
 		JMenu addSubMenu = new JMenu("Add");
 		
 		edit = new JMenuItem("Edit");
-		edit.setEnabled(true); //@TODO set disabled unless jlist entry is selected
+		edit.setEnabled(false);
 		
 		calculate = new JMenuItem("Calculate");
-		calculate.setEnabled(false);
+		calculate.setEnabled(false); 
 		
 		errorCalculation = new JMenuItem("Error Calculation");
 		errorCalculation.setEnabled(false);
@@ -103,6 +103,7 @@ public class KNNView extends JFrame implements Observer {
 			if (s.equals("create")) {
 				training.setEnabled(true);
 				testing.setEnabled(true);
+				edit.setEnabled(true);
 			}
 			else if (s.equals("testing")) {
 				hasCreatedTraining = true;
