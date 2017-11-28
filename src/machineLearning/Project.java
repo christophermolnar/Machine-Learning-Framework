@@ -29,7 +29,7 @@ public class Project extends Observable{
 	public static final String NONE = "none";
 	private char testvalueType;
 	private String testvalueResult;
-	private boolean distanceMetric = false;
+	private boolean distanceMetric = true;
 	
 	//Create new Project
 	public Project()
@@ -190,9 +190,9 @@ public class Project extends Observable{
 							tester.addType(n);
 							if (isTestValue(input)){
 								testvalueType = 'n';
-//								if(pointChoice.get(i) instanceof CalculationDifference){
-//									distanceMetric = true;
-//								}
+								if(numChoice.get(i) instanceof CalculationDifference){
+									distanceMetric = false;
+								}
 							}
 						}
 						else{
@@ -218,7 +218,7 @@ public class Project extends Observable{
 								testvalueType = 'p';
 								System.out.println(pointChoice.get(i));
 								if(pointChoice.get(i) instanceof CalculationDifference){
-									distanceMetric = true;
+									distanceMetric = false;
 								}
 							}
 						}
@@ -489,18 +489,25 @@ public class Project extends Observable{
 			if (testvalueType == 'n'){
 				Double numberInput = Double.parseDouble(s);
 				Num realAnswer = new Num(numberInput);
+				System.out.println(testvalueResult);
 				numberInput  = Double.parseDouble(testvalueResult);
 				Num calculatedAnswer= new Num(numberInput);
+				if (distanceMetric)
+					realAnswer.setSelection(new CalculationPolar());
+				else
+					realAnswer.setSelection(new CalculationDifference());
 				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
 
 			}
 			else if (testvalueType == 'p'){
 				Point realAnswer = new Point(s);
-				Point calculatedAnswer = new Point(testvalueResult);
+				String result = testvalueResult.substring(testvalueResult.indexOf("(") + 1, testvalueResult.indexOf(")"));
+				System.out.println(result);
+				Point calculatedAnswer = new Point(result);
 				if (distanceMetric)
-					calculatedAnswer.setSelection(new CalculationEuclidean());
+					realAnswer.setSelection(new CalculationEuclidean());
 				else
-					calculatedAnswer.setSelection(new CalculationDifference());
+					realAnswer.setSelection(new CalculationDifference());
 				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
 
 			}
