@@ -472,6 +472,9 @@ public class Project extends Observable{
 	{
 		return list;
 	}
+	/**
+	 * Loads in all of the training data from the excel sheet
+	 */
 	public void soccerScenario()
 	{
 		Attribute n1, n2, n3, n4, n5, n6, n7, n8, n9;
