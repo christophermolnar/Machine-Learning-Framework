@@ -10,13 +10,14 @@ Solve New Problem:
 	*Need to allow the user to add blank/or nothing to attributes
 
 Error Calculation:
-	-Talk to prof/ta
-	-Can be like our first attempt at KNN
-	-Take the best one for each attribute and divide by total attributes or take the most common
-	
+	-Finish implementing this
+	-Need to save testvalue
+	-Then compare with user inputted value
+
 Extra & Clean Up:
+	-Clean up result display
 	-Add a Attribute that can contain Attributes (feature in a feature) 
 	-Work on cohesion and coupling
-	-Does the code smell?
+	-Does the code smell
 
 

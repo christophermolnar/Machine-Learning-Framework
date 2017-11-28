@@ -30,8 +30,8 @@ public class TestCalculationsWithTrainingExamples extends TestCase{
 		pointD2 = new Point("4,4", new CalculationDifference());
 		pointE1 = new Point("2,2", new CalculationEuclidean());
 		pointE2 = new Point("4,4", new CalculationEuclidean());
-		num1 = new Num(10);
-		num2 = new Num(20);
+		num1 = new Num(10, new CalculationDifference());
+		num2 = new Num(20, new CalculationDifference());
 		house1 = new Example();
 		house2 = new Example();
 		house1.addType(key1);
