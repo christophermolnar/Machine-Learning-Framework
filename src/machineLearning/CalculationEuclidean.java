@@ -38,7 +38,7 @@ public class CalculationEuclidean implements Calculation{
 				return round(dist, 4);
 			}
 		}
-		return -1.0; //Not known type
+		return -1.0; //Not a known type OR Type Mismatch, catching method will prompt error
 	}
 		
 	/** round()				Rounds a passed numerical value to a specified precision (d)

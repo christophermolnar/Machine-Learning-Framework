@@ -1,7 +1,5 @@
 package machineLearning;
 
-
-
 /** Attribute 		Uses Template Pattern to provide children classes with calculation features
  * 
  * @author MZGA

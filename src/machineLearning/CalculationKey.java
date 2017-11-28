@@ -4,7 +4,7 @@ package machineLearning;
 /** CalculationKey 			Calculates if two keys are equal
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA
- * @version 2.0
+ * @version 3.0
  *
  */
 public class CalculationKey implements Calculation{
@@ -20,10 +20,10 @@ public class CalculationKey implements Calculation{
 			Key key1 = (Key) a;
 			Key key2 = (Key) b;
 			if (key1.getWord().equals(key2.getWord())) {
-				return 0;
+				return 0; //Keys Match, distance of 0
 			}
 		}
-		return 1;
+		return 1.0; //Keys not matching, set distance of 1 
 		
 	}
 }

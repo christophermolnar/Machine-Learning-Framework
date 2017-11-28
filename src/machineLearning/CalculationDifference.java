@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /** CalculationDifference 	Calculates the difference between Two Attributes using their absolute phsyical distances
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA
- * @version 2.0
+ * @version 3.0
  *
  */
 public class CalculationDifference implements Calculation {
@@ -14,6 +14,7 @@ public class CalculationDifference implements Calculation {
 	 * @return distance		Difference between 2 Attributes
 	 */
 	public double calculate(Attribute a, Attribute b) {
+		//Calclate using Point metrics - Cast Attribute to Point class
 		if (a instanceof Point && b instanceof Point){
 			ArrayList<Double> A = ((Point)a).getNums();
 			ArrayList<Double> B = ((Point)b).getNums();
@@ -22,16 +23,15 @@ public class CalculationDifference implements Calculation {
 				System.out.print("Coordinate Dimensions Mismatch: ");
 				return -2.0; //Caught by caller
 			
-			} 
-			else { //Calculate the distance between two points by taking their absolute relative distance
+			} else { //Calculate the distance between two points by taking their absolute relative distance
 				Double dist = 0.0;
 				for(int i = 0; i < A.size(); i++){
 					dist = dist + Math.abs((A.get(i) - B.get(i)));
 				}
-				return round(dist, 4);
+				return round(dist, 4); 
 			}
-		}
-		else if (a instanceof Num && b instanceof Num){
+		//Calculate using Num metrics - Cast Attributes to Num
+		} else if (a instanceof Num && b instanceof Num){
 			double dist = 0.0;
 			Num A = ((Num) a);
 			Num B = ((Num) b);
@@ -39,7 +39,7 @@ public class CalculationDifference implements Calculation {
 			return round(dist, 4);
 			
 		}
-		return -1.0; //Not a known type, catching method will prompt error
+		return -1.0; //Not a known type OR Type Mismatch, catching method will prompt error
 	}
 	
 	/** round()				Rounds a passed numerical value to a specified precision (d)
