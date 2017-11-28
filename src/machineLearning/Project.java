@@ -25,6 +25,8 @@ public class Project extends Observable{
 	private Example testObject;
 	public static final String TESTVALUE = "testvalue";
 	public static final String NONE = "none";
+	private char testvalueType;
+	private String testvalueResult;
 	
 	//Create new Project
 	public Project()
@@ -151,6 +153,9 @@ public class Project extends Observable{
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
 							tester.addType(n);
+							if (isTestValue(input)){
+								testvalueType = 'n';
+							}
 						}
 						else{
 							numberInput = Double.parseDouble(input);
@@ -170,6 +175,9 @@ public class Project extends Observable{
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
 							tester.addType(n);
+							if (isTestValue(input)){
+								testvalueType = 'p';
+							}
 						}
 						else{
 							Point n = new Point(input);
@@ -187,6 +195,9 @@ public class Project extends Observable{
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
 							tester.addType(n);
+							if (isTestValue(input)){
+								testvalueType = 'k';
+							}
 						}
 						else{
 							Attribute n = new Key(input);
@@ -394,6 +405,10 @@ public class Project extends Observable{
 					//if all the values are correct
 					t = testing.getValueAtIndex(indexOfTestValue);
 					s = t.calculateTestValue(closestK, indexOfTestValue);
+					
+					// Save the testValueResult
+					setTestValueResult(s);				
+					
 					s += "Closest Objects:"; 
 					for (int i = 0; i < closestK.length; i++)
 					{
@@ -414,13 +429,41 @@ public class Project extends Observable{
 		} catch(NumberFormatException e){	
 		}
 	}
+	/*
+	 * Set the testvalue result
+	 */
+	public void setTestValueResult(String result){
+		String[] newAttribute = result.split("= ");
+		testvalueResult = newAttribute[newAttribute.length -1];
+	}
 	
 	public void errorCalculation(){
 		String s = JOptionPane.showInputDialog("Enter the expected value for the testvalue: ");
 		if(s != null){ //'OK' clicked
-			System.out.println("Calculating");
+			double errorCalculationResult; 
+			if (testvalueType == 'n'){
+				Double numberInput = Double.parseDouble(s);
+				Num realAnswer = new Num(numberInput);
+				numberInput  = Double.parseDouble(testvalueResult);
+				Num calculatedAnswer= new Num(numberInput);
+				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
+
+			}
+			else if (testvalueType == 'p'){
+				Point realAnswer = new Point(s);
+				Point calculatedAnswer = new Point(testvalueResult);
+				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
+
+			}
+			else{
+				Key realAnswer = new Key(s);
+				Key calculatedAnswer = new Key(testvalueResult);
+				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
+			}
+			JOptionPane.showMessageDialog(null, "Calculated Answer: " + testvalueResult + "\n" + "Expected Answer: " + s + "\n" + "The calculated error is: " + errorCalculationResult, "Calculated Error", JOptionPane.YES_OPTION);
+			
 		} 
-		System.out.println("Error Calculation");
+		
 	}
 	
 	public DefaultListModel<Example> getList()
