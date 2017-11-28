@@ -5,9 +5,6 @@ Scoring:
 	-Take all distances and divide by MAX
 	-This will make everything between 0 and 1
 
-Geoff:
-	-Finishing with the Polar Coordinates
-
 Solve New Problem:
 	-Soccer Problem
 	*Need to allow the user to add blank/or nothing to attributes
