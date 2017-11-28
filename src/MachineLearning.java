@@ -7,6 +7,8 @@ public class MachineLearning {
 		Project p = new Project();
 		KNNView v = new KNNView(p.getList());
 		KNNController c = new KNNController(v, p);
-		p.soccerScenario();
+		
+		//UNCOMMENT TO AUTO FILL SOCCOR DATA
+		//p.soccerScenario();
 	}
 }
