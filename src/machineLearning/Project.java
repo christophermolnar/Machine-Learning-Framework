@@ -27,6 +27,7 @@ public class Project extends Observable{
 	public static final String NONE = "none";
 	private char testvalueType;
 	private String testvalueResult;
+	private boolean distanceMetric = false;
 	
 	//Create new Project
 	public Project()
@@ -155,6 +156,9 @@ public class Project extends Observable{
 							tester.addType(n);
 							if (isTestValue(input)){
 								testvalueType = 'n';
+//								if(pointChoice.get(i) instanceof CalculationDifference){
+//									distanceMetric = true;
+//								}
 							}
 						}
 						else{
@@ -177,6 +181,10 @@ public class Project extends Observable{
 							tester.addType(n);
 							if (isTestValue(input)){
 								testvalueType = 'p';
+								System.out.println(pointChoice.get(i));
+								if(pointChoice.get(i) instanceof CalculationDifference){
+									distanceMetric = true;
+								}
 							}
 						}
 						else{
@@ -452,6 +460,10 @@ public class Project extends Observable{
 			else if (testvalueType == 'p'){
 				Point realAnswer = new Point(s);
 				Point calculatedAnswer = new Point(testvalueResult);
+				if (distanceMetric)
+					calculatedAnswer.setSelection(new CalculationEuclidean());
+				else
+					calculatedAnswer.setSelection(new CalculationDifference());
 				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
 
 			}
@@ -460,7 +472,7 @@ public class Project extends Observable{
 				Key calculatedAnswer = new Key(testvalueResult);
 				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
 			}
-			JOptionPane.showMessageDialog(null, "Calculated Answer: " + testvalueResult + "\n" + "Expected Answer: " + s + "\n" + "The calculated error is: " + errorCalculationResult, "Calculated Error", JOptionPane.YES_OPTION);
+			JOptionPane.showMessageDialog(null, "Calculated Answer: " + testvalueResult + "\n" + "Expected Answer: " + s + "\n" + "The calculated error is: " + errorCalculationResult, "Calculated Error", JOptionPane.PLAIN_MESSAGE);
 			
 		} 
 		
