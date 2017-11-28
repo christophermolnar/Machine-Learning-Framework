@@ -27,6 +27,7 @@ public class Project extends Observable{
 	private Example testObject;
 	public static final String TESTVALUE = "testvalue";
 	public static final String NONE = "none";
+	private boolean exampleAdded;
 	
 	//Create new Project
 	public Project()
@@ -35,6 +36,7 @@ public class Project extends Observable{
 		numChoice = new ArrayList<>();
 		list = new DefaultListModel<>();
 		examples = new ArrayList<>();
+		exampleAdded = false;
 	}
 	
 	/** create() 		create the format for example
@@ -244,6 +246,7 @@ public class Project extends Observable{
 				list.addElement(tester);
 				examples.add(tester);
 				tester.setTestingObject(true);
+				exampleAdded = true;
 				setChanged();
 				notifyObservers("testing");
 				//DONT ALLOW THEM TO ADD ANY MORE TESTING EXAMPLES
@@ -261,7 +264,7 @@ public class Project extends Observable{
 		String input;
 		double numberInput;
 		
-		createTrainer: { //Subroutine??
+		createTrainer: {
 			
 			training = new Example();
 			try {
@@ -325,6 +328,7 @@ public class Project extends Observable{
 			}	
 			
 			//Add training Example to the list
+			exampleAdded = true;
 			list.addElement(training);
 			examples.add(training);
 			setChanged();
@@ -458,6 +462,10 @@ public class Project extends Observable{
 			System.out.println("Calculating");
 		} 
 		System.out.println("Error Calculation");
+	}
+	
+	public boolean exampleIsAdded(){
+		return exampleAdded;
 	}
 	
 	public DefaultListModel<Example> getList()
