@@ -177,7 +177,7 @@ public class Project extends Observable{
 		String input;
 		double numberInput;
 		
-		createTester: { //Subroutine??
+		createTester: {
 			
 			tester = new Example();
 			try {
@@ -471,6 +471,8 @@ public class Project extends Observable{
 	{
 		return list;
 	}
+	
+	
 	/**
 	 * Loads in all of the training data from the excel sheet
 	 */
