@@ -1,17 +1,12 @@
 package machineLearning;
-
-
 import java.util.ArrayList;
-
-
 /** CalculationDifference 	Calculates the difference between Two Attributes using their absolute phsyical distances
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA
  * @version 2.0
  *
  */
-public class CalculationDifference implements Calculation{
-
+public class CalculationDifference implements Calculation {
 	/** calculate()			Responsible comparing 2 Attributes (Of same type [ie. Points]) from different examples
 	 * 
 	 * @param a				First Attribute to compare
@@ -28,7 +23,7 @@ public class CalculationDifference implements Calculation{
 				return -2.0; //Caught by caller
 			
 			} 
-			else { //Calculate the distance between two points by taking their absolute realitive distance
+			else { //Calculate the distance between two points by taking their absolute relative distance
 				Double dist = 0.0;
 				for(int i = 0; i < A.size(); i++){
 					dist = dist + Math.abs((A.get(i) - B.get(i)));
@@ -37,11 +32,12 @@ public class CalculationDifference implements Calculation{
 			}
 		}
 		else if (a instanceof Num && b instanceof Num){
-			Double dist = 0.0;
+			double dist = 0.0;
 			Num A = ((Num) a);
 			Num B = ((Num) b);
 			dist = Math.abs(A.getNum() - B.getNum());
 			return round(dist, 4);
+			
 		}
 		return -1.0; //Not a known type, catching method will prompt error
 	}

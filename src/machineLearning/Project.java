@@ -18,8 +18,8 @@ public class Project extends Observable{
 	private String[] optionsPoint = {"Euclidean", "Difference"};
 	private String[] optionsNum = {"Difference", "Polar"};
 	private DefaultListModel<Example> list;
-	private int numOfNumbers, numOfPoints, numOfEnums;
-	private int tempNum, tempPoint, tempEnum;
+	private int numOfNumbers, numOfPoints, numOfKeys;
+	private int tempNum, tempPoint, tempKey;
 	private int indexOfTestValue;
 	private ArrayList<Calculation> pointChoice;
 	private ArrayList<Calculation> numChoice;
@@ -71,7 +71,7 @@ public class Project extends Observable{
 				
 				s = JOptionPane.showInputDialog("How many 'Text' values do you have");
 				if(s != null){ //'OK' clicked
-					tempEnum = Integer.parseInt(s);
+					tempKey = Integer.parseInt(s);
 				} 
 				else { //'Cancel' Clicked
 					isCorrect = false;
@@ -115,7 +115,7 @@ public class Project extends Observable{
 				if(isCorrect){
 					numOfNumbers=tempNum;
 					numOfPoints=tempPoint;
-					numOfEnums=tempEnum;
+					numOfKeys=tempKey;
 				}
 			}catch (NumberFormatException e){
 				isCorrect = false;
@@ -186,13 +186,13 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
-							tester.addType(n);
+							tester.addAttribute(n);
 						}
 						else{
 							numberInput = Double.parseDouble(input);
 							Num n = new Num(numberInput);
 							n.setSelection(numChoice.get(i));
-							tester.addType(n);
+							tester.addAttribute(n);
 						}
 					}
 					else { //'Cancel' Clicked
@@ -206,35 +206,34 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
-							tester.addType(n);
+							tester.addAttribute(n);
 						}
 						else{
 							Point n = new Point(input);
 							n.setSelection(pointChoice.get(i));
-							tester.addType(n);
+							tester.addAttribute(n);
 						};
 					} else { //'Cancel' Clicked
 						break createTester;
 					}
 				} 
 
-				for (int i = 0; i < numOfEnums; i++) {
+				for (int i = 0; i < numOfKeys; i++) {
 					input = JOptionPane.showInputDialog("Please input enum value");
 					if (input != null){ //Something Entered --> 'OK' clicked
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
-							tester.addType(n);
+							tester.addAttribute(n);
 						}
 						else{
 							Attribute n = new Key(input);
-							tester.addType(n);
+							tester.addAttribute(n);
 						}
 					}
 					else{ //'Cancel' clicked
 						break createTester;
 					}
 				} 
-
 			} 
 			catch(Exception e){
 				InvalidInputMessage("Input is invalid");
@@ -273,13 +272,13 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isNoneValue(input)){ //Check to see if none was entered
 							Attribute n = new Key(input.toLowerCase());
-							training.addType(n);
+							training.addAttribute(n);
 						}
 						else{
 							numberInput = Double.parseDouble(input);
 							Num n = new Num(numberInput);
 							n.setSelection(numChoice.get(i));
-							training.addType(n);
+							training.addAttribute(n);
 						}
 					}
 					else { //'Cancel' Clicked
@@ -293,28 +292,28 @@ public class Project extends Observable{
 					if (input != null) { //'OK' clicked
 						if (isNoneValue(input)){ //Check to see if none was entered
 							Attribute n = new Key(input.toLowerCase());
-							training.addType(n);
+							training.addAttribute(n);
 						}
 						else{
 							Point n = new Point(input);
 							n.setSelection(pointChoice.get(i));
-							training.addType(n);
+							training.addAttribute(n);
 						};
 					} else { //'Cancel' Clicked
 						break createTrainer;
 					}
 				} 
 
-				for (int i = 0; i < numOfEnums; i++) {
+				for (int i = 0; i < numOfKeys; i++) {
 					input = JOptionPane.showInputDialog("Please input enum value");
 					if (input != null){ //Something Entered --> 'OK' clicked
 						if (isNoneValue(input)){ //Check to see if none was entered
 							Attribute n = new Key(input.toLowerCase());
-							training.addType(n);
+							training.addAttribute(n);
 						}
 						else{
 							Attribute n = new Key(input);
-							training.addType(n);
+							training.addAttribute(n);
 						}
 					}
 					else{ //'Cancel' clicked
@@ -361,21 +360,21 @@ public class Project extends Observable{
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
+								updatedData.addAttribute(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
 								
 							}else if(currentData.get(index) instanceof Point){
 								curr = (((Point) currentData.get(index)).getCoords());
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Point(s, ((Point) currentData.get(index)).getCalcType()));
+								updatedData.addAttribute(new Point(s, ((Point) currentData.get(index)).getCalcType()));
 							
 							} else { //instanceof Key
 								curr = ((Key)currentData.get(index)).getWord();
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Key(s));
+								updatedData.addAttribute(new Key(s));
 							}
 						}catch(Exception e){
 								//isCorrect = false; //No longer needed, reprompts errored value
