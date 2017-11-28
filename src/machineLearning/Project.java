@@ -15,12 +15,14 @@ import userInterface.KNNView;
  *
  */
 public class Project extends Observable{
-	private String[] options = {"Euclidean", "Difference"};
+	private String[] optionsPoint = {"Euclidean", "Difference"};
+	private String[] optionsNum = {"Difference", "Polar"};
 	private DefaultListModel<Example> list;
 	private int numOfNumbers, numOfPoints, numOfEnums;
 	private int tempNum, tempPoint, tempEnum;
 	private int indexOfTestValue;
 	private ArrayList<Calculation> pointChoice;
+	private ArrayList<Calculation> numChoice;
 	private ArrayList<Example> examples;
 	private Example testObject;
 	public static final String TESTVALUE = "testvalue";
@@ -33,6 +35,7 @@ public class Project extends Observable{
 	public Project()
 	{
 		pointChoice = new ArrayList<>();
+		numChoice = new ArrayList<>();
 		list = new DefaultListModel<>();
 		examples = new ArrayList<>();
 	}
@@ -77,12 +80,12 @@ public class Project extends Observable{
 				}
 				
 				for (int i = 0; i < tempPoint; i++) {
-					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Point " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, options, null);
+					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Point " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, optionsPoint, null);
 					if (index != -1){
-						if (options[index].equals("Euclidean")) {
+						if (optionsPoint[index].equals("Euclidean")) {
 							pointChoice.add(new CalculationEuclidean());
 						} 
-						else if (options[index].equals("Difference")){
+						else if (optionsPoint[index].equals("Difference")){
 							pointChoice.add(new CalculationDifference());
 						}
 					}
@@ -92,6 +95,24 @@ public class Project extends Observable{
 						break outerloop;
 					}
 				}
+				
+				for (int i = 0; i < tempNum; i++) {
+					int index = JOptionPane.showOptionDialog(null, "Please pick a comparison metric for 'Num " + (i + 1) + "'", "title", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null, optionsNum, null);
+					if (index != -1){
+						if (optionsNum[index].equals("Polar")) {
+							numChoice.add(new CalculationPolar());
+						} 
+						else if (optionsNum[index].equals("Difference")){
+							numChoice.add(new CalculationDifference());
+						}
+					}
+					else {
+						//pointChoice.add(new CalculationDifference());
+						isCorrect = false;
+						break outerloop;
+					}
+				}
+				
 				if(isCorrect){
 					numOfNumbers=tempNum;
 					numOfPoints=tempPoint;
@@ -138,6 +159,19 @@ public class Project extends Observable{
 		JOptionPane.showMessageDialog(null, message, "Input Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	private int getTestValuePosition(Example testingExample){
+		ArrayList<Attribute> testingExampleArray = testingExample.getData();
+		for (int position = 0; position < testingExampleArray.size(); position++){
+			if (testingExampleArray.get(position) instanceof Key){
+				Key value = ((Key)testingExampleArray.get(position));
+				if (isTestValue(value.getVal())){
+					return position;
+				}
+			}
+		}
+		return 0;
+	}
+	
 	
 	public void testing(){
 		Example tester;	
@@ -164,6 +198,7 @@ public class Project extends Observable{
 						else{
 							numberInput = Double.parseDouble(input);
 							Num n = new Num(numberInput);
+							n.setSelection(numChoice.get(i));
 							tester.addType(n);
 						}
 					}
@@ -224,6 +259,7 @@ public class Project extends Observable{
 			}	
 			
 			if (checkForTestValue(tester)) { //Check to see if the user entered everything properly
+				indexOfTestValue = getTestValuePosition(tester);
 				list.addElement(tester);
 				examples.add(tester);
 				tester.setTestingObject(true);
@@ -258,6 +294,7 @@ public class Project extends Observable{
 						else{
 							numberInput = Double.parseDouble(input);
 							Num n = new Num(numberInput);
+							n.setSelection(numChoice.get(i));
 							training.addType(n);
 						}
 					}
@@ -339,7 +376,7 @@ public class Project extends Observable{
 								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
 								if(s==null)
 									break outerloop; //Cancel Pressed
-								updatedData.addType(new Num(Double.parseDouble(s)));
+								updatedData.addType(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
 								
 							}else if(currentData.get(index) instanceof Point){
 								curr = (((Point) currentData.get(index)).getCoords());
