@@ -16,7 +16,7 @@ import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JTextArea;
 import javax.swing.JList;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -30,14 +30,14 @@ public class KNNView extends JFrame implements Observer {
 	private JMenuItem  create, edit, calculate, testing, training, errorCalculation;
 	private JPanel input, output;
 	private JList<Example> list;
-	private JLabel outputText;
+	private JTextArea outputText;
 	private boolean hasCreatedTraining, hasCreatedTesting;
 	
 	public KNNView(DefaultListModel<Example> m) {
 		super("KNN");
 		hasCreatedTraining = false;
 		hasCreatedTesting = false;
-		outputText = new JLabel();
+		outputText = new JTextArea();
 		list = new JList<>(m);
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
@@ -82,8 +82,8 @@ public class KNNView extends JFrame implements Observer {
 		input = new JPanel();
 		input.setLayout(new FlowLayout(FlowLayout.LEFT, 0, 0));
   		output = new JPanel();
-		output.setPreferredSize(new Dimension(800,0));
-		output.setPreferredSize(new Dimension(800,-200));
+  		input.setPreferredSize(new Dimension(800,400));
+		output.setPreferredSize(new Dimension(800,200));
   		output.setBorder(BorderFactory.createTitledBorder("Output"));
   		add(input);
   		add(output);
