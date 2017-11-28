@@ -27,6 +27,9 @@ public class Project extends Observable{
 	private Example testObject;
 	public static final String TESTVALUE = "testvalue";
 	public static final String NONE = "none";
+	private char testvalueType;
+	private String testvalueResult;
+	private boolean distanceMetric = true;
 	private boolean exampleAdded;
 	
 	//Create new Project
@@ -434,7 +437,12 @@ public class Project extends Observable{
 					//if all the values are correct
 					t = testing.getValueAtIndex(indexOfTestValue);
 					s = t.calculateTestValue(closestK, indexOfTestValue);
+					
+					// Save the testValueResult
+					setTestValueResult(s);				
+          
 					s += "\nClosest Objects:\n"; 
+
 					for (int i = 0; i < closestK.length; i++)
 					{
 						s += closestK[i];
@@ -454,13 +462,52 @@ public class Project extends Observable{
 		} catch(NumberFormatException e){	
 		}
 	}
+	/*
+	 * Set the testvalue result
+	 */
+	public void setTestValueResult(String result){
+		String[] newAttribute = result.split("= ");
+		testvalueResult = newAttribute[newAttribute.length -1];
+	}
 	
 	public void errorCalculation(){
 		String s = JOptionPane.showInputDialog("Enter the expected value for the testvalue: ");
 		if(s != null){ //'OK' clicked
-			System.out.println("Calculating");
+			double errorCalculationResult; 
+			if (testvalueType == 'n'){
+				Double numberInput = Double.parseDouble(s);
+				Num realAnswer = new Num(numberInput);
+				System.out.println(testvalueResult);
+				numberInput  = Double.parseDouble(testvalueResult);
+				Num calculatedAnswer= new Num(numberInput);
+				if (distanceMetric)
+					realAnswer.setSelection(new CalculationPolar());
+				else
+					realAnswer.setSelection(new CalculationDifference());
+				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
+
+			}
+			else if (testvalueType == 'p'){
+				Point realAnswer = new Point(s);
+				String result = testvalueResult.substring(testvalueResult.indexOf("(") + 1, testvalueResult.indexOf(")"));
+				System.out.println(result);
+				Point calculatedAnswer = new Point(result);
+				if (distanceMetric)
+					realAnswer.setSelection(new CalculationEuclidean());
+				else
+					realAnswer.setSelection(new CalculationDifference());
+				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
+
+			}
+			else{
+				Key realAnswer = new Key(s);
+				Key calculatedAnswer = new Key(testvalueResult);
+				errorCalculationResult = realAnswer.getDistance(calculatedAnswer);
+			}
+			JOptionPane.showMessageDialog(null, "Calculated Answer: " + testvalueResult + "\n" + "Expected Answer: " + s + "\n" + "The calculated error is: " + errorCalculationResult, "Calculated Error", JOptionPane.PLAIN_MESSAGE);
+			
 		} 
-		System.out.println("Error Calculation");
+		
 	}
 	
 	public boolean exampleIsAdded(){
