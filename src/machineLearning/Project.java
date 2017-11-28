@@ -190,6 +190,9 @@ public class Project extends Observable{
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
 							tester.addAttribute(n);
+							if (isTestValue(input)){
+								testvalueType = 'n';
+							}
 						}
 						else{
 							numberInput = Double.parseDouble(input);
@@ -210,6 +213,9 @@ public class Project extends Observable{
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
 							tester.addAttribute(n);
+							if (isTestValue(input)){
+								testvalueType = 'p';
+							}
 						}
 						else{
 							Point n = new Point(input);
@@ -227,6 +233,9 @@ public class Project extends Observable{
 						if (isTestValue(input) || isNoneValue(input)){ //Check to see if testvalue or none was entered
 							Attribute n = new Key(input.toLowerCase());
 							tester.addAttribute(n);
+							if (isTestValue(input)){
+								testvalueType = 'k';
+							}
 						}
 						else{
 							Attribute n = new Key(input);
