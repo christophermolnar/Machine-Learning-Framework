@@ -1,7 +1,19 @@
 
 Updated Objectives:
+	
+Error Calculation:
+	-We are suppose to be able to output the average error of a set of testing data
+	-We should discuss this amongst ourselves and maybe with a ta or Babek is we need more calrification
+	
+Project:
+	-Refactor Project into KNNModel
+	-Fix the if-else statements in edit
+	
+TA Comments:
+	-Remove find kNN from example and move it to model or give it its own kNN class
+	-We must document better (suggests javadoc)
 
-Scoring: 
+Scoring: * Optional
 	-Take all distances and divide by MAX
 	-This will make everything between 0 and 1
 
