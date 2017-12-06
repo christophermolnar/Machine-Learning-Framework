@@ -28,6 +28,7 @@ import machineLearning.Example;
 public class KNNView extends JFrame implements Observer {
 	
 	private JMenuItem  create, edit, calculate, testing, training, errorCalculation;
+	private JMenuItem in, out;
 	private JPanel input, output;
 	private JList<Example> list;
 	private JTextArea outputText;
@@ -41,9 +42,12 @@ public class KNNView extends JFrame implements Observer {
 		list = new JList<>(m);
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
+		JMenu menuFile = new JMenu("File");
 		create = new JMenuItem("Create");
 		JMenu addSubMenu = new JMenu("Add");
-		
+		in = new JMenuItem("Import");
+		out = new JMenuItem("Export");
+
 		edit = new JMenuItem("Edit");
 		edit.setEnabled(false);
 		
@@ -66,7 +70,11 @@ public class KNNView extends JFrame implements Observer {
 		menuCreate.add(calculate);
 		menuCreate.add(errorCalculation);
 		
+		menuFile.add(in);
+		menuFile.add(out);
+		
 		menuBar.add(menuCreate);
+		menuBar.add(menuFile);
 		setJMenuBar(menuBar);
 		setLayout (new BoxLayout(getContentPane(), BoxLayout.Y_AXIS)); 
 		setSize(800,800);
@@ -162,5 +170,11 @@ public class KNNView extends JFrame implements Observer {
 	}
 	public void setErrorCalculationActionListener(ActionListener a) {
 		errorCalculation.addActionListener(a);
+	}
+	public void setImportActionListener(ActionListener a) {
+		in.addActionListener(a);
+	}
+	public void setExportActionListener(ActionListener a) {
+		out.addActionListener(a);
 	}
 }

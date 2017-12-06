@@ -30,6 +30,8 @@ public class KNNController {
 		v.setEditActionListener(new edit());
 		v.setCalculateActionListener(new calculate());
 		v.setErrorCalculationActionListener(new errorCalculation());
+		v.setImportActionListener(new In());
+		v.setExportActionListener(new Out());
 	}
 	class create implements ActionListener{
 		public void actionPerformed(ActionEvent e)
@@ -69,6 +71,18 @@ public class KNNController {
 		public void actionPerformed(ActionEvent e)
 		{
 			p.errorCalculation();
+		}
+	}
+	class In implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("In");
+		}
+	}
+	class Out implements ActionListener{
+		public void actionPerformed(ActionEvent e)
+		{
+			System.out.println("Out");
 		}
 	}
 }
