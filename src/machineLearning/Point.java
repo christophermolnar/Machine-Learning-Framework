@@ -78,6 +78,10 @@ public class Point extends Attribute{
 		coords = coords + nums.get(nums.size()-1);
 		return coords;
 	}
+	public String getStringVal()
+	{
+		return this.getCoords();
+	}
 	
 	/** getCalcType					Getter for calcType
 	 * 

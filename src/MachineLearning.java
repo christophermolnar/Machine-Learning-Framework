@@ -11,4 +11,8 @@ public class MachineLearning {
 		//UNCOMMENT TO AUTO FILL SOCCOR DATA
 		//p.soccerScenario();
 	}
+	public static void importProject(Project p)
+	{
+		
+	}
 }

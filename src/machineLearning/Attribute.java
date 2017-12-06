@@ -34,4 +34,5 @@ public abstract class Attribute {
 	 */
 	abstract double getDistance(Attribute compare);
 	abstract String calculateTestValue(Example[] closestK, int index); 
+	abstract String getStringVal();
 }

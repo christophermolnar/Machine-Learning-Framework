@@ -372,25 +372,17 @@ public class Project extends Observable implements Serializable{
 				isCorrect = true;
 					for(int index=0; index<currentData.size(); index++){
 						try {
+							curr = currentData.get(index).getStringVal();
+							s = JOptionPane.showInputDialog("Modify the selected value?", curr);
+							if (s == null) 
+							{
+								break outerloop;
+							}
 							if (currentData.get(index) instanceof Num){
-								curr = Double.toString((((Num) currentData.get(index)).getNum()));
-								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-								if(s==null)
-									break outerloop; //Cancel Pressed
 								updatedData.addAttribute(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
-								
 							}else if(currentData.get(index) instanceof Point){
-								curr = (((Point) currentData.get(index)).getCoords());
-								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-								if(s==null)
-									break outerloop; //Cancel Pressed
 								updatedData.addAttribute(new Point(s, ((Point) currentData.get(index)).getCalcType()));
-							
 							} else { //instanceof Key
-								curr = ((Key)currentData.get(index)).getWord();
-								s = JOptionPane.showInputDialog("Modify the selected value?", curr);
-								if(s==null)
-									break outerloop; //Cancel Pressed
 								updatedData.addAttribute(new Key(s));
 							}
 						}catch(Exception e){

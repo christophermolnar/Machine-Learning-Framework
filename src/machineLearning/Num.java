@@ -93,5 +93,8 @@ public class Num extends Attribute{
 		}
 		return "Testvalue = " + val + " ";
 	}
-	
+	public String getStringVal()
+	{
+		return Double.toString(num);
+	}
 }
