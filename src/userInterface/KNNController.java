@@ -76,13 +76,13 @@ public class KNNController {
 	class In implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("In");
+			p.in();
 		}
 	}
 	class Out implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			System.out.println("Out");
+			p.out();
 		}
 	}
 }

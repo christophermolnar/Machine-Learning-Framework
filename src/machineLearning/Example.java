@@ -1,7 +1,7 @@
 package machineLearning;
 
 import java.util.ArrayList;
-
+import java.io.Serializable;
 
 /** Example 	Represents a physical entity with Attributes
  * 
@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * @version 3.0
  *
  */
-public class Example {
+public class Example implements Serializable{
 	
 	private ArrayList<Attribute> data;
 	private boolean isTestingObject; //Checks to see if a 'unknown' varaible has been enetered into the system

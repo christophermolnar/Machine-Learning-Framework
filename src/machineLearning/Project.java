@@ -1,11 +1,16 @@
 package machineLearning;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Observable;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
-
+import java.io.Serializable;
 import userInterface.KNNController;
 import userInterface.KNNView;
 /** Project			Main class, responsible for testing
@@ -14,7 +19,7 @@ import userInterface.KNNView;
  * @version 2.0	
  *
  */
-public class Project extends Observable{
+public class Project extends Observable implements Serializable{
 	private String[] optionsPoint = {"Euclidean", "Difference"};
 	private String[] optionsNum = {"Difference", "Polar"};
 	private DefaultListModel<Example> list;
@@ -526,6 +531,28 @@ public class Project extends Observable{
 	public DefaultListModel<Example> getList()
 	{
 		return list;
+	}
+	public void in()
+	{
+		try {
+			FileInputStream streamIn = new FileInputStream("file.txt");
+			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
+			Project importedProject = (Project) objectinputstream.readObject();
+		 } catch (Exception e) {
+
+		 }
+	}
+	public void out()
+	{
+		try
+		{
+			FileOutputStream fout = new FileOutputStream("project.txt");
+			ObjectOutputStream oos = new ObjectOutputStream(fout);
+			oos.writeObject(this);
+			JOptionPane.showMessageDialog(null, "Export Successful!", "Export Review", JOptionPane.PLAIN_MESSAGE);
+		} catch(IOException e){
+			
+		}
 	}
 	
 	
