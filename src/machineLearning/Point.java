@@ -1,4 +1,5 @@
 package machineLearning;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -8,8 +9,12 @@ import java.util.ArrayList;
  * @version 3.0
  *
  */
-public class Point extends Attribute{
+public class Point extends Attribute implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Double> nums;
 	
 	//Convert user entry to List of points 

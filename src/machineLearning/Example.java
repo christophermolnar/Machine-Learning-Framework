@@ -11,6 +11,10 @@ import java.io.Serializable;
  */
 public class Example implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<Attribute> data;
 	private boolean isTestingObject; //Checks to see if a 'unknown' varaible has been enetered into the system
 	
