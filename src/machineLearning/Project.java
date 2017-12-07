@@ -527,7 +527,7 @@ public class Project extends Observable implements Serializable{
 	public void in()
 	{
 		try {
-			FileInputStream streamIn = new FileInputStream("file.txt");
+			FileInputStream streamIn = new FileInputStream("project.txt");
 			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
 			Project importedProject = (Project) objectinputstream.readObject();
 		 } catch (Exception e) {
@@ -543,7 +543,7 @@ public class Project extends Observable implements Serializable{
 			oos.writeObject(this);
 			JOptionPane.showMessageDialog(null, "Export Successful!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 		} catch(IOException e){
-			
+			JOptionPane.showMessageDialog(null, "Export Failed!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 		}
 	}
 	
