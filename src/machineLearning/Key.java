@@ -1,5 +1,6 @@
 package machineLearning;
 
+import java.io.Serializable;
 
 /** Key 				Responsible for managing instances of String attributes
  * 
@@ -7,7 +8,11 @@ package machineLearning;
  * @version 2.0
  *
  */
-public class Key extends Attribute{
+public class Key extends Attribute implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String word;
 	
 	//Create new Key

@@ -1,12 +1,18 @@
 package machineLearning;
 
+import java.io.Serializable;
+
 /** Attribute 		Uses Template Pattern to provide children classes with calculation features
  * 
  * @author MZGA
  * @version 3.0
  *
  */ 
-public abstract class Attribute {
+public abstract class Attribute implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	//Type of calculation to use when comparing, either 'Euclidean' or 'Difference'
 	protected Calculation distanceSelection;
 	

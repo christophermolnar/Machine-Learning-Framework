@@ -1,5 +1,6 @@
 package machineLearning;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -9,8 +10,12 @@ import java.util.ArrayList;
  * @version 3.0
  *
  */
-public class Num extends Attribute{
+public class Num extends Attribute implements Serializable{
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double num;
 	
 	

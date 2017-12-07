@@ -10,6 +10,8 @@ package userInterface;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import machineLearning.Example;
 import machineLearning.Project;
 
@@ -76,13 +78,15 @@ public class KNNController {
 	class In implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			p.in();
+			String s = JOptionPane.showInputDialog("Please enter the name of the requested file: (ie. sample.ser)");
+			p.in(s);
 		}
 	}
 	class Out implements ActionListener{
 		public void actionPerformed(ActionEvent e)
 		{
-			p.out();
+			String s = JOptionPane.showInputDialog("Please enter a name for output: (ie sample.ser)");
+			p.out(s);
 		}
 	}
 }

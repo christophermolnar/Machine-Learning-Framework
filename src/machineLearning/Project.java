@@ -20,6 +20,10 @@ import userInterface.KNNView;
  *
  */
 public class Project extends Observable implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String[] optionsPoint = {"Euclidean", "Difference"};
 	private String[] optionsNum = {"Difference", "Polar"};
 	private DefaultListModel<Example> list;
@@ -524,21 +528,21 @@ public class Project extends Observable implements Serializable{
 	{
 		return list;
 	}
-	public void in()
+	public void in(String filename)
 	{
 		try {
-			FileInputStream streamIn = new FileInputStream("project.txt");
+			FileInputStream streamIn = new FileInputStream(filename);
 			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
 			Project importedProject = (Project) objectinputstream.readObject();
 		 } catch (Exception e) {
 
 		 }
 	}
-	public void out()
+	public void out(String filename)
 	{
 		try
 		{
-			FileOutputStream fout = new FileOutputStream("project.txt");
+			FileOutputStream fout = new FileOutputStream(filename);
 			ObjectOutputStream oos = new ObjectOutputStream(fout);
 			oos.writeObject(this);
 			JOptionPane.showMessageDialog(null, "Export Successful!", "Export Review", JOptionPane.PLAIN_MESSAGE);
