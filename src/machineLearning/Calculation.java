@@ -1,5 +1,5 @@
 package machineLearning;
-
+import java.io.Serializable;
 
 /** Calculation 	//INTERFACE// Uses Strategy Pattern to provide multiple methods to compare
  * 
@@ -7,7 +7,7 @@ package machineLearning;
  * @version 3.0
  *
  */
-public interface Calculation {
+public interface Calculation extends Serializable{
 	
 	/** calculate()			Responsible comparing 2 Attributes (Of same type [ie. Points]) from different objects
 	 * 
