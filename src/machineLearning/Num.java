@@ -102,4 +102,8 @@ public class Num extends Attribute implements Serializable{
 	{
 		return Double.toString(num);
 	}
+	public Attribute editedObject(String s)
+	{
+		return new Num(Double.parseDouble(s), distanceSelection);
+	}
 }

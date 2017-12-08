@@ -382,13 +382,7 @@ public class Project extends Observable implements Serializable{
 							{
 								break outerloop;
 							}
-							if (currentData.get(index) instanceof Num){
-								updatedData.addAttribute(new Num(Double.parseDouble(s), ((Num) currentData.get(index)).getSelection()));
-							}else if(currentData.get(index) instanceof Point){
-								updatedData.addAttribute(new Point(s, ((Point) currentData.get(index)).getCalcType()));
-							} else { //instanceof Key
-								updatedData.addAttribute(new Key(s));
-							}
+							updatedData.addAttribute(currentData.get(index).editedObject(s));
 						}catch(Exception e){
 								//isCorrect = false; //No longer needed, reprompts errored value
 								JOptionPane.showMessageDialog(null, "Input is invalid", "Input Error", JOptionPane.ERROR_MESSAGE);

@@ -146,5 +146,9 @@ public class Point extends Attribute implements Serializable{
 		result += ")";
 		return result;
 	}
+	public Attribute editedObject(String s)
+	{
+		return new Point(s, distanceSelection);
+	}
 }
 

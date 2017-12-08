@@ -60,4 +60,8 @@ public class Key extends Attribute implements Serializable{
 	{
 		return word;
 	}
+	public Attribute editedObject(String s)
+	{
+		return new Key(s);
+	}
 }

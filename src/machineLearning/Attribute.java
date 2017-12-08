@@ -41,4 +41,5 @@ public abstract class Attribute implements Serializable{
 	abstract double getDistance(Attribute compare);
 	abstract String calculateTestValue(Example[] closestK, int index); 
 	abstract String getStringVal();
+	abstract Attribute editedObject(String s);
 }
