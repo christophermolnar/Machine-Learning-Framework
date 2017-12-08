@@ -137,6 +137,10 @@ public class KNNView extends JFrame implements Observer {
 			}
 		}
 	}
+	public void close()
+	{
+		dispose();
+	}
 	
 	/** getJListIndex()		get list index
 	 * 

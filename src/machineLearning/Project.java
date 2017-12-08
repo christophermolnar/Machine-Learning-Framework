@@ -1,5 +1,4 @@
 package machineLearning;
-
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -10,9 +9,13 @@ import java.util.Observable;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+
+import main.MachineLearning;
+
 import java.io.Serializable;
 import userInterface.KNNController;
 import userInterface.KNNView;
+import main.MachineLearning;
 /** Project			Main class, responsible for testing
  *  
  * @author MZGA
@@ -528,6 +531,7 @@ public class Project extends Observable implements Serializable{
 			FileInputStream streamIn = new FileInputStream(filename);
 			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
 			Project importedProject = (Project) objectinputstream.readObject();
+			MachineLearning.importProject(importedProject);
 			streamIn.close();
 		 } catch (Exception e) {
 
