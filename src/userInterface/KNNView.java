@@ -40,6 +40,7 @@ public class KNNView extends JFrame implements Observer {
 		hasCreatedTesting = false;
 		outputText = new JTextArea();
 		list = new JList<>(m);
+		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
 		JMenu menuFile = new JMenu("File");
