@@ -1,13 +1,22 @@
 
 Updated Objectives:
-	
+
+Final Stuff:
+	-Delete Soccer Stuff from project (will save a soccer example as a exported file)
+	-I believe Ali said our error calculation was good so that should be fine
+	-Refactor the Project class to KNNModel class
+	-Check Cohesion and Coupling: Look over all classes make sure they do what they say 
+	-Commenting: Ali suggested JavaDoc (Make sure everything is commented)
+	-UML 
+	-Any other suggested changes
+
+
 Error Calculation:
 	-We are suppose to be able to output the average error of a set of testing data
 	-We should discuss this amongst ourselves and maybe with a ta or Babek is we need more calrification
 	
 Project:
 	-Refactor Project into KNNModel
-	-Fix the if-else statements in edit
 	
 TA Comments:
 	-Remove find kNN from example and move it to model or give it its own kNN class
