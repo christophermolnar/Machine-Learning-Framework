@@ -141,6 +141,29 @@ public class KNNView extends JFrame implements Observer {
 	{
 		dispose();
 	}
+	public void created()
+	{
+		training.setEnabled(true);
+		testing.setEnabled(true);
+		edit.setEnabled(true);
+	}
+	public void tested()
+	{
+		hasCreatedTraining = true;
+		create.setEnabled(false);
+		if (hasCreatedTesting)
+		{
+			calculate.setEnabled(true);
+		}
+	}
+	public void training()
+	{
+		hasCreatedTesting = true;
+		create.setEnabled(false);
+		if (hasCreatedTraining) {
+			calculate.setEnabled(true);
+		}
+	}
 	
 	/** getJListIndex()		get list index
 	 * 

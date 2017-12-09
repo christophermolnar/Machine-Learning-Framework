@@ -43,6 +43,7 @@ public class Project extends Observable implements Serializable{
 	private String testvalueResult;
 	private boolean distanceMetric = true;
 	private boolean exampleAdded;
+	private boolean hasCreated = false, hasTraining = false, hasTesting = false;
 	
 	//Create new Project
 	public Project()
@@ -128,6 +129,7 @@ public class Project extends Observable implements Serializable{
 				}
 				
 				if(isCorrect){
+					hasCreated = true;
 					numOfNumbers=tempNum;
 					numOfPoints=tempPoint;
 					numOfKeys=tempKey;
@@ -265,6 +267,7 @@ public class Project extends Observable implements Serializable{
 			}	
 			
 			if (checkForTestValue(tester)) { //Check to see if the user entered everything properly
+				hasTesting = true;
 				indexOfTestValue = getTestValuePosition(tester);
 				list.addElement(tester);
 				examples.add(tester);
@@ -349,6 +352,7 @@ public class Project extends Observable implements Serializable{
 				InvalidInputMessage("Input is invalid");
 				break createTrainer;
 			}	
+			hasTraining = true;
 			
 			//Add training Example to the list
 			exampleAdded = true;
@@ -1134,5 +1138,17 @@ public class Project extends Observable implements Serializable{
 		notifyObservers("create");
 		setChanged();
 		notifyObservers("training");
+	}
+	public boolean getCreated()
+	{
+		return hasCreated;
+	}
+	public boolean getTraining()
+	{
+		return hasTraining;
+	}
+	public boolean getTesting()
+	{
+		return hasTesting;
 	}
 }

@@ -20,5 +20,17 @@ public class MachineLearning {
 		p = newP;
 		v = new KNNView(p.getList());
 		c = new KNNController(v, p);
+		if (p.getCreated())
+		{
+			v.created();
+		}
+		if (p.getTraining())
+		{
+			v.training();
+		}
+		if (p.getTesting())
+		{
+			v.tested();
+		}
 	}
 }
