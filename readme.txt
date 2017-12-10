@@ -10,7 +10,7 @@ Calculation <interface>:
 -Interface for the different types of Calculations
 
 CalculationDifference:
--Calculates the linear distance between numbers
+-Calculates the linear distance between numbers 
 
 CalculationEuclidian:
 -Calculates the Euclidian distance between number or points
