@@ -3,18 +3,18 @@ import userInterface.KNNController;
 import userInterface.KNNView;
 import machineLearning.*;
 public class MachineLearning {
-	private static Project p;
+	private static KNNModel p;
 	private static KNNView v;
 	private static KNNController c;
 	public static void main(String[] args) {
-		p = new Project();
+		p = new KNNModel();
 		v = new KNNView(p.getList());
 		c = new KNNController(v, p);
 		
 		//UNCOMMENT TO AUTO FILL SOCCOR DATA
 		//p.soccerScenario();
 	}
-	public static void importProject(Project newP)
+	public static void importProject(KNNModel newP)
 	{
 		v.close();
 		p = newP;

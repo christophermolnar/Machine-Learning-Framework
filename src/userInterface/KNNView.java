@@ -35,13 +35,22 @@ public class KNNView extends JFrame implements Observer {
 	private JTextArea outputText;
 	private boolean hasCreatedTraining, hasCreatedTesting;
 	
-	public KNNView(DefaultListModel<Example> m) {
+	
+	/** KNNView		Generate user interface
+	 * 
+	 * @param listData	Existing data to add to the List
+	 */
+	public KNNView(DefaultListModel<Example> listData) {
 		super("KNN");
 		hasCreatedTraining = false;
 		hasCreatedTesting = false;
 		outputText = new JTextArea();
-		list = new JList<>(m);
+		
+		//List to represent data models
+		list = new JList<>(listData);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		//Add program options/functionality
 		JMenuBar menuBar = new JMenuBar();
 		JMenu menuCreate = new JMenu("Example");
 		JMenu menuFile = new JMenu("File");
@@ -50,6 +59,7 @@ public class KNNView extends JFrame implements Observer {
 		in = new JMenuItem("Import");
 		out = new JMenuItem("Export");
 
+		
 		edit = new JMenuItem("Edit");
 		edit.setEnabled(false);
 		
@@ -61,8 +71,8 @@ public class KNNView extends JFrame implements Observer {
 		
 		testing = new JMenuItem("Testing");
 		training = new JMenuItem("Training");
-		testing.setEnabled(false);
-		training.setEnabled(false);
+		testing.setEnabled(false); //Disabled until data is added
+		training.setEnabled(false); //Disabled until data is added
 		addSubMenu.add(testing);
 		addSubMenu.add(training);
 		
@@ -103,10 +113,10 @@ public class KNNView extends JFrame implements Observer {
 	
 	/** update()		update state of UI
 	 * 
-	 * @param obs		Observer
+	 * @param obs		Observer	Current Model
 	 * @param obj		Object
 	 */
-	public void update(Observable obs, java.lang.Object obj)
+	public void update(Observable obs, Object obj)
 	{
 		if (obj instanceof String) {
 			String s = (String) obj;
@@ -139,16 +149,19 @@ public class KNNView extends JFrame implements Observer {
 			}
 		}
 	}
+	
 	public void close()
 	{
 		dispose();
 	}
+	
 	public void created()
 	{
 		training.setEnabled(true);
 		testing.setEnabled(true);
 		edit.setEnabled(true);
 	}
+	
 	public void tested()
 	{
 		hasCreatedTraining = true;
@@ -158,6 +171,7 @@ public class KNNView extends JFrame implements Observer {
 			calculate.setEnabled(true);
 		}
 	}
+	
 	public void training()
 	{
 		hasCreatedTesting = true;
@@ -167,21 +181,24 @@ public class KNNView extends JFrame implements Observer {
 		}
 	}
 	
-	/** getJListIndex()		get list index
-	 * 
+	/** getJListIndex()		get list index of JList
+	 *  
 	 * @return index		Selected index
 	 */
 	public int getJlistIndex(){
 		return list.getSelectedIndex();
 	}
 	
-	/** getselected() 		get selected example object
+	/** getselected() 		get selected example object from JList
 	 * 
 	 * @return value		Selected value
 	 */
 	public Example getSelectedObject(){
 		return list.getSelectedValue();
 	}
+	
+	//ACTION LISTENERS -- Functionality of Buttons
+	
 	public void setCreateActionListener(ActionListener a) {
 		create.addActionListener(a);
 	}

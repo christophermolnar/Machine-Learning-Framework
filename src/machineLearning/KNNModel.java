@@ -22,7 +22,7 @@ import main.MachineLearning;
  * @version 2.0	
  *
  */
-public class Project extends Observable implements Serializable{
+public class KNNModel extends Observable implements Serializable{
 	/**
 	 * 
 	 */
@@ -46,7 +46,7 @@ public class Project extends Observable implements Serializable{
 	private boolean hasCreated = false, hasTraining = false, hasTesting = false;
 	
 	//Create new Project
-	public Project()
+	public KNNModel()
 	{
 		pointChoice = new ArrayList<>();
 		numChoice = new ArrayList<>();
@@ -534,7 +534,7 @@ public class Project extends Observable implements Serializable{
 		try {
 			FileInputStream streamIn = new FileInputStream(filename);
 			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
-			Project importedProject = (Project) objectinputstream.readObject();
+			KNNModel importedProject = (KNNModel) objectinputstream.readObject();
 			MachineLearning.importProject(importedProject);
 			streamIn.close();
 		 } catch (Exception e) {
