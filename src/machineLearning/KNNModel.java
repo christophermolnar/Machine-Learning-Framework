@@ -22,6 +22,14 @@ import main.MachineLearning;
  * @version 2.0	
  *
  */
+/**
+ * @author Callum
+ *
+ */
+/**
+ * @author Callum
+ *
+ */
 public class KNNModel extends Observable implements Serializable{
 	/**
 	 * 
@@ -146,14 +154,29 @@ public class KNNModel extends Observable implements Serializable{
 		}
 	}
 	
+	/** isNoneValue			Checks if a given value is 'testvalue' (set as unknown, to find)
+	 * 
+	 * @param s				String to check
+	 * @return boolean		True if strings match, false otherwise
+	 */
 	private boolean isTestValue(String s){
 		return (s.toLowerCase().compareTo(TESTVALUE) == 0);
 	}
 	
+	/** isNoneValue			Checks if a given value is 'none' (set as unknown, negliab. by user)
+	 * 
+	 * @param s				String to check
+	 * @return boolean		True if strings match, false otherwise
+	 */
 	private boolean isNoneValue(String s){
 		return (s.toLowerCase().compareTo(NONE) == 0);
 	}
 	
+	/** checkForTestValue()		Checks a given example to see if a 'testvalue' is indicated
+	 * 
+	 * @param testingExample	Example to check 
+	 * @return boolean			True if matching string found, false otherwise
+	 */
 	private boolean checkForTestValue(Example testingExample){
 		ArrayList<Attribute> testingExampleArray = testingExample.getData();
 		int testingValue = 0;
@@ -175,6 +198,12 @@ public class KNNModel extends Observable implements Serializable{
 		JOptionPane.showMessageDialog(null, message, "Input Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	
+	/** getTestValuePosition()		Returns the index of a specified 'tetsvalue'
+	 * 
+	 * @param testingExample		Example containing unknown value
+	 * @return int 					Index of test position
+	 */
 	private int getTestValuePosition(Example testingExample){
 		ArrayList<Attribute> testingExampleArray = testingExample.getData();
 		for (int position = 0; position < testingExampleArray.size(); position++){
@@ -188,7 +217,11 @@ public class KNNModel extends Observable implements Serializable{
 		return 0;
 	}
 	
-	
+	/** testing()		Create a new tersting example consisting of x Nums, y Points, and z Text Values
+	 * 
+	 * @calcValue		Calc value is indicated by the user entering 'testvalue' in feild of unknown value (MAX 1)
+	 * 
+	 */
 	public void testing(){
 		Example tester;	
 		String input;
@@ -285,6 +318,10 @@ public class KNNModel extends Observable implements Serializable{
 		} //End of createTester
 	}
 	
+	
+	/** training()		Create a new training example consisting of x Nums, y Points, and z Text Values
+	 * 
+	 */
 	public void training(){
 		Example training;	
 		String input;
@@ -473,14 +510,21 @@ public class KNNModel extends Observable implements Serializable{
 		} catch(NumberFormatException e){	
 		}
 	}
-	/*
-	 * Set the testvalue result
+	
+	/** setTestValueResult  Set the testvalue result
+	 * 
+	 * @param result		String representation of calculated unknonn value
 	 */
 	public void setTestValueResult(String result){
 		String[] newAttribute = result.split("= ");
 		testvalueResult = newAttribute[newAttribute.length -1];
 	}
 	
+	/** errorCalculation()		Displays the error between the calculated value and actual value specified by the user
+	 * 
+	 * @input actual			The expected value of 'testvalue' specified by user
+	 * 
+	 */
 	public void errorCalculation(){
 		String s = JOptionPane.showInputDialog("Enter the expected value for the testvalue: ");
 		if(s != null){ //'OK' clicked
@@ -521,16 +565,12 @@ public class KNNModel extends Observable implements Serializable{
 		
 	}
 	
-	public boolean exampleIsAdded(){
-		return exampleAdded;
-	}
-	
-	public DefaultListModel<Example> getList()
-	{
-		return list;
-	}
-	public void in(String filename)
-	{
+	/**	in()				Imports filename, containing examples, attributes etc. into system
+	 * 
+	 * @param filename		Name of file to import
+	 * @creates newFile 	New file in program directory created with filename
+	 */
+	public void in(String filename){
 		try {
 			FileInputStream streamIn = new FileInputStream(filename);
 			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
@@ -542,8 +582,12 @@ public class KNNModel extends Observable implements Serializable{
 				 JOptionPane.showMessageDialog(null, "Please Check File Name and File exists within the Source Directory", "Import Error!", JOptionPane.PLAIN_MESSAGE);
 		 }
 	}
-	public void out(String filename)
-	{
+	
+	/**	out()				Imports filename, containing examples, attributes etc. into system
+	 * 
+	 * @param filename		Name of file to import
+	 */
+	public void out(String filename){
 		try
 		{
 			FileOutputStream fout = new FileOutputStream(filename);
@@ -555,14 +599,12 @@ public class KNNModel extends Observable implements Serializable{
 			if(filename != null) 
 				JOptionPane.showMessageDialog(null, "Export Failed!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 		}
-		}
-	
+	}
 	
 	/**
 	 * Loads in all of the training data from the excel sheet
 	 */
-	public void soccerScenario()
-	{
+	public void soccerScenario(){
 		Attribute n1, n2, n3, n4, n5, n6, n7, n8, n9;
 		Key k;
 		Example training = new Example();
@@ -1141,14 +1183,38 @@ public class KNNModel extends Observable implements Serializable{
 		setChanged();
 		notifyObservers("training");
 	}
-	public boolean getCreated()
+	
+	/** getList()		Returns the current lis of examples and attributes
+	 * 
+	 * @return list 	Current list of examples
+	 */
+	public DefaultListModel<Example> getList()
 	{
+		return list;
+	}
+	
+	
+	/** getCreated()		Returns if a Example containing x Nums, y Points, and z Text Attributes has been created
+	 * 
+	 * @return hasCReated	True if an exmaple has been created, false otherwise
+	 */
+	public boolean getCreated(){
 		return hasCreated;
 	}
+	
+	/** getTraining()		Returns if a example has been created
+	 * 
+	 * @return hasTraining	True if an training exmaple has been created, false otherwise
+	 */
 	public boolean getTraining()
 	{
 		return hasTraining;
 	}
+	
+	/** getTesting()		Returns if a example has been created
+	 * 
+	 * @return hasTesting	True if an testing exmaple has been created, false otherwise
+	 */
 	public boolean getTesting()
 	{
 		return hasTesting;
