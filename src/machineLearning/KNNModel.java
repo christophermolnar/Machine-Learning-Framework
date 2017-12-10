@@ -552,7 +552,8 @@ public class KNNModel extends Observable implements Serializable{
 			JOptionPane.showMessageDialog(null, "Export Successful!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 			fout.close();
 		} catch(IOException e){
-			JOptionPane.showMessageDialog(null, "Export Failed!", "Export Review", JOptionPane.PLAIN_MESSAGE);
+			if(filename != null) 
+				JOptionPane.showMessageDialog(null, "Export Failed!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 		}
 		}
 	
