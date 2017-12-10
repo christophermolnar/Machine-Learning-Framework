@@ -441,22 +441,17 @@ public class KNNModel extends Observable implements Serializable{
 	/** calculate()			calculate the score for each training example and find the testing examples kNN
 	*
 	*/
-	public void calculate()
-	{
-		try
-		{
+	public void calculate(){
+		try {
 			Example testing = null;
 			String s = "";
 			Example[] closestK = null;
 			Attribute t;
 			int n = Integer.parseInt(JOptionPane.showInputDialog("Please input amount of nearest neighbours: "));
-			if (n <= examples.size() - 1)
-			{
+			if (n <= examples.size() - 1) {
 				double val = 0;
-				for (Example o : examples)
-				{
-					if (o.getIsTesting())
-					{
+				for (Example o : examples) {
+					if (o.getIsTesting()) {
 						closestK = o.findClosestK(n, examples);
 						if (closestK == null){
 							InvalidInputMessage("Point Dimension Mismatch - Please Check Entries");
@@ -465,15 +460,12 @@ public class KNNModel extends Observable implements Serializable{
 						break;
 					}
 				}
-				for (Example o : examples)
-				{
-					if (!o.getIsTesting())
-					{
+				for (Example o : examples) {
+					if (!o.getIsTesting()) {
 						testing = o;
 					}
 				}
-				if (testing != null && closestK != null)
-				{
+				if (testing != null && closestK != null) {
 					//if all the values are correct
 					t = testing.getValueAtIndex(indexOfTestValue);
 					s = t.calculateTestValue(closestK, indexOfTestValue);
@@ -483,8 +475,7 @@ public class KNNModel extends Observable implements Serializable{
           
 					s += "\nClosest Objects:\n"; 
 
-					for (int i = 0; i < closestK.length; i++)
-					{
+					for (int i = 0; i < closestK.length; i++) {
 						s += closestK[i];
 						if (i < closestK.length - 1) s += "\n";
 					}
@@ -492,8 +483,7 @@ public class KNNModel extends Observable implements Serializable{
 					notifyObservers(s);
 				}
 			}
-			else
-			{
+			else {
 				JOptionPane.showMessageDialog(null,
 					    "Too many neighbours.",
 					    "K Value Error",
