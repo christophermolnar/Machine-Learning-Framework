@@ -52,7 +52,6 @@ userInterface:
 		-Controls all of the ActionListeners 
 	KNNView:
 		-GUI View for out project
-	
 
 Changes Made Since Last Deliverable:
 -Import and Export buttons added

@@ -13,15 +13,15 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import machineLearning.Example;
-import machineLearning.Project;
+import machineLearning.KNNModel;
 
 
 public class KNNController {
 	
 	private KNNView v;
-	private Project p;
+	private KNNModel p;
 	
-	public KNNController(KNNView v, Project p)
+	public KNNController(KNNView v, KNNModel p)
 	{
 		this.p = p;
 		this.v = v;
