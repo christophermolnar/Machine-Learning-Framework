@@ -5,13 +5,11 @@ import java.io.Serializable;
 /** Attribute 		Uses Template Pattern to provide children classes with calculation features
  * 
  * @author MZGA
- * @version 3.0
+ * @version 4.0
  *
  */ 
 public abstract class Attribute implements Serializable{
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	//Type of calculation to use when comparing, either 'Euclidean' or 'Difference'
 	protected Calculation distanceSelection;
@@ -39,7 +37,28 @@ public abstract class Attribute implements Serializable{
 	 * @return distance				Numerical Distance value between 2 Attributes
 	 */
 	abstract double getDistance(Attribute compare);
+	
+	/** calculateTestValue()		Calculate the value of the testvalue located in the closestsK array
+	 * 								At the given index
+	 * 
+	 * @param closestK				The array with the testvalue in it	
+	 * @param index					The index of the testvalue
+	 * 
+	 * @return calculatedTestValue	The calculated testvalue
+	 */
 	abstract String calculateTestValue(Example[] closestK, int index); 
+	
+	/** getStringVal()				Returns the String value of the Attribute
+	 * 
+	 * @return AttributeValue		The String value of the attribute
+	 */
 	abstract String getStringVal();
+	
+	/** editedObject()				Changes an old Attribute to a new value
+	 * 
+	 * @param s						The value of the new Attribute		
+	 * 
+	 * @return newAttribute			The new Attribute with its new value
+	 */
 	abstract Attribute editedObject(String s);
 }

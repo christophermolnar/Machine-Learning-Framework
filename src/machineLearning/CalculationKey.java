@@ -4,7 +4,7 @@ package machineLearning;
 /** CalculationKey 			Calculates if two keys are equal
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA
- * @version 3.0
+ * @version 4.0
  *
  */
 public class CalculationKey implements Calculation{

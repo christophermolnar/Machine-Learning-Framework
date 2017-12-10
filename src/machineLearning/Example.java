@@ -6,7 +6,7 @@ import java.io.Serializable;
 /** Example 	Represents a physical entity with Attributes
  * 
  * @author MZGA
- * @version 3.0
+ * @version 4.0
  *
  */
 public class Example implements Serializable{

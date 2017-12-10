@@ -6,14 +6,11 @@ import java.util.ArrayList;
 /** Point 		Responsible for managing instances of coordinate values
  * 
  * @author MZGA
- * @version 3.0
+ * @version 4.0
  *
  */
 public class Point extends Attribute implements Serializable{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Double> nums;
 	
@@ -37,10 +34,10 @@ public class Point extends Attribute implements Serializable{
 		}
 	}
 	
-	/**	isDouble				Checks if string is number
+	/**	isDouble					Checks if string is number
 	 * 
-	 * @param str				String to be checked
-	 * @return	true/false		returns true if String is number
+	 * @param str					String to be checked
+	 * @return	true/false			returns true if String is number
 	 */
 	public boolean isDouble(String str) {
 		try {
@@ -51,15 +48,20 @@ public class Point extends Attribute implements Serializable{
 		}
 	}
 	
-	/** getVal()		Getter for nums
+	/** getVal()					Getter for nums
 	 * 
-	 * @return nums		Array of nums
+	 * @return nums					Array of nums
 	 */
 	public ArrayList<Double> getVal() {
 		return nums;
 	}
 	
-	//Return value of specified index, -1.0 if not in range
+	/** getValue()					Returns the value at a specified index or -1.0 if not in range
+	 * 
+	 * @param i						The index that you want the value for
+	 * 
+	 * @return numValue				The value of num at i
+	 */
 	public double getValue(int i){
 		if(i < this.nums.size())
 			return this.nums.get(i);
@@ -67,13 +69,17 @@ public class Point extends Attribute implements Serializable{
 			return -1.0;
 	}
 	
+	/** getNums()					Get the ArrayList of Points
+	 * 
+	 * @return numArrayList			Return the ArrayList of Points
+	 */
 	public ArrayList<Double> getNums(){
 		return this.nums;
 	}
 	
-	/** getCoords()v		Gets String of coordinates of point
+	/** getCoords()v				Gets String of coordinates of point
 	 * 
-	 * @return coords		String representation of coordinates
+	 * @return coords				String representation of coordinates
 	 */
 	public String getCoords(){
 		String coords = "";
@@ -125,6 +131,10 @@ public class Point extends Attribute implements Serializable{
 		return tmp +  "->" + distanceSelection + " | ";
 	}
 	
+	/** getStringVal()				Returns the String value of the Point
+	 * 
+	 * @return AttributeValue		The String value of the Point
+	 */
 	public String calculateTestValue(Example[] closestK, int index) {
 		String result = ""; 
 		double pointCount = 0;
@@ -146,6 +156,13 @@ public class Point extends Attribute implements Serializable{
 		result += ")";
 		return result;
 	}
+	
+	/** editedObject()				Changes an old Point to a new value
+	 * 
+	 * @param s						The value of the new Point		
+	 * 
+	 * @return newPoint			The new Point with its new value
+	 */
 	public Attribute editedObject(String s)
 	{
 		return new Point(s, distanceSelection);
