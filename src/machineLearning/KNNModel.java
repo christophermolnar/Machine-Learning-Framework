@@ -566,7 +566,7 @@ public class KNNModel extends Observable implements Serializable{
 		
 	}
 	
-	/**	in()				Imports fileName, containing examples, attributes etc. into system
+	/**	in()				Imports fileName, containing examples, attributes etc. into system.  Displays message on error
 	 * 
 	 * @param fileName		Name of file to import
 	 * @creates newFile 	New file in program directory created with filename
@@ -580,9 +580,9 @@ public class KNNModel extends Observable implements Serializable{
 		 }
 	}
 	
-	/**	out()				Exports filename, containing examples, attributes etc. into system
+	/**	out()				Exports filename, containing examples, attributes etc. Displays message on error
 	 * 
-	 * @param fileName		Name of file to import
+	 * @param fileName		Name of file to export
 	 */
 	public void out(String fileName){
 		try
@@ -595,12 +595,11 @@ public class KNNModel extends Observable implements Serializable{
 		}
 	}
 	
-	/** importKNNModel
+	/** importKNNModel			Imports specified file. Exceptions handled in in() method
 	 * 
-	 * @param fileName
-	 * @return
-	 * @throws IOException
-	 * @throws ClassNotFoundException
+	 * @param fileName			Name of file to import
+	 * @return importedProject	the imported KNNModel
+	 * 
 	 */
 	public KNNModel importKNNModel(String fileName) throws IOException, ClassNotFoundException{
 		FileInputStream streamIn = new FileInputStream(fileName);
@@ -610,9 +609,9 @@ public class KNNModel extends Observable implements Serializable{
 		return importedProject;
 	}
 	
-	/** exportKNNModel
+	/** exportKNNModel		Exports specified file. Exceptions handled in out() method
 	 * 
-	 * @param fileName
+	 * @param fileName		Name of file to export
 	 */
 	public void exportKNNModel(String fileName) throws IOException{
 		FileOutputStream fout = new FileOutputStream(fileName);
