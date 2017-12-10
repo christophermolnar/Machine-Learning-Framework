@@ -121,24 +121,13 @@ public class KNNView extends JFrame implements Observer {
 		if (obj instanceof String) {
 			String s = (String) obj;
 			if (s.equals("create")) {
-				training.setEnabled(true);
-				testing.setEnabled(true);
-				edit.setEnabled(true);
+				created();
 			}
 			else if (s.equals("testing")) {
-				hasCreatedTraining = true;
-				create.setEnabled(false);
-				if (hasCreatedTesting)
-				{
-					calculate.setEnabled(true);
-				}
+				tested();
 			}
 			else if (s.equals("training")) {
-				hasCreatedTesting = true;
-				create.setEnabled(false);
-				if (hasCreatedTraining) {
-					calculate.setEnabled(true);
-				}
+				training();
 			}
 			else if (s.equals("edit")) {
 				
