@@ -1,10 +1,10 @@
 package junitTesting;
+import java.io.IOException;
 
-import junit.framework.*;
 import machineLearning.*;
+import junit.framework.TestCase;
 
-public class TestScoreCalculationsWithTrainingExamples extends TestCase{
-
+public class TestImportExport extends TestCase{
 	private Example house1; 
 	private Example house2;
 	private Key key1;
@@ -15,14 +15,16 @@ public class TestScoreCalculationsWithTrainingExamples extends TestCase{
 	private Point pointE2;
 	private Num num1;
 	private Num num2;
+	KNNModel model;
+	KNNModel importedModel;
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		junit.textui.TestRunner.run(TestScoreCalculationsWithTrainingExamples.class);
+		junit.textui.TestRunner.run(TestImportExport.class);
 	}
 	
-	public void setUp(){
+	public void setUp() throws IOException, ClassNotFoundException{
 		key1 = new Key("NEW");
 		key2 = new Key("OLD");
 		pointD1 = new Point("2,2", new CalculationDifference());
@@ -41,10 +43,14 @@ public class TestScoreCalculationsWithTrainingExamples extends TestCase{
 		house2.addAttribute(pointE2);
 		house1.addAttribute(num1);
 		house2.addAttribute(num2);
+		model = new KNNModel();
+		model.addExample(house1);
+		model.addExample(house2);
+		model.exportKNNModel("junitTest.ser");
+		importedModel = model.importKNNModel("junitTest.ser");
 	}
 	
 	public void testSize(){
-		assertEquals("Score calculation between the same example items should return 0.0", 0.0, house1.calculateScore(house1));
-		assertEquals("Score calculation between two example items should return 17.8284", 17.8284 , house1.calculateScore(house2));
+		assertEquals("Exporting and importing a KNNModel should yield a KNNModel", model instanceof KNNModel, importedModel instanceof KNNModel);
 	}
 }

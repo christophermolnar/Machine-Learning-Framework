@@ -1,4 +1,5 @@
 package machineLearning;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -23,7 +24,7 @@ import main.MachineLearning;
  */
 public class KNNModel extends Observable implements Serializable{
 	
-	private static final long serialVersionUID = 1L;
+	private static final long SERIALVERSIONUID = 1L;
 	private String[] optionsPoint = {"Euclidean", "Difference"};
 	private String[] optionsNum = {"Difference", "Polar"};
 	private DefaultListModel<Example> list;
@@ -50,6 +51,14 @@ public class KNNModel extends Observable implements Serializable{
 		list = new DefaultListModel<>();
 		examples = new ArrayList<>();
 		exampleAdded = false;
+	}
+	
+	/** addExample	adds example to the model
+	 * 
+	 * @param e		Example to be added to the model
+	 */
+	public void addExample(Example e){
+		examples.add(e);
 	}
 	
 	/** create() 		create the format for example
@@ -602,7 +611,7 @@ public class KNNModel extends Observable implements Serializable{
 		fout.close();
 	}
 	
-	/** getList()		Returns the current lis of examples and attributes
+	/** getList()		Returns the current list of examples and attributes
 	 * 
 	 * @return list 	Current list of examples
 	 */

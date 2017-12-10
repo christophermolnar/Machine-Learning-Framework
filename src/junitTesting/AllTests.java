@@ -13,6 +13,7 @@ public class AllTests extends TestSuite {
 		suite.addTest(new TestSuite(TestKeyAttribute.class));
 		suite.addTest(new TestSuite(TestNumAttribute.class));
 		suite.addTest(new TestSuite(TestScoreCalculationsWithTrainingExamples.class));
+		suite.addTest(new TestSuite(TestImportExport.class));
 		return suite;
 	}
 }
