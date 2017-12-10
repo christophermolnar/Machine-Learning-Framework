@@ -22,6 +22,14 @@ import main.MachineLearning;
  * @version 2.0	
  *
  */
+/**
+ * @author Callum
+ *
+ */
+/**
+ * @author Callum
+ *
+ */
 public class KNNModel extends Observable implements Serializable{
 	/**
 	 * 
@@ -146,14 +154,29 @@ public class KNNModel extends Observable implements Serializable{
 		}
 	}
 	
+	/** isNoneValue			Checks if a given value is 'testvalue' (set as unknown, to find)
+	 * 
+	 * @param s				String to check
+	 * @return boolean		True if strings match, false otherwise
+	 */
 	private boolean isTestValue(String s){
 		return (s.toLowerCase().compareTo(TESTVALUE) == 0);
 	}
 	
+	/** isNoneValue			Checks if a given value is 'none' (set as unknown, negliab. by user)
+	 * 
+	 * @param s				String to check
+	 * @return boolean		True if strings match, false otherwise
+	 */
 	private boolean isNoneValue(String s){
 		return (s.toLowerCase().compareTo(NONE) == 0);
 	}
 	
+	/** checkForTestValue()		Checks a given example to see if a 'testvalue' is indicated
+	 * 
+	 * @param testingExample	Example to check 
+	 * @return boolean			True if matching string found, false otherwise
+	 */
 	private boolean checkForTestValue(Example testingExample){
 		ArrayList<Attribute> testingExampleArray = testingExample.getData();
 		int testingValue = 0;
@@ -175,6 +198,12 @@ public class KNNModel extends Observable implements Serializable{
 		JOptionPane.showMessageDialog(null, message, "Input Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
+	
+	/** getTestValuePosition()		Returns the index of a specified 'tetsvalue'
+	 * 
+	 * @param testingExample		Example containing unknown value
+	 * @return int 					Index of test position
+	 */
 	private int getTestValuePosition(Example testingExample){
 		ArrayList<Attribute> testingExampleArray = testingExample.getData();
 		for (int position = 0; position < testingExampleArray.size(); position++){
@@ -188,7 +217,11 @@ public class KNNModel extends Observable implements Serializable{
 		return 0;
 	}
 	
-	
+	/** testing()		Create a new tersting example consisting of x Nums, y Points, and z Text Values
+	 * 
+	 * @calcValue		Calc value is indicated by the user entering 'testvalue' in feild of unknown value (MAX 1)
+	 * 
+	 */
 	public void testing(){
 		Example tester;	
 		String input;
@@ -285,6 +318,10 @@ public class KNNModel extends Observable implements Serializable{
 		} //End of createTester
 	}
 	
+	
+	/** training()		Create a new training example consisting of x Nums, y Points, and z Text Values
+	 * 
+	 */
 	public void training(){
 		Example training;	
 		String input;
@@ -473,14 +510,21 @@ public class KNNModel extends Observable implements Serializable{
 		} catch(NumberFormatException e){	
 		}
 	}
-	/*
-	 * Set the testvalue result
+	
+	/** setTestValueResult  Set the testvalue result
+	 * 
+	 * @param result		String representation of calculated unknonn value
 	 */
 	public void setTestValueResult(String result){
 		String[] newAttribute = result.split("= ");
 		testvalueResult = newAttribute[newAttribute.length -1];
 	}
 	
+	/** errorCalculation()		Displays the error between the calculated value and actual value specified by the user
+	 * 
+	 * @input actual			The expected value of 'testvalue' specified by user
+	 * 
+	 */
 	public void errorCalculation(){
 		String s = JOptionPane.showInputDialog("Enter the expected value for the testvalue: ");
 		if(s != null){ //'OK' clicked
