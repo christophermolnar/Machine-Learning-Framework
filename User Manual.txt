@@ -65,7 +65,44 @@ Welcome to the KNN Machine Learning Program
 	-Results will print at the bottom of the terminal, Calculation may be re-run if desired (Ex. Changing number of Nearest Neighbors)
 	
 	**An Error will prompt if the dimensions of 'Coordinate Point Value' column attributes are not matching, please check your data and use the 'EDIT' option to fix conflicting data**
+
+5- Error Calculation
+	**Once Calculate kNN has been run the Error Calculation will be unlocked
 	
+	-Click Example -> Error Calculation
+	
+	-The user can enter the actual value for their test value
+	
+	-The program will return the error difference between the calculated and actual value
+	
+	** You can quit by clicking Cancel
+	
+Extra:
+1- Import
+	
+	-Click File -> Import
+	
+	-A pop up will appear and you can enter the file you want to import (Ex: soccer.txt)
+	
+	-If a proper file is imported is selected it will load the save data
+	
+	-Otherwise an Error pop up will appear
+	
+	** You can exit by clicking cancel
+
+2- Export
+
+	-Click File -> Export
+	
+	-A pop up will appear and you can choose the filename for your exported data (Ex: soccer.txt or soccer.ser)
+	
+	-The contents of project will be saved in the file you created
+	
+	-If the save is successful a pop up will appear telling you the save is successful
+	
+	-Otherwise an Error pop up will appear if it doesn't save
+	
+	** You can exit by clicking cancel
 
 TIPS:	
 - Entering Data:
@@ -113,15 +150,23 @@ Test Example (House):
 	-Enter new
 	
 3- Create Testing House:
-	-Click Create -> Add -> Testing
+	-Click Example -> Add -> Testing
 	-Enter 1000
 	-Enter testvalue (this is the value we want to calculate via kNN)
 	-Enter 15,20
 	-Enter new
 	
 4- Calculate kNN
-	-Click Create -> Calculation
+	-Click Example -> Calculation
 	-Enter kNN value
 	-Results will be displayed
 	-With Testvalue averaged between the k results
+	
+5- Error Calculation
+	-Click Example -> Error Calculation
+	-Enter the actual testvalue value
+	-The error calculation between the actual and the calculated value will be displayed
+
+
+
 
