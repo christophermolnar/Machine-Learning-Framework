@@ -7,14 +7,11 @@ import java.util.ArrayList;
 /** NUMclass 				Responsible for managing instances of integer and floating point values
  * 
  * @author MZGA
- * @version 3.0
+ * @version 4.0
  *
  */
 public class Num extends Attribute implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private double num;
 	
@@ -31,11 +28,11 @@ public class Num extends Attribute implements Serializable{
 	}
 	
 	
-	/** findClosest()			Finds the closest number given an ArrayList of numbers
+	/** findClosest()				Finds the closest number given an ArrayList of numbers
 	 * 
-	 * @param compareList 		An ArrayList that stores all of the NUM values 
-	 * @param compare			The value to compare with the ArrayList
-	 * @return best_position	The position of the closest numbers
+	 * @param compareList 			An ArrayList that stores all of the NUM values 
+	 * @param compare				The value to compare with the ArrayList
+	 * @return best_position		The position of the closest numbers
 	 */
 	public int findClosest(ArrayList<Num> compareList){
 		double closest_distance;
@@ -54,56 +51,82 @@ public class Num extends Attribute implements Serializable{
 		return best_position;
 	}
 	
-	/** getNUM()			Return the float value of NUM
+	/** getNUM()					Return the double value of NUM
 	 * 
-	 * @return num			Float value of NUM
+	 * @return num					Double value of NUM
 	 */
 	public double getNum() {
 		return num;
 	}
 	
+	/** getVal()					Return the double value of NUM
+	 * 
+	 * @return num					Double value of NUM
+	 */
 	public double getVal() {
 		return num;
 	}
 	
+	/** getDistance()				Returns the distance selection for the Num Attribute
+	 * 
+	 * @param compare				The attribute to get the distance for
+	 * 
+	 * @return distanceSelection	
+	 */
 	public double getDistance(Attribute compare){
 		return distanceSelection.calculate(this, compare);
 	}
 	
 	
-	/** toString()			Returns the num as a String value
+	/** toString()					Returns the num as a String value
 	 * 
-	 * @return String		Coordinate pairs X and Y as String
+	 * @return String				Coordinate pairs X and Y as String
 	 */
 	public String toString(){
 		return ("" + num + " | ");
 	}
 	
+	/** calculateTestValue()		Calculate the value of the testvalue located in the closestsK array
+	 * 								At the given index
+	 * 
+	 * @param closestK				The array with the testvalue in it	
+	 * @param index					The index of the testvalue
+	 * 
+	 * @return calculatedTestValue	The calculated testvalue
+	 */
 	public String calculateTestValue(Example[] closestK, int index) {
 		double val = 0;
 		int count = 0;
 		for (int i = 0; i < closestK.length; i++) {
 			if (!closestK[i].getIsTesting()) {
-				if (!(closestK[i].getValueAtIndex(index) instanceof Key))
-				{
+				if (!(closestK[i].getValueAtIndex(index) instanceof Key)){
 					val += ((Num) closestK[i].getValueAtIndex(index)).getVal();
-					count++;
+					count++; 
 				}
 			}
 		}
 		val /= count;
-		if (distanceSelection instanceof CalculationPolar)
-		{
+		if (distanceSelection instanceof CalculationPolar) {
 			val %= 180;
 		}
 		return "Testvalue = " + val + " ";
 	}
-	public String getStringVal()
-	{
+	
+	/** getStringVal()				Returns the String value of the Point
+	 * 
+	 * @return AttributeValue		The String value of the Point
+	 */
+	public String getStringVal() {
 		return Double.toString(num);
 	}
-	public Attribute editedObject(String s)
-	{
+	
+	/** editedObject()				Changes an old Point to a new value
+	 * 
+	 * @param s						The value of the new Point		
+	 * 
+	 * @return newPoint				The new Point with its new value
+	 */
+	public Attribute editedObject(String s) {
 		return new Num(Double.parseDouble(s), distanceSelection);
 	}
 }

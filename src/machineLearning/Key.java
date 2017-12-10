@@ -5,7 +5,7 @@ import java.io.Serializable;
 /** Key 				Responsible for managing instances of String attributes
  * 
  * @author MZGA
- * @version 2.0
+ * @version 4.0
  *
  */
 public class Key extends Attribute implements Serializable{
@@ -53,15 +53,33 @@ public class Key extends Attribute implements Serializable{
 		return word;
 	}
 	
+	/** calculateTestValue()		Calculate the value of the testvalue located in the closestsK array
+	 * 								At the given index
+	 * 
+	 * @param closestK				The array with the testvalue in it	
+	 * @param index					The index of the testvalue
+	 * 
+	 * @return calculatedTestValue	The calculated testvalue
+	 */
 	public String calculateTestValue(Example[] closestK, int index) {
 		return "Testvalue = " + closestK[0].getValueAtIndex(index) + " ";
 	}
-	public String getStringVal()
-	{
+	
+	/** getStringVal()				Returns the String value Key
+	 * 
+	 * @return StringKeyValue		The String value of the Key
+	 */
+	public String getStringVal() {
 		return word;
 	}
-	public Attribute editedObject(String s)
-	{
+	
+	/** editedObject()				Changes an old Key to a new value
+	 * 
+	 * @param s						The value of the new Key	
+	 * 
+	 * @return newKey				The new Key with its new value
+	 */
+	public Attribute editedObject(String s)	{
 		return new Key(s);
 	}
 }

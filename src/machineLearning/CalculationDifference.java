@@ -3,7 +3,7 @@ import java.util.ArrayList;
 /** CalculationDifference 	Calculates the difference between Two Attributes using their absolute phsyical distances
  * 							//IMPLEMENTS// Calculation.java
  * @author MZGA
- * @version 3.0
+ * @version 4.0
  *
  */
 public class CalculationDifference implements Calculation {
