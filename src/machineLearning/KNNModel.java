@@ -1,5 +1,6 @@
 package machineLearning;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -547,40 +548,58 @@ public class KNNModel extends Observable implements Serializable{
 		
 	}
 	
-	/**	in()				Imports filename, containing examples, attributes etc. into system
+	/**	in()				Imports fileName, containing examples, attributes etc. into system.  Displays message on error
 	 * 
-	 * @param filename		Name of file to import
+	 * @param fileName		Name of file to import
 	 * @creates newFile 	New file in program directory created with filename
 	 */
-	public void in(String filename){
+	public void in(String fileName){
 		try {
-			FileInputStream streamIn = new FileInputStream(filename);
-			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
-			KNNModel importedProject = (KNNModel) objectinputstream.readObject();
-			MachineLearning.importProject(importedProject);
-			streamIn.close();
+			MachineLearning.importProject(importKNNModel(fileName));
 		 } catch (Exception e) {
-			 if(filename != null) 
+			 if(fileName != null) 
 				 JOptionPane.showMessageDialog(null, "Please Check File Name and File exists within the Source Directory", "Import Error!", JOptionPane.PLAIN_MESSAGE);
 		 }
 	}
 	
-	/**	out()				Imports filename, containing examples, attributes etc. into system
+	/**	out()				Exports filename, containing examples, attributes etc. Displays message on error
 	 * 
-	 * @param filename		Name of file to import
+	 * @param fileName		Name of file to export
 	 */
-	public void out(String filename){
+	public void out(String fileName){
 		try
 		{
-			FileOutputStream fout = new FileOutputStream(filename);
-			ObjectOutputStream oos = new ObjectOutputStream(fout);
-			oos.writeObject(this);
+			exportKNNModel(fileName);
 			JOptionPane.showMessageDialog(null, "Export Successful!", "Export Review", JOptionPane.PLAIN_MESSAGE);
-			fout.close();
 		} catch(IOException e){
-			if(filename != null) 
+			if(fileName != null) 
 				JOptionPane.showMessageDialog(null, "Export Failed!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 		}
+	}
+	
+	/** importKNNModel			Imports specified file. Exceptions handled in in() method
+	 * 
+	 * @param fileName			Name of file to import
+	 * @return importedProject	the imported KNNModel
+	 * 
+	 */
+	public KNNModel importKNNModel(String fileName) throws IOException, ClassNotFoundException{
+		FileInputStream streamIn = new FileInputStream(fileName);
+		ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
+		KNNModel importedProject = (KNNModel) objectinputstream.readObject();
+		streamIn.close();
+		return importedProject;
+	}
+	
+	/** exportKNNModel		Exports specified file. Exceptions handled in out() method
+	 * 
+	 * @param fileName		Name of file to export
+	 */
+	public void exportKNNModel(String fileName) throws IOException{
+		FileOutputStream fout = new FileOutputStream(fileName);
+		ObjectOutputStream oos = new ObjectOutputStream(fout);
+		oos.writeObject(this);
+		fout.close();
 	}
 	
 	/** getList()		Returns the current lis of examples and attributes
