@@ -538,7 +538,8 @@ public class KNNModel extends Observable implements Serializable{
 			MachineLearning.importProject(importedProject);
 			streamIn.close();
 		 } catch (Exception e) {
-			 JOptionPane.showMessageDialog(null, "Please Check File Name and File exists within the Source Directory", "Import Error!", JOptionPane.PLAIN_MESSAGE);
+			 if(filename == null)
+				 JOptionPane.showMessageDialog(null, "Please Check File Name and File exists within the Source Directory", "Import Error!", JOptionPane.PLAIN_MESSAGE);
 		 }
 	}
 	public void out(String filename)
