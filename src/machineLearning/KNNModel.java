@@ -521,16 +521,12 @@ public class KNNModel extends Observable implements Serializable{
 		
 	}
 	
-	public boolean exampleIsAdded(){
-		return exampleAdded;
-	}
-	
-	public DefaultListModel<Example> getList()
-	{
-		return list;
-	}
-	public void in(String filename)
-	{
+	/**	in()				Imports filename, containing examples, attributes etc. into system
+	 * 
+	 * @param filename		Name of file to import
+	 * @creates newFile 	New file in program directory created with filename
+	 */
+	public void in(String filename){
 		try {
 			FileInputStream streamIn = new FileInputStream(filename);
 			ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
@@ -542,8 +538,12 @@ public class KNNModel extends Observable implements Serializable{
 				 JOptionPane.showMessageDialog(null, "Please Check File Name and File exists within the Source Directory", "Import Error!", JOptionPane.PLAIN_MESSAGE);
 		 }
 	}
-	public void out(String filename)
-	{
+	
+	/**	out()				Imports filename, containing examples, attributes etc. into system
+	 * 
+	 * @param filename		Name of file to import
+	 */
+	public void out(String filename){
 		try
 		{
 			FileOutputStream fout = new FileOutputStream(filename);
@@ -555,14 +555,12 @@ public class KNNModel extends Observable implements Serializable{
 			if(filename != null) 
 				JOptionPane.showMessageDialog(null, "Export Failed!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 		}
-		}
-	
+	}
 	
 	/**
 	 * Loads in all of the training data from the excel sheet
 	 */
-	public void soccerScenario()
-	{
+	public void soccerScenario(){
 		Attribute n1, n2, n3, n4, n5, n6, n7, n8, n9;
 		Key k;
 		Example training = new Example();
@@ -1141,14 +1139,38 @@ public class KNNModel extends Observable implements Serializable{
 		setChanged();
 		notifyObservers("training");
 	}
-	public boolean getCreated()
+	
+	/** getList()		Returns the current lis of examples and attributes
+	 * 
+	 * @return list 	Current list of examples
+	 */
+	public DefaultListModel<Example> getList()
 	{
+		return list;
+	}
+	
+	
+	/** getCreated()		Returns if a Example containing x Nums, y Points, and z Text Attributes has been created
+	 * 
+	 * @return hasCReated	True if an exmaple has been created, false otherwise
+	 */
+	public boolean getCreated(){
 		return hasCreated;
 	}
+	
+	/** getTraining()		Returns if a example has been created
+	 * 
+	 * @return hasTraining	True if an training exmaple has been created, false otherwise
+	 */
 	public boolean getTraining()
 	{
 		return hasTraining;
 	}
+	
+	/** getTesting()		Returns if a example has been created
+	 * 
+	 * @return hasTesting	True if an testing exmaple has been created, false otherwise
+	 */
 	public boolean getTesting()
 	{
 		return hasTesting;
