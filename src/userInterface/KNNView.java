@@ -1,10 +1,4 @@
 package userInterface;
-/** KNNView				Responsible for creating the user interface
- * 
- * @author MZGA
- * @version 2.0
- *
- */
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -26,6 +20,12 @@ import javax.swing.JPanel;
 
 import machineLearning.Example;
 
+/** KNNView				Responsible for creating the user interface
+ * 
+ * @author MZGA
+ * @version 4.0
+ *
+ */
 public class KNNView extends JFrame implements Observer {
 	
 	private JMenuItem  create, edit, calculate, testing, training, errorCalculation;
@@ -36,9 +36,9 @@ public class KNNView extends JFrame implements Observer {
 	private boolean hasCreatedTraining, hasCreatedTesting;
 	
 	
-	/** KNNView		Generate user interface
+	/** KNNView					Generate user interface
 	 * 
-	 * @param listData	Existing data to add to the List
+	 * @param listData			Existing data to add to the List
 	 */
 	public KNNView(DefaultListModel<Example> listData) {
 		super("KNN");
@@ -95,7 +95,7 @@ public class KNNView extends JFrame implements Observer {
 		addInputOutput();
 	}
 	
-	/** addInputOutput		Add IO to user interface
+	/** addInputOutput			Add IO to user interface
 	 * 
 	 */
 	public void addInputOutput() {
@@ -111,10 +111,10 @@ public class KNNView extends JFrame implements Observer {
   		input.add(list);
 	}
 	
-	/** update()		update state of UI
+	/** update()				update state of UI
 	 * 
-	 * @param obs		Observer	Current Model
-	 * @param obj		Object
+	 * @param obs				Observer	Current Model
+	 * @param obj				Object
 	 */
 	public void update(Observable obs, Object obj)
 	{
@@ -139,11 +139,18 @@ public class KNNView extends JFrame implements Observer {
 		}
 	}
 	
+	/** close()				Closes the View
+	 * 
+	 */
 	public void close()
 	{
 		dispose();
 	}
 	
+	/** created()			Sets the traning, testing and edit buttons to true
+	 * 						Used when Importing a complete file
+	 * 
+	 */
 	public void created()
 	{
 		training.setEnabled(true);
@@ -151,6 +158,9 @@ public class KNNView extends JFrame implements Observer {
 		edit.setEnabled(true);
 	}
 	
+	/**	tested()			Sets the training button to true
+	 * 
+	 */
 	public void tested()
 	{
 		hasCreatedTraining = true;
@@ -161,6 +171,9 @@ public class KNNView extends JFrame implements Observer {
 		}
 	}
 	
+	/** training()			Sets the training button to true
+	 * 
+	 */
 	public void training()
 	{
 		hasCreatedTesting = true;
