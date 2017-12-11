@@ -23,7 +23,7 @@ public class MachineLearning {
 	 * 
 	 * @param newP				The new file to load in
 	 */
-	public static void importProject(KNNModel newP) {
+	public static void loadProject(KNNModel newP) {
 		v.close();
 		p = newP;
 		v = new KNNView(p.getList());

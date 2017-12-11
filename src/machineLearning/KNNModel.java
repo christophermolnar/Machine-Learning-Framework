@@ -563,7 +563,7 @@ public class KNNModel extends Observable implements Serializable{
 	 */
 	public void in(String fileName){
 		try {
-			MachineLearning.importProject(importKNNModel(fileName));
+			MachineLearning.loadProject(importKNNModel(fileName));
 		 } 
 
 		catch (Exception e) {
