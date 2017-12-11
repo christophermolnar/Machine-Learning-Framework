@@ -320,7 +320,6 @@ public class KNNModel extends Observable implements Serializable{
 		} //End of createTester
 	}
 	
-	
 	/** training()		Create a new training example consisting of x Nums, y Points, and z Text Values
 	 * 
 	 */
@@ -565,9 +564,12 @@ public class KNNModel extends Observable implements Serializable{
 	public void in(String fileName){
 		try {
 			MachineLearning.importProject(importKNNModel(fileName));
-		 } catch (Exception e) {
-			 if(fileName != null) 
-				 JOptionPane.showMessageDialog(null, "Please Check File Name and File exists within the Source Directory", "Import Error!", JOptionPane.PLAIN_MESSAGE);
+		 } 
+
+		catch (Exception e) {
+			if (fileName != null)
+				JOptionPane.showMessageDialog(null, "Please Check File Name and File exists within the Source Directory", "Import Error!", JOptionPane.PLAIN_MESSAGE);
+
 		 }
 	}
 	
@@ -581,8 +583,12 @@ public class KNNModel extends Observable implements Serializable{
 			exportKNNModel(fileName);
 			JOptionPane.showMessageDialog(null, "Export Successful!", "Export Review", JOptionPane.PLAIN_MESSAGE);
 		} catch(IOException e){
-			if(fileName != null) 
+			if(fileName != null){
 				JOptionPane.showMessageDialog(null, "Export Failed!", "Export Review", JOptionPane.PLAIN_MESSAGE);
+			}
+		} 
+		finally{
+			
 		}
 	}
 	
@@ -605,6 +611,9 @@ public class KNNModel extends Observable implements Serializable{
 	 * @param fileName		Name of file to export
 	 */
 	public void exportKNNModel(String fileName) throws IOException{
+		if (fileName == null){
+			throw new IOException();
+		}
 		FileOutputStream fout = new FileOutputStream(fileName);
 		ObjectOutputStream oos = new ObjectOutputStream(fout);
 		oos.writeObject(this);
